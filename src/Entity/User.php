@@ -11,10 +11,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
-    const STATUS_ACTIVE   = 'active';
-    const STATUS_INACTIVE = 'inactive';
-    const STATUS_BLOCKED  = 'blocked';
-    const STATUS_DELETED  = 'deleted';
+    const STATUS_ACTIVE      = 'active';
+    const STATUS_INACTIVE    = 'inactive';
+    const STATUS_BLOCKED     = 'blocked';
+    const STATUS_DELETED     = 'deleted';
+    const STATUS_UNCONFIRMED = 'unconfirmed';
+    
+    const ROLE_USER       = 'ROLE_USER';
+    const ROLE_ADMIN      = 'ROLE_ADMIN';
+    const ROLE_SUPERADMIN = 'ROLE_SUPERADMIN';
     
     /**
      * @ORM\Id()
