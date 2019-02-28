@@ -45,10 +45,11 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator
     public function getCredentials(Request $request)
     {
         $credentials = [
-            'email' => $request->request->get('email'),
-            'password' => $request->request->get('password'),
+            'email'      => $request->request->get('email'),
+            'password'   => $request->request->get('password'),
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
+        
         $request->getSession()->set(
             Security::LAST_USERNAME,
             $credentials['email']
@@ -64,11 +65,32 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+        $user = $this->entityManager->getRepository(User::class)->findOneBy([
+            'email' => $credentials['email']
+        ]);
 
-        if (!$user) {
+        if (!$user or $user->getStatus() === User::STATUS_DELETED) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+            throw new CustomUserMessageAuthenticationException('You\'re email address couldn\'t been found.');
+        }
+        
+        if (
+            !in_array(User::ROLE_ADMIN, $user->getRoles())
+            && !in_array(User::ROLE_SUPERADMIN, $user->getRoles())
+        ) {
+            throw new CustomUserMessageAuthenticationException('You don\'t have access to the administrator module.');
+        }
+        
+        if ($user->getStatus() === User::STATUS_UNCONFIRMED) {
+            throw new CustomUserMessageAuthenticationException('You have to confirm your registration before you can log in.');
+        }
+        
+        if ($user->getStatus() === User::STATUS_INACTIVE) {
+            throw new CustomUserMessageAuthenticationException('Your account is inactive.  Contact the administrator');
+        }
+        
+        if ($user->getStatus() === User::STATUS_BLOCKED) {
+            throw new CustomUserMessageAuthenticationException('Your account is blocked.');
         }
 
         return $user;
