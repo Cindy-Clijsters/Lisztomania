@@ -19,6 +19,10 @@ security:
             guard:
                 authenticators:
                     - App\Security\CustomAuthenticator
+                    
+            logout:
+                path: rtAdminLogout
+                target: rtAdminLogin
 
             # activate different ways to authenticate
 
