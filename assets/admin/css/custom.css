@@ -1,0 +1,12 @@
+/* Forms */
+
+.input-group-addon {
+    border-radius: 0rem;
+}
+
+/* Login */
+
+.login-form .btn {
+    text-transform: none;
+    padding: 10px;
+}
