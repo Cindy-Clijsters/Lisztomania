@@ -49,6 +49,11 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     * @var string The unhashed password
+     */
+    private $plainPassword;
+    
+    /**
      * @var string The hashed password
      * 
      * @ORM\Column(type="string")
@@ -177,6 +182,30 @@ class User implements UserInterface
     }
 
     /**
+     * Get the plain password
+     * 
+     * @return string|null
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+    
+    /**
+     * Set the plain password
+     * 
+     * @param string $plainPassword
+     * 
+     * @return \self
+     */
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+        
+        return $this;
+    }
+    
+    /**
      * Get the password
      * 
      * @return string|null
@@ -240,7 +269,7 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 
 }

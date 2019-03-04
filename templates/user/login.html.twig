@@ -22,7 +22,7 @@
                         <span>Lisztomania</span>
                     </div>
                     <div class="login-form">
-                        <form method="post">
+                        {{ form_start(form, {'method': 'POST'}) }}
                             
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                                 
@@ -31,19 +31,13 @@
                             {% endif %}
                             
                             <div class="form-group">
-                                <label for="inputEmail" class="sr-only">E-mail adres</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                    <input type="email" value="{{ lastEmail }}" name="email" id="inputEmail" class="form-control" placeholder="E-mail adres" required autofocus>
-                                </div>
+                                {{ form_label(form.email) }}
+                                {{ form_widget(form.email) }}
                             </div>
                             
                             <div class="form-group">                             
-                                <label for="inputPassword" class="sr-only">Wachtwoord</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Wachtwoord" required>           
-                                </div>
+                                {{ form_label(form.plainPassword) }}
+                                {{ form_widget(form.plainPassword) }}
                             </div>
                             
                             <!--
@@ -57,9 +51,9 @@
                             </div>
                             -->
                             
-                            <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Aanmelden</button>
+                            {{ form_widget(form.submit) }}
                             
-                        </form>
+                        {{ form_end(form) }}
                     </div>
                 </div>
             </div>

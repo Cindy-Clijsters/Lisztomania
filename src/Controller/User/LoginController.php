@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+use App\Entity\User;
+use App\Form\User\LoginType;
+
 /**
  * Login form for the administraton module
  * 
@@ -31,11 +34,20 @@ class LoginController extends AbstractController
         
         // Get the last email entered by the user
         $lastEmail = $authenticationUtils->getLastUsername();
+        
+        // Generate the form
+        $user = new User();
+        $form = $this->createForm(
+            LoginType::class,
+            $user,
+            ['lastEmail' => $lastEmail]
+        );
 
         // Display the view
         return $this->render(
             'user/login.html.twig',
             [
+                'form'      => $form->createView(),
                 'lastEmail' => $lastEmail,
                 'error'     => $error
             ]

@@ -4,9 +4,17 @@
     border-radius: 0rem;
 }
 
+label.required:after {
+    content: " *";
+}
+
 /* Login */
 
 .login-form .btn {
     text-transform: none;
     padding: 10px;
+}
+
+.login-form label {
+    text-transform: none;
 }

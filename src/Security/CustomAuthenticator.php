@@ -44,9 +44,11 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator
 
     public function getCredentials(Request $request)
     {
+        $formData = $request->request->get('login');
+
         $credentials = [
-            'email'      => $request->request->get('email'),
-            'password'   => $request->request->get('password'),
+            'email'      => (array_key_exists('email', $formData) ? $formData['email'] : null),
+            'password'   => (array_key_exists('plainPassword', $formData) ? $formData['plainPassword'] : null),
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
         
