@@ -48,7 +48,6 @@ class LoginController extends AbstractController
             'user/login.html.twig',
             [
                 'form'      => $form->createView(),
-                'lastEmail' => $lastEmail,
                 'error'     => $error
             ]
         );
