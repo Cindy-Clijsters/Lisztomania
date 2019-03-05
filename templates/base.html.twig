@@ -35,32 +35,7 @@
                 </div>
 
                 <div id="main-menu" class="main-menu collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="{{ path('rtAdminDashboard') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
-                        </li>
-
-                        <h3 class="menu-title">Mijn profiel</h3>
-                        <li>
-                            <a href="#"> <i class="menu-icon fa fa-user"></i>Mijn profiel</a>
-                        </li>
-
-                        <h3 class="menu-title">Beheer</h3>
-                        <li>
-                            <a href="#"> <i class="menu-icon fa fa-users"></i>Gebruikers</a>
-                        </li>
-                        <li>
-                            <a href="#"> <i class="menu-icon fa fa-microphone"></i>Uitvoerders</a>
-                        </li>
-                        <li>
-                            <a href="#"> <i class="menu-icon fa fa-music"></i>Albums</a>
-                        </li>
-                        
-                        <h3 class="menu-title">Extra</h3>
-                        <li>
-                            <a href="#"> <i class="menu-icon fa fa-cog"></i>Settings</a>
-                        </li>                         
-                    </ul>
+                    {{ knp_menu_render('main', {'currentClass': 'active'}) }}                        
                 </div>
             </nav>
         </aside>
@@ -90,8 +65,8 @@
                             </a>
 
                             <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="#"><i class="fa fa-user mr-2"></i> Mijn profiel</a>
-                                <a class="nav-link" href="#"><i class="fa fa-cog mr-2"></i> Settings</a>
+                                <a class="nav-link" href="{{ path('rtAdminMyProfile') }}"><i class="fa fa-user mr-2"></i> Mijn profiel</a>
+                                <a class="nav-link" href="{{ path('rtAdminSettingsOverview') }}"><i class="fa fa-cog mr-2"></i> Instellingen</a>
                                 <a class="nav-link" href="{{ path('rtAdminLogout') }}"><i class="fa fa-power-off mr-2"></i> Logout</a>
                             </div>
                         </div>
