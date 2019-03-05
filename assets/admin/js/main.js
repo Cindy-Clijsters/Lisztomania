@@ -15,17 +15,18 @@ jQuery(document).ready(function($) {
 		$('body').toggleClass('open');
 	});
 
-	$('.search-trigger').on('click', function(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		$('.search-trigger').parent('.header-left').addClass('open');
-	});
 
-	$('.search-close').on('click', function(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		$('.search-trigger').parent('.header-left').removeClass('open');
-	});
+	//$('.search-trigger').on('click', function(event) {
+	//	event.preventDefault();
+	//	event.stopPropagation();
+	//	$('.search-trigger').parent('.header-left').addClass('open');
+	//});
+
+	//$('.search-close').on('click', function(event) {
+	//	event.preventDefault();
+	//	event.stopPropagation();
+	//	$('.search-trigger').parent('.header-left').removeClass('open');
+	//});
 
 	// $('.user-area> a').on('click', function(event) {
 	// 	event.preventDefault();
