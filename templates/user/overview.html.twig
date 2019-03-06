@@ -11,6 +11,90 @@
 {% endblock %}
 
 {% block mainContent %}  
-    Coming soon...
+    
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                                {% if is_granted('ROLE_SUPERADMIN') %}
+                                    <div class="row mt-2 mb-4">
+                                        <div class="col-sm-12">
+                                            <a href="{{ path('rtAdminUserCreate') }}" class="btn btn-link mr-4">Een gebruiker toevoegen</a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                    
+                                {% if users is not empty %}
+                                    
+                                    <div class="row">
+                                        <div class="col-sm-12">
+
+                                            <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Achternaam</th>
+                                                        <th>Voornaam</th>
+                                                        <th>E-mailadres</th>
+                                                        <th>Rol</th>
+                                                        <th>Status</th>
+                                                        <th>Opties</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for user in users %}
+                                                        <tr>
+                                                            <td>{{ user.id }}</td>
+                                                            <td>{{ user.lastName }}</td>
+                                                            <td>{{ user.firstName }}</td>
+                                                            <td>{{ user.email }}</td>
+                                                            <td>{{ user.roles|join(', ') }}</td>
+                                                            <td>{{ user.status }}</td>
+                                                            <td>
+                                                                <a href="{{ path('rtAdminUserRead', {'id' : user.id}) }}" class="mr-2"><i class="ti ti-search"></i></a>
+                                                                {% if is_granted('ROLE_SUPERADMIN') %}
+                                                                    <a href="{{ path('rtAdminUserUpdate', {'id' : user.id}) }}" class="mr-2"><i class="ti ti-pencil-alt"></i></a>
+                                                                    <a href="{{ path('rtAdminUserDelete', {'id' : user.id}) }}"><i class="ti ti-trash"></i></a>
+                                                                {% endif %}
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="dataTables_info">Toon {{ startRecord }} tot {{ endRecord }} van {{ users.getTotalItemCount }} gebruikers</div>
+                                        </div>
+
+                                        <div class="col-sm-12 col-md-7">
+                                            <div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table-export_paginate">
+                                                {{ knp_pagination_render(users) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                        
+                                {% else %}
+                                    
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p class="mt-2">Er zijn geen gebruikers gevonden!</p>
+                                        </div>
+                                    </div>
+                                    
+                                {%  endif %}
+                                
+
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
 {% endblock %}
 

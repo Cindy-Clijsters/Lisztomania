@@ -21,6 +21,8 @@ class User implements UserInterface
     const ROLE_ADMIN      = 'ROLE_ADMIN';
     const ROLE_SUPERADMIN = 'ROLE_SUPERADMIN';
     
+    const LIST_ITEMS = 10;
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

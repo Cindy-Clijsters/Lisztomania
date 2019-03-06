@@ -18,3 +18,29 @@ label.required:after {
 .login-form label {
     text-transform: none;
 }
+
+/* Pagination */
+
+div.dataTables_paginate
+{
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+}
+
+div.dataTables_paginate ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+    justify-content: flex-end;
+}
+
+div.dataTables_info {
+    padding-top: 0.85em;
+    white-space: nowrap;
+}
+
+/* Breadcrumb */
+
+.right-panel .page-header .breadcrumb {
+    text-transform: none;
+}

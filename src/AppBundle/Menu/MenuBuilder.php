@@ -147,16 +147,16 @@ class MenuBuilder implements ContainerAwareInterface
             $menu->getChild('myProfile')->setCurrent(true);
         }
         
-        if (preg_match("/rtAdminArtist/i", $route)) {
-            $menu->getChild('artists')->setCurrent(true);
+        if (preg_match("/rtAdminUser/i", $route)) {
+            $menu->getChild('users')->setCurrent(true);
         }        
         
         if (preg_match("/rtAdminAlbum/i", $route)) {
             $menu->getChild('albums')->setCurrent(true);
         }
         
-        if (preg_match("/rtAdminAlbum/i", $route)) {
-            $menu->getChild('albums')->setCurrent(true);
+        if (preg_match("/rtAdminArtist/i", $route)) {
+            $menu->getChild('artists')->setCurrent(true);
         }
         
         if (preg_match("/rtAdminSettings/i", $route)) {
