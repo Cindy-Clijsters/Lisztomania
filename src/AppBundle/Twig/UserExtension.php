@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace App\AppBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\User;
 
@@ -14,6 +15,18 @@ use App\Entity\User;
  */
 class UserExtension extends AbstractExtension
 {
+    private $translator;
+    
+    /**
+     * Constructor function
+     * 
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }    
+    
     /**
      * Get an overview of user filters
      * 
@@ -37,7 +50,7 @@ class UserExtension extends AbstractExtension
     public function formatUserStatusFilter(string $status): string
     {
         $class       = $this->getUserStatusClass($status);
-        $translation = $this->getUserStatusTranslation($status);
+        $translation = $this->translator->trans($status, [], 'users');
         
         return '<span class="' . $class . '">' . $translation . '</span>';
     }
@@ -45,59 +58,14 @@ class UserExtension extends AbstractExtension
     /**
      * Translate the user role
      * 
-     * @param string $role
+     * @param array $roles
      * 
      * @return string
      */
-    public function userRoleFilter(string $role): string
+    public function userRoleFilter(array $roles): string
     {
-        switch($role) {
-            case User::ROLE_USER:
-                $translation = 'Gebruiker';
-                break;
-            case User::ROLE_ADMIN:
-                $translation = 'Beheerder';
-                break;
-            case User::ROLE_SUPERADMIN:
-                $translation = 'Superbeheerder';
-                break;
-            default:
-                $translation = 'Onbekend';
-                break;
-        }
-        
-        return $translation;
-    }
-    
-    /**
-     * Get the translation of the user status
-     * 
-     * @param string $status
-     * 
-     * @return string
-     */
-    private function getUserStatusTranslation(string $status): string
-    {
-        switch($status) {
-            case User::STATUS_ACTIVE:
-                $translation = 'Actief';
-                break;
-            case User::STATUS_INACTIVE:
-                $translation = 'Inactief';
-                break;
-            case User::STATUS_BLOCKED:
-                $translation = 'Geblokkeerd';
-                break;
-            case User::STATUS_DELETED:
-                $translation = 'Verwijderd';
-                break;
-            case User::STATUS_UNCONFIRMED:
-                $translation = 'Niet bevestigd';
-                break;
-            default:
-                $translation = 'Onbekend';
-                break;
-        }
+        $role        = implode($roles, ',');
+        $translation = $this->translator->trans($role, [], 'users');
         
         return $translation;
     }

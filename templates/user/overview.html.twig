@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lisztomania :: Gebruikers{% endblock %}
-{% block pageTitle %}Gebruikers{% endblock %}
+{% block title %}Lisztomania :: {% trans %}Users{% endtrans %}{% endblock %}
+{% block pageTitle %}{% trans %}Users{% endtrans %}{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb text-right">
-        <li><a href="{{ path('rtAdminDashboard') }}">Dashboard</a></li>
-        <li class="active">Gebruikers</li>
+        <li><a href="{{ path('rtAdminDashboard') }}">{% trans %}Dashboard{% endtrans %}</a></li>
+        <li class="active">{% trans %}Users{% endtrans %}</li>
     </ol>
 {% endblock %}
 
@@ -21,7 +21,7 @@
                                 {% if is_granted('ROLE_SUPERADMIN') %}
                                     <div class="row mt-2 mb-4">
                                         <div class="col-sm-12">
-                                            <a href="{{ path('rtAdminUserCreate') }}" class="btn btn-link mr-4">Een gebruiker toevoegen</a>
+                                            <a href="{{ path('rtAdminUserCreate') }}" class="btn btn-link mr-4">{% trans from 'users'%}Add a user{% endtrans %}</a>
                                         </div>
                                     </div>
                                 {% endif %}
@@ -35,12 +35,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Achternaam</th>
-                                                        <th>Voornaam</th>
-                                                        <th>E-mailadres</th>
-                                                        <th>Rol</th>
-                                                        <th>Status</th>
-                                                        <th>Opties</th>
+                                                        <th>{% trans from 'users' %}Last name{% endtrans %}</th>
+                                                        <th>{% trans from 'users' %}First name{% endtrans %}</th>
+                                                        <th>{% trans from 'users' %}E-mail address{% endtrans %}</th>
+                                                        <th>{% trans from 'users' %}Role{% endtrans %}</th>
+                                                        <th>{% trans %}Status{% endtrans %}</th>
+                                                        <th>{% trans %}Options{% endtrans %}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -50,7 +50,7 @@
                                                             <td>{{ user.lastName }}</td>
                                                             <td>{{ user.firstName }}</td>
                                                             <td>{{ user.email }}</td>
-                                                            <td>{{ user.roles|join(', ')|userRole }}</td>
+                                                            <td>{{ user.roles|userRole }}</td>
                                                             <td>{{ user.status|formatUserStatus }}</td>
                                                             <td>
                                                                 <a href="{{ path('rtAdminUserRead', {'id' : user.id}) }}" class="mr-2"><i class="ti ti-search"></i></a>
@@ -68,7 +68,9 @@
                                         
                                     <div class="row">
                                         <div class="col-sm-12 col-md-5">
-                                            <div class="dataTables_info">Toon {{ startRecord }} tot {{ endRecord }} van {{ users.getTotalItemCount }} gebruikers</div>
+                                            <div class="dataTables_info">
+                                                {% trans with {'%start%': startRecord, '%end%' : endRecord, '%total%' : users.getTotalItemCount} from 'users' %}Showing user entries{% endtrans %}
+                                            </div>
                                         </div>
 
                                         <div class="col-sm-12 col-md-7">
@@ -82,14 +84,12 @@
                                     
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <p class="mt-2">Er zijn geen gebruikers gevonden!</p>
+                                            <p class="mt-2">{% trans from 'users' %}No users were found{% endtrans %}</p>
                                         </div>
                                     </div>
                                     
                                 {%  endif %}
-                                
 
-                                
                         </div>
                     </div>
                 </div>

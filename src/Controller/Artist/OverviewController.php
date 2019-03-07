@@ -17,7 +17,10 @@ class OverviewController extends AbstractController
     /**
      * Show an overview of the artists
      * 
-     * @Route("/admin/artist/overview", name="rtAdminArtistOverview")
+     * @Route({
+     *  "nl" : "/beheer/artiesten/overzicht",
+     *  "en" : "/admin/artists/overview"
+     * }, name="rtAdminArtistOverview")
      * 
      * @return Response
      */

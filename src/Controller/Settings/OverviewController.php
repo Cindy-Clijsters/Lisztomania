@@ -17,7 +17,10 @@ class OverviewController extends AbstractController
     /**
      * Show an overview with the settings
      * 
-     * @Route("/admin/settings/overview", name="rtAdminSettingsOverview")
+     * @Route({
+     *  "nl" : "/beheer/instellingen/overzicht",
+     *  "en" : "/admin/settings/overview"
+     * }, name="rtAdminSettingsOverview")
      * 
      * @return Response
      */

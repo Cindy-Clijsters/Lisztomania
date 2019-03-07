@@ -8,8 +8,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Generate the login form
@@ -18,6 +19,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class LoginType extends AbstractType
 {
+    private $translator;
+    
+    /**
+     * Constructor function
+     * 
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator   = $translator;
+    }
+    
     /**
      * Build the form
      * 
@@ -33,7 +46,7 @@ class LoginType extends AbstractType
                 'email',
                 EmailType::class,
                 [
-                    'label' => 'E-mailadres', 
+                    'label' => $this->translator->trans('E-mail address', [], 'users'), 
                     'attr'  => [
                         'class' => 'form-control',
                         'value' => $options['lastEmail']
@@ -44,7 +57,7 @@ class LoginType extends AbstractType
                 'plainPassword',
                 PasswordType::class,
                 [
-                    'label' => 'Wachtwoord',
+                    'label' => $this->translator->trans('Password', [], 'users'),
                     'attr'  => ['class' => 'form-control']
                 ]
             )
@@ -52,7 +65,7 @@ class LoginType extends AbstractType
                 'submit',
                 SubmitType::class,
                 [
-                    'label' => 'Aanmelden',
+                    'label' => $this->translator->trans('Login', [], 'users'),
                     'attr'  => ['class' => 'btn btn-success btn-flat m-b-30 m-t-30']
                 ]
             );

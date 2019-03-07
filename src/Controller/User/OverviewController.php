@@ -28,7 +28,10 @@ class OverviewController extends AbstractController
     /**
      * Show an overview with the users
      * 
-     * @Route("/admin/users/overview", name="rtAdminUserOverview")
+     * @Route({
+     *  "nl" : "/beheer/gebruikers/overzicht",
+     *  "en" : "/admin/users/overview"
+     * }, name="rtAdminUserOverview")
      * 
      * @param Request $request
      * 

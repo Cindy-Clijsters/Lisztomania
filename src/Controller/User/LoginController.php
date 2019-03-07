@@ -21,7 +21,10 @@ class LoginController extends AbstractController
     /**
      * Login in the administration module
      * 
-     * @Route("/admin/login", name="rtAdminLogin")
+     * @Route({
+     *  "nl" : "/beheer/aanmelden",
+     *  "en" : "/admin/login"
+     * }, name="rtAdminLogin")
      * 
      * @param AuthenticationUtils $authenticationUtils
      * 

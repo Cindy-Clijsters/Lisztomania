@@ -17,7 +17,10 @@ class ReadMyProfileController extends AbstractController
     /**
      * Show your own profile information
      * 
-     * @Route("/admin/myProfile", name="rtAdminMyProfile")
+     * @Route({
+     *  "nl" : "/beheer/mijn-profiel",
+     *  "en" : "/admin/my-profile"
+     * }, name="rtAdminMyProfile")
      * 
      * @return Response
      */

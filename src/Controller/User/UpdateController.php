@@ -17,7 +17,10 @@ class UpdateController extends AbstractController
     /**
      * Update the information of a user
      * 
-     * @Route("/admin/users/update/{id}", name="rtAdminUserUpdate")
+     * @Route({
+     *  "nl" : "/beheer/gebruikers/wijzigen/{id}",
+     *  "en" : "/admin/users/update/{id}"
+     * },  name="rtAdminUserUpdate")
      * 
      * @param int $id
      * 

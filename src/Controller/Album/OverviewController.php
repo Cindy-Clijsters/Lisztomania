@@ -17,7 +17,10 @@ class OverviewController extends AbstractController
     /**
      * Show an overview of the albums
      * 
-     * @Route("/admin/album/overview", name="rtAdminAlbumOverview")
+     * @Route({
+     *  "nl" : "/beheer/albums/overzicht",
+     *  "en" : "/admin/albums/overview"
+     * }, name="rtAdminAlbumOverview")
      * 
      * @return Response
      */

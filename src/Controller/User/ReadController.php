@@ -17,7 +17,10 @@ class ReadController extends AbstractController
     /**
      * Read the information of a user
      * 
-     * @Route("/admin/users/read/{id}", name="rtAdminUserRead")
+     * @Route({
+     *  "nl" : "/beheer/gebruikers/bekijken/{id}",
+     *  "en" : "/admin/users/view/{id}"
+     * }, name="rtAdminUserRead")
      * 
      * @param int $id
      * 

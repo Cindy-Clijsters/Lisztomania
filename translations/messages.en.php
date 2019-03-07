@@ -8,7 +8,12 @@ return [
     'Albums' => 'Albums',
     'Extra' => 'Extra',
     'Settings' => 'Settings',
+    'Login' => 'Login',
     'Logout' => 'Logout',
     
-    'Coming soon...' => 'Coming soon...'
+    'Coming soon...' => 'Coming soon...',
+    
+    'Status' => 'Status',
+    'Options' => 'Options',
+    
 ];

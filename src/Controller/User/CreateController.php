@@ -17,7 +17,10 @@ class CreateController extends AbstractController
     /**
      * Create a new user
      * 
-     * @Route("/admin/users/create", name="rtAdminUserCreate")
+     * @Route({
+     *  "nl" : "/beheer/gebruikers/toevoegen",
+     *  "en" : "/admin/users/add"
+     * }, name="rtAdminUserCreate")
      * 
      * @return Response
      */

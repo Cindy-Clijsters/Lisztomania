@@ -17,7 +17,10 @@ class DeleteController extends AbstractController
     /**
      * Delete the information of a user
      * 
-     * @Route("/admin/users/delete/{id}", name="rtAdminUserDelete")
+     * @Route({
+     *  "nl" : "/beheer/gebruikers/verwijderen/{id}",
+     *  "en" : "/admin/users/delete/{id}"
+     * }, name="rtAdminUserDelete")
      * 
      * @param int $id
      * 

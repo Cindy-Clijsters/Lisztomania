@@ -7,7 +7,7 @@ use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
-Use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Build the menu
@@ -26,6 +26,8 @@ class MenuBuilder implements ContainerAwareInterface
      * Constructor function
      * 
      * @param FactoryInterface $factory
+     * @RequestStack $requestStack
+     * @param TranslatorInterface $translator
      */
     public function __construct(
         FactoryInterface $factory,

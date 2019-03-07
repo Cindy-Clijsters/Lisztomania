@@ -8,7 +8,12 @@ return [
     'Albums' => 'Albums',
     'Extra' => 'Extra',
     'Settings' => 'Instellingen',
+    'Login' => 'Aanmelden',
     'Logout' => 'Afmelden',
     
-    'Coming soon...' => 'Binnenkort beschikbaar...'
+    'Coming soon...' => 'Binnenkort beschikbaar...',
+    
+    'Status' => 'Status',
+    'Options' => 'Opties',
+    
 ];

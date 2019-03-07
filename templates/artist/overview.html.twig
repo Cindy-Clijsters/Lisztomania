@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lisztomania :: Artiesten{% endblock %}
-{% block pageTitle %}Artiesten{% endblock %}
+{% block title %}Lisztomania :: {% trans %}Artists{% endtrans %}{% endblock %}
+{% block pageTitle %}{% trans %}Artists{% endtrans %}{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb text-right">
-        <li><a href="{{ path('rtAdminDashboard') }}">Dashboard</a></li>
-        <li class="active">Artiesten</li>
+        <li><a href="{{ path('rtAdminDashboard') }}">{% trans %}Dashboard{% endtrans %}</a></li>
+        <li class="active">{% trans %}Artists{% endtrans %}</li>
     </ol>
 {% endblock %}
 
 {% block mainContent %}  
-    Coming soon...
+    {% trans %}Coming soon...{% endtrans %}
 {% endblock %}
