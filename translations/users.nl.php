@@ -4,6 +4,7 @@ return [
     'First name' => 'Voornaam',
     'E-mail address' => 'E-mailadres',
     'Password' => 'Wachtwoord',
+    'Confirm password' => 'Bevestig wachtwoord',
     'Role' => 'Rol',
 
     'active' => 'Actief',

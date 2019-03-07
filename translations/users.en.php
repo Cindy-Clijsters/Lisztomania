@@ -4,6 +4,7 @@ return [
     'First name' => 'First name',
     'E-mail address' => 'E-mail address',
     'Password' => 'Password',
+    'Confirm password' => 'Confirm password',
     'Role' => 'Role',
     
     

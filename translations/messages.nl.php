@@ -16,4 +16,6 @@ return [
     'Status' => 'Status',
     'Options' => 'Opties',
     
+    'Save' => 'Opslaan',
+    
 ];
