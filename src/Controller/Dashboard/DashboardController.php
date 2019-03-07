@@ -17,7 +17,10 @@ class DashboardController extends AbstractController
     /**
      * Show the dashboard page of the administration module
      * 
-     * @Route("/admin/dashboard", name="rtAdminDashboard")
+     * @Route({
+     *      "nl" : "/beheer/dashboard",
+     *      "en" : "/admin/dashboard"
+     *  }, name="rtAdminDashboard")
      * 
      * @return Response
      */

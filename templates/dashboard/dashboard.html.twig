@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lisztomania :: Dashboard{% endblock %}
-{% block pageTitle %}Dashboard{% endblock %}
+{% block title %}Lisztomania :: {% trans %}Dashboard{% endtrans %}{% endblock %}
+{% block pageTitle %}{% trans %}Dashboard{% endtrans %}{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb text-right">
-        <li class="active">Dashboard</li>
+        <li class="active">{% trans %}Dashboard{% endtrans %}</li>
     </ol>
 {% endblock %}
 
 {% block mainContent %}  
-    Coming soon...
+    {% trans %}Coming soon...{% endtrans %}
 {% endblock %}
 

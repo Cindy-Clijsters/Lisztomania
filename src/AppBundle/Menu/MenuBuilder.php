@@ -7,6 +7,7 @@ use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
+Use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Build the menu
@@ -19,16 +20,21 @@ class MenuBuilder implements ContainerAwareInterface
     
     private $factory;
     private $requestStack;
+    private $translator;
     
     /**
      * Constructor function
      * 
      * @param FactoryInterface $factory
      */
-    public function __construct(FactoryInterface $factory, RequestStack $requestStack)
-    {
+    public function __construct(
+        FactoryInterface $factory,
+        RequestStack $requestStack,
+        TranslatorInterface $translator
+    ) {
         $this->factory      = $factory;
         $this->requestStack = $requestStack;
+        $this->translator   = $translator;
     }
     
     /**
@@ -48,7 +54,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'dashboard',
                 [
                     'route' => 'rtAdminDashboard',
-                    'label' => 'Dashboard'
+                    'label' => $this->translator->trans('Dashboard')
                 ]
             )
             ->setExtra('icon', 'fa fa-dashboard');
@@ -58,7 +64,7 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'myProfileDivider',
                 [
-                    'label' => 'Mijn profiel'
+                    'label' => $this->translator->trans('My profile')
                 ]
             );
         
@@ -68,7 +74,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'myProfile',
                 [
                     'route' => 'rtAdminMyProfile',
-                    'label' => 'Mijn profiel'
+                    'label' => $this->translator->trans('My profile')
                 ]
             )
             ->setExtra('icon', 'fa fa-user');
@@ -78,7 +84,7 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'administrationDivider',
                 [
-                    'label' => 'Beheer'
+                    'label' => $this->translator->trans('Administration')
                 ]
             );
         
@@ -88,7 +94,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'users',
                 [
                     'route' => 'rtAdminUserOverview',
-                    'label' => 'Gebruikers'
+                    'label' => $this->translator->trans('Users')
                 ]
             )
             ->setExtra('icon', 'fa fa-users');
@@ -100,7 +106,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'artists',
                 [
                     'route' => 'rtAdminArtistOverview',
-                    'label' => 'Artiesten'
+                    'label' => $this->translator->trans('Artists')
                 ]
             )
             ->setExtra('icon', 'fa fa-microphone');
@@ -111,7 +117,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'albums',
                 [
                     'route' => 'rtAdminAlbumOverview',
-                    'label' => 'Albums'
+                    'label' => $this->translator->trans('Albums')
                 ]
             )
             ->setExtra('icon', 'fa fa-music');
@@ -121,7 +127,7 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'ExtraDivider',
                 [
-                    'label' => 'Extra'
+                    'label' => $this->translator->trans('Extra')
                 ]
             );
         
@@ -131,7 +137,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'settings',
                 [
                     'route' => 'rtAdminSettingsOverview',
-                    'label' => 'Instellingen'
+                    'label' => $this->translator->trans('Settings')
                 ]
             )
             ->setExtra('icon', 'fa fa-cog');
