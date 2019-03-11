@@ -171,7 +171,7 @@ class User implements UserInterface
      * 
      * @see UserInterface
      */
-    public function getRole(): string
+    public function getRole(): ?string
     {        
         return $this->role;
     }

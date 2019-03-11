@@ -90,10 +90,9 @@ class CreateType extends AbstractType
                     'required' => true,
                     'attr'     => ['maxlength' => 50]
                 ] 
-            )
-            /*    
+            )   
             ->add(
-                'roles',
+                'role',
                  ChoiceType::class,
                 [
                     'label'       => $this->translator->trans('Role', [], 'users'),
@@ -101,7 +100,7 @@ class CreateType extends AbstractType
                     'constraints' => [
                         new Choice([
                             'choices' => ['', User::ROLE_ADMIN, User::ROLE_SUPERADMIN, User::ROLE_USER], 
-                            'message' => "De status moet een geldige waarde bevatten."
+                            'message' => "De rol moet een geldige waarde bevatten."
                         ])
                     ],
                     'choices'     => [
@@ -112,7 +111,6 @@ class CreateType extends AbstractType
                     ]
                 ]
             )
-             */
             ->add(
                 'status',
                  ChoiceType::class,
