@@ -99,8 +99,7 @@ class CreateType extends AbstractType
                     'required'    => true,
                     'constraints' => [
                         new Choice([
-                            'choices' => ['', User::ROLE_ADMIN, User::ROLE_SUPERADMIN, User::ROLE_USER], 
-                            'message' => "De rol moet een geldige waarde bevatten."
+                            'choices' => ['', User::ROLE_ADMIN, User::ROLE_SUPERADMIN, User::ROLE_USER]
                         ])
                     ],
                     'choices'     => [
@@ -119,8 +118,7 @@ class CreateType extends AbstractType
                     'required'    => true,
                     'constraints' => [
                         new Choice([
-                            'choices' => ['', User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_UNCONFIRMED], 
-                            'message' => "De status moet een geldige waarde bevatten."
+                            'choices' => ['', User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_UNCONFIRMED]
                         ])
                     ],
                     'choices'     => [

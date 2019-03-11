@@ -36,6 +36,8 @@ class CreateController extends AbstractController
         $user = new User();
         $form = $this->createForm(CreateType::class, $user);
         
+        $form->handleRequest($request);
+        
         // Dislay the view
         return $this->render(
             'user/create.html.twig',

@@ -7,7 +7,6 @@ return [
     'Confirm password' => 'Confirm password',
     'Role' => 'Role',
     
-    
     'active' => 'Active',
     'inactive' => 'Inactive',
     'blocked' => 'Blocked',

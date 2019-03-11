@@ -5,6 +5,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -32,31 +33,89 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50)
+     * 
+     * @Assert\NotBlank(message = "error.requiredField")
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 50,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters"
+     * )
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * 
+     * @Assert\NotBlank(message = "error.requiredField")
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 50,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters"
+     * )
      */
     private $firstName;
     
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * 
+     * @Assert\NotBlank(message = "error.requiredField")
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 180,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters"
+     * )
+     * @Assert\Email(message = "error.validEmailAddress")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string")
+     * 
+     * @Assert\NotBlank(message = "error.requiredField")
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 255,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters"
+     * )
      */
     private $role;
 
     /**
      * @var string The unhashed password
+     * 
+     * @Assert\NotBlank(message = "error.requiredField")
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 8,
+     *     max = 50,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters"
+     * )
+     * @Assert\Regex(
+     *     pattern = "/^((?=.*\d)(?=.*[A-Z])(?=.*[a-z])((?=.*\W)|(?=.*\_)).{8,50})/",
+     *     match   = true,
+     *     message = "error.safePassword"
+     * )
      */
     private $plainPassword;
     
     /**
      * @var string 
+     * 
+     * @Assert\NotBlank(message = "error.requiredField")
+     * @Assert\Type("string")
+     * @Assert\EqualTo(
+     *     propertyPath = "plainPassword",
+     *     message      = "De wachtwoorden komen niet overeen."
+     * )
      */
     private $confirmPassword;
     
@@ -69,6 +128,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=20)
+     * 
+     * @Assert\NotBlank(message = "error.requiredField")
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 20,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters"
+     * )
      */
     private $status;
     
