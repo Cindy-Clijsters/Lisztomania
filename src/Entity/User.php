@@ -48,7 +48,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string")
      */
-    private $roles = [];
+    private $role;
 
     /**
      * @var string The unhashed password
@@ -158,6 +158,8 @@ class User implements UserInterface
      * A visual identifier that represents this user.
      *
      * @see UserInterface
+     * 
+     * @return string
      */
     public function getUsername(): string
     {
@@ -165,27 +167,39 @@ class User implements UserInterface
     }
 
     /**
-     * Get the specified roles
+     * Get the user role
      * 
      * @see UserInterface
      */
-    public function getRoles(): array
+    public function getRole(): string
     {        
-        return [$this->roles];
+        return $this->role;
     }
 
     /**
-     * Set the roles
+     * Set the user role
      * 
-     * @param string $roles
+     * @param string $role
      * 
      * @return \self
      */
-    public function setRoles(string $roles): self
+    public function setRole(string $role): self
     {
-        $this->roles = $roles;
+        $this->role = $role;
 
         return $this;
+    }
+    
+    /**
+     * Get the user role as an array
+     * 
+     * @see UserInterface
+     * 
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return [$this->role];
     }
 
     /**
