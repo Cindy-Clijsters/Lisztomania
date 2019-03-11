@@ -25,5 +25,5 @@ return [
     'No users were found' => 'Er zijn geen gebruikers gevonden',
     'Showing user entries' => 'Toon %start% tot %end% van %total% gebruikers',    
     
-    'The user has been successfully added' => 'De gebruiker "%username%" is met success toegevoegd..'
+    'The user has been successfully added' => 'De gebruiker "%username%" is met succes toegevoegd.'
 ];

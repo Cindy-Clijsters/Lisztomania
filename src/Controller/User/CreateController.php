@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Entity\User;
 use App\Form\User\CreateType;
@@ -51,6 +52,8 @@ class CreateController extends AbstractController
      *  "en" : "/admin/users/add"
      * }, name="rtAdminUserCreate")
      * 
+     * @IsGranted("ROLE_SUPERADMIN")
+     * 
      * @param Request $request
      * 
      * @return Response
@@ -87,7 +90,8 @@ class CreateController extends AbstractController
                     'The user has been successfully added',
                     [
                         '%username%' => $user->getFullName()
-                    ]
+                    ],
+                    'users'
                 )
             );
             
