@@ -24,4 +24,6 @@ return [
     
     'No users were found' => 'No users were found',
     'Showing user entries' => 'Showing %start% to %end% of %total% users',
+    
+    'The user has been successfully added' => 'The user "%username%" has been successfully added.'
 ];

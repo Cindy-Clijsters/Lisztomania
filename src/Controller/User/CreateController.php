@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 use App\Entity\User;
 use App\Form\User\CreateType;
 
@@ -18,6 +22,27 @@ use App\Form\User\CreateType;
  */
 class CreateController extends AbstractController
 {
+    private $em;
+    private $encoder;
+    private $translator;
+    
+    /**
+     * Constructor function
+     * 
+     * @param EntityManagerInterface $em
+     * @param UserPasswordEncoderInterface $encoder
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(
+        EntityManagerInterface $em,
+        UserPasswordEncoderInterface $encoder,
+        TranslatorInterface $translator
+    ) {
+        $this->em         = $em;
+        $this->encoder    = $encoder;
+        $this->translator = $translator;
+    }
+    
     /**
      * Create a new user
      * 
@@ -37,6 +62,38 @@ class CreateController extends AbstractController
         $form = $this->createForm(CreateType::class, $user);
         
         $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            // Get the posted values
+            $user = $form->getData();
+            
+            // Encrypt the password
+            $hashedPassword = $this->encoder->encodePassword(
+                $user,
+                $user->getPlainPassword()
+            );
+            
+            $user->setPassword($hashedPassword);
+            
+            // Save the user
+            $this->em->persist($user);
+            $this->em->flush();
+            
+            // Redirect to the overview
+            $this->addFlash(
+                'notice',
+                $this->translator->trans(
+                    'The user has been successfully added',
+                    [
+                        '%username%' => $user->getFullName()
+                    ]
+                )
+            );
+            
+            return $this->redirectToRoute('rtAdminUserOverview');
+            
+        }
         
         // Dislay the view
         return $this->render(
