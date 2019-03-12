@@ -26,9 +26,15 @@ class ReadMyProfileController extends AbstractController
      */
     public function myProfile():Response
     {
+        // Get the information to display the view
+        $user = $this->getUser();
+        
         // Display the view
         return $this->render(
-            'user/readMyProfile.html.twig'
+            'user/readMyProfile.html.twig',
+            [
+                'user' => $user
+            ]
         );
     }
 }

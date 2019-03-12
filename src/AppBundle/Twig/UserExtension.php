@@ -58,13 +58,12 @@ class UserExtension extends AbstractExtension
     /**
      * Translate the user role
      * 
-     * @param array $roles
+     * @param string $role
      * 
      * @return string
      */
-    public function userRoleFilter(array $roles): string
+    public function userRoleFilter(string $role): string
     {
-        $role        = implode($roles, ',');
         $translation = $this->translator->trans('role.' . $role, [], 'users');
         
         return $translation;

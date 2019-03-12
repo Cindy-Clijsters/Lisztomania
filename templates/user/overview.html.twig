@@ -60,7 +60,7 @@
                                                             <td>{{ user.lastName }}</td>
                                                             <td>{{ user.firstName }}</td>
                                                             <td>{{ user.email }}</td>
-                                                            <td>{{ user.roles|userRole }}</td>
+                                                            <td>{{ user.role|userRole }}</td>
                                                             <td>{{ user.status|formatUserStatus }}</td>
                                                             <td>
                                                                 <a href="{{ path('rtAdminUserRead', {'id' : user.id}) }}" class="mr-2"><i class="ti ti-search"></i></a>

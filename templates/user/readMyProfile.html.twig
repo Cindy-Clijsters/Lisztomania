@@ -11,5 +11,69 @@
 {% endblock %}
 
 {% block mainContent %}  
-    {% trans %}global.comingSoon{% endtrans %}
+    
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">{% trans from 'users' %}field.lastName{% endtrans %}</label>:
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <p class="form-control-static">{{ user.lastName }}</p>
+                            </div>
+                        </div>
+                            
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">{% trans from 'users' %}field.firstName{% endtrans %}</label>:
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <p class="form-control-static">{{ user.firstName }}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">{% trans from 'users' %}field.email{% endtrans %}</label>:
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <p class="form-control-static">{{ user.email }}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">{% trans from 'users' %}field.role{% endtrans %}</label>:
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <p class="form-control-static">{{ user.role|userRole }}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">{% trans from 'users' %}field.status{% endtrans %}</label>:
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <p class="form-control-static">{{ user.status|formatUserStatus }}</p>
+                            </div>
+                        </div>
+                            
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <a href="{{ path('rtAdminMyProfileUpdate') }}" class="btn btn-sm btn-primary">{% trans from 'users' %}action.updateMyProfile{% endtrans %}</a>
+                                <a href="{{ path('rtAdminMyProfileUpdatePassword') }}" class="btn btn-sm btn-primary">{% trans from 'users' %}action.updatePassword{% endtrans %}</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 {% endblock %}

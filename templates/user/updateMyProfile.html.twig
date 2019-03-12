@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lisztomania :: {% trans from 'users'%}action.updateMyProfile{% endtrans %}{% endblock %}
+{% block pageTitle %}{% trans from 'users'%}action.updateMyProfile{% endtrans %}{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb text-right">
+        <li><a href="{{ path('rtAdminDashboard') }}">{% trans %}global.dashboard{% endtrans %}</a></li>
+        <li><a href="{{ path('rtAdminMyProfile') }}">{% trans %}global.myProfile{% endtrans %}</a></li>
+        <li class="active">{% trans from 'users'%}action.updateMyProfile{% endtrans %}</li>
+    </ol>
+{% endblock %}
+
+{% block mainContent %}  
+    {% trans %}global.comingSoon{% endtrans %}
+{% endblock %}
+{# empty Twig template #}

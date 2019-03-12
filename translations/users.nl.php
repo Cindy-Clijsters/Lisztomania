@@ -24,6 +24,8 @@ return [
     'action.add' => 'Een gebruiker toevoegen',
     'action.update' => 'Een gebruiker wijzigen',
     'action.delete' => 'Een gebruiker verwijderen',
+    'action.updateMyProfile' => 'Mijn profielgegevens wijzigen',
+    'action.updatePassword' => 'Mijn wachtwoord wijzigen',
     
     'list.noFound' => 'Er zijn geen gebruikers gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% gebruikers',

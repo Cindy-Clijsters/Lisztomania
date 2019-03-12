@@ -24,6 +24,8 @@ return [
     'action.add' => 'Add a user',
     'action.update' => 'Update a user',
     'action.delete' => 'Delete a user',
+    'action.updateMyProfile' => 'Change my profile information',
+    'action.updatePassword' => 'Change my password',
     
     'list.noFound' => 'No users were found.',
     'list.showEntries' => 'Showing %start% to %end% of %total% users',
