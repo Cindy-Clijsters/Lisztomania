@@ -13,8 +13,6 @@ use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use Symfony\Contracts\Translation\TranslatorInterface;
-
 use App\Entity\User;
 
 /**
@@ -23,19 +21,7 @@ use App\Entity\User;
  * @author Cindy Clijsters
  */
 class CreateType extends AbstractType
-{
-    private $translator;
-    
-    /**
-     * Constructor function
-     * 
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-    }
-    
+{    
     /**
      * Generate the form for creating new users
      * 
@@ -141,7 +127,7 @@ class CreateType extends AbstractType
     }
     
     /**
-     * Set the default optiosn
+     * Set the default options
      * 
      * @param OptionsResolver $resolver
      * 
