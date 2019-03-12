@@ -35,4 +35,22 @@ class UserRepository extends ServiceEntityRepository
             ->addOrderBy('u.email', 'ASC')
             ->getQuery();
     }
+    
+    /**
+     * Check if the email is unique (without deleted users)
+     * 
+     * @param array $criteria
+     * 
+     * @return ArrayCollection
+     */
+    public function findNonDeletedForConstraint(array $criteria)
+    {
+        return $this->createQueryBuilder('u')
+                    ->andWhere('u.email = :email')
+                    ->andWhere('u.status != :deletedStatus')
+                    ->setParameter('email', $criteria['email'])
+                    ->setParameter('deletedStatus', User::STATUS_DELETED)
+                    ->getQuery()
+                    ->getResult();
+    }
 }

@@ -7,8 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * 
+ * @UniqueEntity("email", repositoryMethod="findNonDeletedForConstraint", message="error.uniqueEmail")
  */
 class User implements UserInterface
 {
@@ -60,7 +64,7 @@ class User implements UserInterface
     private $firstName;
     
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180)
      * 
      * @Assert\NotBlank(message = "error.requiredField")
      * @Assert\Type("string")
