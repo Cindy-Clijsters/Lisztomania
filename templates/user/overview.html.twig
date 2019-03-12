@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lisztomania :: {% trans %}Users{% endtrans %}{% endblock %}
-{% block pageTitle %}{% trans %}Users{% endtrans %}{% endblock %}
+{% block title %}Lisztomania :: {% trans %}global.users{% endtrans %}{% endblock %}
+{% block pageTitle %}{% trans %}global.users{% endtrans %}{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb text-right">
-        <li><a href="{{ path('rtAdminDashboard') }}">{% trans %}Dashboard{% endtrans %}</a></li>
-        <li class="active">{% trans %}Users{% endtrans %}</li>
+        <li><a href="{{ path('rtAdminDashboard') }}">{% trans %}global.dashboard{% endtrans %}</a></li>
+        <li class="active">{% trans %}global.users{% endtrans %}</li>
     </ol>
 {% endblock %}
 
@@ -31,7 +31,7 @@
                                 {% if is_granted('ROLE_SUPERADMIN') %}
                                     <div class="row mt-2 mb-4">
                                         <div class="col-sm-12">
-                                            <a href="{{ path('rtAdminUserCreate') }}" class="btn btn-link mr-4">{% trans from 'users'%}Add a user{% endtrans %}</a>
+                                            <a href="{{ path('rtAdminUserCreate') }}" class="btn btn-link mr-4">{% trans from 'users'%}action.add{% endtrans %}</a>
                                         </div>
                                     </div>
                                 {% endif %}
@@ -45,12 +45,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>{% trans from 'users' %}Last name{% endtrans %}</th>
-                                                        <th>{% trans from 'users' %}First name{% endtrans %}</th>
-                                                        <th>{% trans from 'users' %}E-mail address{% endtrans %}</th>
-                                                        <th>{% trans from 'users' %}Role{% endtrans %}</th>
-                                                        <th>{% trans %}Status{% endtrans %}</th>
-                                                        <th>{% trans %}Options{% endtrans %}</th>
+                                                        <th>{% trans from 'users' %}field.lastName{% endtrans %}</th>
+                                                        <th>{% trans from 'users' %}field.firstName{% endtrans %}</th>
+                                                        <th>{% trans from 'users' %}field.email{% endtrans %}</th>
+                                                        <th>{% trans from 'users' %}field.role{% endtrans %}</th>
+                                                        <th>{% trans from 'users' %}field.status{% endtrans %}</th>
+                                                        <th>{% trans %}action.options{% endtrans %}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -79,7 +79,7 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-md-5">
                                             <div class="dataTables_info">
-                                                {% trans with {'%start%': startRecord, '%end%' : endRecord, '%total%' : users.getTotalItemCount} from 'users' %}Showing user entries{% endtrans %}
+                                                {% trans with {'%start%': startRecord, '%end%' : endRecord, '%total%' : users.getTotalItemCount} from 'users' %}list.showEntries{% endtrans %}
                                             </div>
                                         </div>
 
@@ -94,7 +94,7 @@
                                     
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <p class="mt-2">{% trans from 'users' %}No users were found{% endtrans %}</p>
+                                            <p class="mt-2">{% trans from 'users' %}list.noFound{% endtrans %}</p>
                                         </div>
                                     </div>
                                     

@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lisztomania :: {% trans from 'users' %}Update a user{% endtrans %}{% endblock %}
-{% block pageTitle %}{% trans from 'users' %}Update a user{% endtrans %}{% endblock %}
+{% block title %}Lisztomania :: {% trans from 'users' %}action.update{% endtrans %}{% endblock %}
+{% block pageTitle %}{% trans from 'users' %}action.update{% endtrans %}{% endblock %}
 
 {% block breadcrumbs %}
     <ol class="breadcrumb text-right">
-        <li><a href="{{ path('rtAdminDashboard') }}">{% trans %}Dashboard{% endtrans %}</a></li>
-        <li><a href="{{ path('rtAdminUserOverview') }}">{% trans %}Users{% endtrans %}</a></li>
-        <li class="active">{% trans from 'users' %}Update a user{% endtrans %}</li>
+        <li><a href="{{ path('rtAdminDashboard') }}">{% trans %}global.dashboard{% endtrans %}</a></li>
+        <li><a href="{{ path('rtAdminUserOverview') }}">{% trans %}global.users{% endtrans %}</a></li>
+        <li class="active">{% trans from 'users' %}action.update{% endtrans %}</li>
     </ol>
 {% endblock %}
 
 {% block mainContent %}  
-    {% trans %}Coming soon...{% endtrans %}
+    {% trans %}global.comingSoon{% endtrans %}
 {% endblock %}

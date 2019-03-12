@@ -50,7 +50,7 @@ class UserExtension extends AbstractExtension
     public function formatUserStatusFilter(string $status): string
     {
         $class       = $this->getUserStatusClass($status);
-        $translation = $this->translator->trans($status, [], 'users');
+        $translation = $this->translator->trans('status.' . $status, [], 'users');
         
         return '<span class="' . $class . '">' . $translation . '</span>';
     }
@@ -65,7 +65,7 @@ class UserExtension extends AbstractExtension
     public function userRoleFilter(array $roles): string
     {
         $role        = implode($roles, ',');
-        $translation = $this->translator->trans($role, [], 'users');
+        $translation = $this->translator->trans('role.' . $role, [], 'users');
         
         return $translation;
     }

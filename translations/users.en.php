@@ -1,29 +1,32 @@
 <?php
 return [
-    'Last name' => 'Last name',
-    'First name' => 'First name',
-    'E-mail address' => 'E-mail address',
-    'Password' => 'Password',
-    'Confirm password' => 'Confirm password',
-    'Role' => 'Role',
+    'field.lastName' => 'Last name',
+    'field.firstName' => 'First name',
+    'field.email' => 'E-mail address',
+    'field.password' => 'Password',
+    'field.confirmPassword' => 'Confirm password',
+    'field.role' => 'Role',
+    'field.status' => 'Status',
     
-    'active' => 'Active',
-    'inactive' => 'Inactive',
-    'blocked' => 'Blocked',
-    'deleted' => 'Deleted',
-    'unconfirmed' => 'Unconfirmed',
+    'status.makeChoice' => '--- Choose a status ---',
+    'status.active' => 'Active',
+    'status.inactive' => 'Inactive',
+    'status.blocked' => 'Blocked',
+    'status.deleted' => 'Deleted',
+    'status.unconfirmed' => 'Unconfirmed',
     
-    'ROLE_USER' => 'User',
-    'ROLE_ADMIN' => 'Administrator',
-    'ROLE_SUPERADMIN' => 'Superadministrator',    
+    'role.makeChoice' => '--- Choose a role ---',
+    'role.ROLE_USER' => 'User',
+    'role.ROLE_ADMIN' => 'Administrator',
+    'role.ROLE_SUPERADMIN' => 'Superadministrator',    
     
-    'View a user' => 'View a user',
-    'Add a user' => 'Add a user',
-    'Update a user' => 'Update a user',
-    'Delete a user' => 'Delete a user',
+    'action.view' => 'View a user',
+    'action.add' => 'Add a user',
+    'action.update' => 'Update a user',
+    'action.delete' => 'Delete a user',
     
-    'No users were found' => 'No users were found',
-    'Showing user entries' => 'Showing %start% to %end% of %total% users',
+    'list.noFound' => 'No users were found.',
+    'list.showEntries' => 'Showing %start% to %end% of %total% users',
     
-    'The user has been successfully added' => 'The user "%username%" has been successfully added.'
+    'msg.addedSuccessfully' => 'The user "%username%" has been successfully added.'
 ];

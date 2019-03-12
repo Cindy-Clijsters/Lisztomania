@@ -56,7 +56,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'dashboard',
                 [
                     'route' => 'rtAdminDashboard',
-                    'label' => $this->translator->trans('Dashboard')
+                    'label' => $this->translator->trans('global.dashboard')
                 ]
             )
             ->setExtra('icon', 'fa fa-dashboard');
@@ -66,7 +66,7 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'myProfileDivider',
                 [
-                    'label' => $this->translator->trans('My profile')
+                    'label' => $this->translator->trans('global.myProfile')
                 ]
             );
         
@@ -76,7 +76,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'myProfile',
                 [
                     'route' => 'rtAdminMyProfile',
-                    'label' => $this->translator->trans('My profile')
+                    'label' => $this->translator->trans('global.myProfile')
                 ]
             )
             ->setExtra('icon', 'fa fa-user');
@@ -86,7 +86,7 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'administrationDivider',
                 [
-                    'label' => $this->translator->trans('Administration')
+                    'label' => $this->translator->trans('global.administration')
                 ]
             );
         
@@ -96,7 +96,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'users',
                 [
                     'route' => 'rtAdminUserOverview',
-                    'label' => $this->translator->trans('Users')
+                    'label' => $this->translator->trans('global.users')
                 ]
             )
             ->setExtra('icon', 'fa fa-users');
@@ -108,7 +108,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'artists',
                 [
                     'route' => 'rtAdminArtistOverview',
-                    'label' => $this->translator->trans('Artists')
+                    'label' => $this->translator->trans('global.artists')
                 ]
             )
             ->setExtra('icon', 'fa fa-microphone');
@@ -119,7 +119,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'albums',
                 [
                     'route' => 'rtAdminAlbumOverview',
-                    'label' => $this->translator->trans('Albums')
+                    'label' => $this->translator->trans('global.albums')
                 ]
             )
             ->setExtra('icon', 'fa fa-music');
@@ -129,7 +129,7 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'ExtraDivider',
                 [
-                    'label' => $this->translator->trans('Extra')
+                    'label' => $this->translator->trans('global.extra')
                 ]
             );
         
@@ -139,7 +139,7 @@ class MenuBuilder implements ContainerAwareInterface
                 'settings',
                 [
                     'route' => 'rtAdminSettingsOverview',
-                    'label' => $this->translator->trans('Settings')
+                    'label' => $this->translator->trans('global.settings')
                 ]
             )
             ->setExtra('icon', 'fa fa-cog');

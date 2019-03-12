@@ -46,7 +46,7 @@ class LoginType extends AbstractType
                 'email',
                 EmailType::class,
                 [
-                    'label' => $this->translator->trans('E-mail address', [], 'users'), 
+                    'label' => 'field.email', 
                     'attr'  => [
                         'class' => 'form-control',
                         'value' => $options['lastEmail']
@@ -57,7 +57,7 @@ class LoginType extends AbstractType
                 'plainPassword',
                 PasswordType::class,
                 [
-                    'label' => $this->translator->trans('Password', [], 'users'),
+                    'label' =>'field.password',
                     'attr'  => ['class' => 'form-control']
                 ]
             )
@@ -65,8 +65,9 @@ class LoginType extends AbstractType
                 'submit',
                 SubmitType::class,
                 [
-                    'label' => $this->translator->trans('Login', [], 'users'),
-                    'attr'  => ['class' => 'btn btn-success btn-flat m-b-30 m-t-30']
+                    'label'              => 'global.login',
+                    'translation_domain' => 'messages',
+                    'attr'               => ['class' => 'btn btn-success btn-flat m-b-30 m-t-30']
                 ]
             );
     }
@@ -80,6 +81,9 @@ class LoginType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['lastEmail' => '']);
+        $resolver->setDefaults([
+            'lastEmail'          => '',
+            'translation_domain' => 'users'
+        ]);
     }
 }

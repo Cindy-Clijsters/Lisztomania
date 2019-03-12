@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -50,7 +51,7 @@ class CreateType extends AbstractType
                 'lastName',
                 TextType::class,
                 [
-                    'label'    => $this->translator->trans('Last name', [], 'users'),
+                    'label'    => 'field.lastName',
                     'required' => true,
                     'attr'     => ['maxlength' => 50]
                 ]
@@ -59,7 +60,7 @@ class CreateType extends AbstractType
                 'firstName',
                 TextType::class,
                 [
-                    'label'    => $this->translator->trans('First name', [], 'users'),
+                    'label'    => 'field.firstName',
                     'required' => true,
                     'attr'     => ['maxlength' => 50]
                 ]
@@ -68,7 +69,7 @@ class CreateType extends AbstractType
                 'email',
                 EmailType::class,
                 [
-                    'label'    => $this->translator->trans('E-mail address', [], 'users'),
+                    'label'    => 'field.email',
                     'required' => true,
                     'attr'     => ['maxlength' => 180]
                 ]
@@ -77,7 +78,7 @@ class CreateType extends AbstractType
                 'plainPassword',
                 PasswordType::class,
                 [
-                    'label'    => $this->translator->trans('Wachtwoord', [], 'users'),
+                    'label'    => 'field.password',
                     'required' => true,
                     'attr'     => ['maxlength' => 50]
                 ]
@@ -86,7 +87,7 @@ class CreateType extends AbstractType
                 'confirmPassword',
                 PasswordType::class,
                 [
-                    'label'    => $this->translator->trans('Confirm password', [], 'users'),
+                    'label'    => 'field.confirmPassword',
                     'required' => true,
                     'attr'     => ['maxlength' => 50]
                 ] 
@@ -95,7 +96,7 @@ class CreateType extends AbstractType
                 'role',
                  ChoiceType::class,
                 [
-                    'label'       => $this->translator->trans('Role', [], 'users'),
+                    'label'       => 'field.role',
                     'required'    => true,
                     'constraints' => [
                         new Choice([
@@ -103,10 +104,10 @@ class CreateType extends AbstractType
                         ])
                     ],
                     'choices'     => [
-                        ''                                                       => '',
-                        $this->translator->trans('ROLE_USER', [], 'users')       => User::ROLE_USER,
-                        $this->translator->trans('ROLE_ADMIN', [], 'users')      => User::ROLE_ADMIN,
-                        $this->translator->trans('ROLE_SUPERADMIN', [], 'users') => User::ROLE_SUPERADMIN
+                        'role.makeChoice'      => '',
+                        'role.ROLE_USER'       => User::ROLE_USER,
+                        'role.ROLE_ADMIN'      => User::ROLE_ADMIN,
+                        'role.ROLE_SUPERADMIN' => User::ROLE_SUPERADMIN
                     ]
                 ]
             )
@@ -114,18 +115,18 @@ class CreateType extends AbstractType
                 'status',
                  ChoiceType::class,
                 [
-                    'label'       => $this->translator->trans('Status'),
-                    'required'    => true,
-                    'constraints' => [
+                    'label'              => 'field.status',
+                    'required'           => true,
+                    'constraints'        => [
                         new Choice([
                             'choices' => ['', User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_UNCONFIRMED]
                         ])
                     ],
                     'choices'     => [
-                        ''                                                   => '',
-                        $this->translator->trans('active', [], 'users')      => User::STATUS_ACTIVE,
-                        $this->translator->trans('inactive', [], 'users')    => User::STATUS_INACTIVE,
-                        $this->translator->trans('unconfirmed', [], 'users') => User::STATUS_UNCONFIRMED
+                        'status.makeChoice'  => '',
+                        'status.active'      => User::STATUS_ACTIVE,
+                        'status.inactive'    => User::STATUS_INACTIVE,
+                        'status.unconfirmed' => User::STATUS_UNCONFIRMED
                     ]
                 ]
             )
@@ -133,8 +134,23 @@ class CreateType extends AbstractType
                 'submit',
                 SubmitType::class,
                 [
-                    'label' => $this->translator->trans('Save')
+                    'label'              => 'action.save',
+                    'translation_domain' => 'messages',
                 ]
             );
     }
+    
+    /**
+     * Set the default optiosn
+     * 
+     * @param OptionsResolver $resolver
+     * 
+     * @return void
+     */
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'translation_domain' => 'users'
+        ]);
+    }    
 }

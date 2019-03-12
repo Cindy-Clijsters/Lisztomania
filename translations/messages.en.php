@@ -1,21 +1,18 @@
 <?php
 return [
-    'Dashboard' => 'Dashboard',
-    'My profile' => 'My profile',
-    'Administration' => 'Administration',
-    'Users' => 'Users',
-    'Artists' => 'Artists',
-    'Albums' => 'Albums',
-    'Extra' => 'Extra',
-    'Settings' => 'Settings',
-    'Login' => 'Login',
-    'Logout' => 'Logout',
+    'global.dashboard' => 'Dashboard',
+    'global.myProfile' => 'My profile',
+    'global.administration' => 'Administration',
+    'global.users' => 'Users',
+    'global.artists' => 'Artists',
+    'global.albums' => 'Albums',
+    'global.extra' => 'Extra',
+    'global.settings' => 'Settings',
+    'global.login' => 'Login',
+    'global.logout' => 'Logout',
+    'global.comingSoon' => 'Coming soon...',
     
-    'Coming soon...' => 'Coming soon...',
-    
-    'Status' => 'Status',
-    'Options' => 'Options',
-    
-    'Save' => 'Opslaan',
+    'action.options' => 'Options',   
+    'action.save' => 'Save',
     
 ];

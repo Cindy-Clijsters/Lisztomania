@@ -1,21 +1,18 @@
 <?php
 return [
-    'Dashboard' => 'Dashboard',
-    'My profile' => 'Mijn profiel',
-    'Administration' => 'Beheer',
-    'Users' => 'Gebruikers',
-    'Artists' => 'Artiesten',
-    'Albums' => 'Albums',
-    'Extra' => 'Extra',
-    'Settings' => 'Instellingen',
-    'Login' => 'Aanmelden',
-    'Logout' => 'Afmelden',
+    'global.dashboard' => 'Dashboard',
+    'global.myProfile' => 'Mijn profiel',
+    'global.administration' => 'Beheer',
+    'global.users' => 'Gebruikers',
+    'global.artists' => 'Artiesten',
+    'global.albums' => 'Albums',
+    'global.extra' => 'Extra',
+    'global.settings' => 'Instellingen',
+    'global.login' => 'Aanmelden',
+    'global.logout' => 'Afmelden',
+    'global.comingSoon' => 'Binnenkort beschikbaar...',
     
-    'Coming soon...' => 'Binnenkort beschikbaar...',
-    
-    'Status' => 'Status',
-    'Options' => 'Opties',
-    
-    'Save' => 'Opslaan',
+    'action.options' => 'Opties',   
+    'action.save' => 'Opslaan',
     
 ];

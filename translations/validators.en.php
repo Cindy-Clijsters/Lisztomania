@@ -1,5 +1,4 @@
 <?php
-
 return [
     'error.requiredField' => 'This is a required field.',
     'error.minCharacters' => 'This field must contain at least {{ limit }} characters.',

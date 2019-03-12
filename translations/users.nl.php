@@ -1,29 +1,32 @@
 <?php
 return [
-    'Last name' => 'Achternaam',
-    'First name' => 'Voornaam',
-    'E-mail address' => 'E-mailadres',
-    'Password' => 'Wachtwoord',
-    'Confirm password' => 'Bevestig wachtwoord',
-    'Role' => 'Rol',
-
-    'active' => 'Actief',
-    'inactive' => 'Inactief',
-    'blocked' => 'Geblokkeerd',
-    'deleted' => 'Verwijderd',
-    'unconfirmed' => 'Niet bevestigd',
+    'field.lastName' => 'Achternaam',
+    'field.firstName' => 'Voornaam',
+    'field.email' => 'E-mailadres',
+    'field.password' => 'Wachtwoord',
+    'field.confirmPassword' => 'Bevestig wachtwoord',
+    'field.role' => 'Rol',
+    'field.status' => 'Status',    
     
-    'ROLE_USER' => 'Gebruiker',
-    'ROLE_ADMIN' => 'Beheerder',
-    'ROLE_SUPERADMIN' => 'Superbeheerder',      
+    'status.makeChoice' => '--- Kies een status ---',
+    'status.active' => 'Actief',
+    'status.inactive' => 'Inactief',
+    'status.blocked' => 'Geblokkeerd',
+    'status.deleted' => 'Verwijderd',
+    'status.unconfirmed' => 'Niet bevestigd',
     
-    'View a user' => 'Een gebruiker bekijken',
-    'Add a user' => 'Een gebruiker toevoegen',
-    'Update a user' => 'Een gebruiker wijzigen',
-    'Delete a user' => 'Een gebruiker verwijderen',
-
-    'No users were found' => 'Er zijn geen gebruikers gevonden',
-    'Showing user entries' => 'Toon %start% tot %end% van %total% gebruikers',    
+    'role.makeChoice' => '--- Kies een rol ---',
+    'role.ROLE_USER' => 'Gebruiker',
+    'role.ROLE_ADMIN' => 'Beheerder',
+    'role.ROLE_SUPERADMIN' => 'Superbeheerder',    
     
-    'The user has been successfully added' => 'De gebruiker "%username%" is met succes toegevoegd.'
+    'action.view' => 'Een gebruiker bekijken',
+    'action.add' => 'Een gebruiker toevoegen',
+    'action.update' => 'Een gebruiker wijzigen',
+    'action.delete' => 'Een gebruiker verwijderen',
+    
+    'list.noFound' => 'Er zijn geen gebruikers gevonden.',
+    'list.showEntries' => 'Toon %start% tot %end% van %total% gebruikers',
+    
+    'msg.addedSuccessfully' => 'De gebruiker "%username%" is met succes toegevoegd.'
 ];
