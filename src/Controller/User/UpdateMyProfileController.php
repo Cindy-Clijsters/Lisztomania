@@ -35,17 +35,6 @@ class UpdateMyProfileController extends AbstractController
         $user = $this->getUser();
         $form = $this->createForm(UpdateMyProfileType::class, $user);
         
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            // Get the posted values
-            $user = $form->getData();
-            
-            var_dump($user);
-            die();
-        }
-        
         // Display the view
         return $this->render(      
             'user/updateMyProfile.html.twig',
