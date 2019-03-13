@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use App\Entity\User;
+
 /**
  * Generate the form for updating your profile information
  *
@@ -32,27 +34,30 @@ class UpdateMyProfileType extends AbstractType
                 'lastName',
                 TextType::class,
                 [
-                    'label'    => 'field.lastName',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 50]
+                    'label'      => 'field.lastName',
+                    'required'   => true,
+                    'empty_data' => '',
+                    'attr'       => ['maxlength' => 50]
                 ]
             )
             ->add(
                 'firstName',
                 TextType::class,
                 [
-                    'label'    => 'field.firstName',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 50]
+                    'label'      => 'field.firstName',
+                    'required'   => true,
+                    'empty_data' => '',
+                    'attr'       => ['maxlength' => 50]
                 ]
             )
             ->add(
                 'email',
                 EmailType::class,
                 [
-                    'label'    => 'field.email',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 180]
+                    'label'      => 'field.email',
+                    'required'   => true,
+                    'empty_data' => '',
+                    'attr'       => ['maxlength' => 180]
                 ]
             )
             ->add(
@@ -75,6 +80,7 @@ class UpdateMyProfileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
+            'validation_groups'  => 'updateOwnProfile',
             'translation_domain' => 'users'
         ]);
     }

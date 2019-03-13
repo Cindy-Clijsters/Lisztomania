@@ -136,6 +136,7 @@ class CreateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
+            'validation_groups'  => 'create',
             'translation_domain' => 'users'
         ]);
     }    

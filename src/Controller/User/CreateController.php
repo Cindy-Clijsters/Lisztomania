@@ -87,7 +87,7 @@ class CreateController extends AbstractController
             $this->addFlash(
                 'notice',
                 $this->translator->trans(
-                    'The user has been successfully added',
+                    'msg.addedSuccessfully',
                     [
                         '%username%' => $user->getFullName()
                     ],

@@ -30,5 +30,6 @@ return [
     'list.noFound' => 'Er zijn geen gebruikers gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% gebruikers',
     
-    'msg.addedSuccessfully' => 'De gebruiker "%username%" is met succes toegevoegd.'
+    'msg.addedSuccessfully' => 'De gebruiker "%username%" is met succes toegevoegd.',
+    'msg.ownProfileUpdatedSuccessfully' => 'Je profielgegevens zijn met succes gewijzigd'
 ];

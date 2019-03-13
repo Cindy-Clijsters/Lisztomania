@@ -30,5 +30,6 @@ return [
     'list.noFound' => 'No users were found.',
     'list.showEntries' => 'Showing %start% to %end% of %total% users',
     
-    'msg.addedSuccessfully' => 'The user "%username%" has been successfully added.'
+    'msg.addedSuccessfully' => 'The user "%username%" has been successfully added.',
+    'msg.ownProfileUpdatedSuccessfully' => 'Your profile data has been successfully changed.'
 ];

@@ -12,7 +12,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * 
- * @UniqueEntity("email", repositoryMethod="findNonDeletedForConstraint", message="error.uniqueEmail")
+ * @UniqueEntity(
+ *     "email",
+ *     repositoryMethod = "findNonDeletedForConstraint",
+ *     message = "error.uniqueEmail",
+ *     groups = {"create", "updateOwnProfile"}
+ * )
  */
 class User implements UserInterface
 {
@@ -38,13 +43,17 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50)
      * 
-     * @Assert\NotBlank(message = "error.requiredField")
-     * @Assert\Type("string")
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups = {"create", "updateOwnProfile"}
+     * )
+     * @Assert\Type("string", groups = {"create", "updateOwnProfile"})
      * @Assert\Length(
      *     min = 1,
      *     max = 50,
      *     minMessage = "error.minCharacters",
-     *     maxMessage = "error.maxCharacters"
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create", "updateOwnProfile"}
      * )
      */
     private $lastName;
@@ -52,13 +61,17 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50)
      * 
-     * @Assert\NotBlank(message = "error.requiredField")
-     * @Assert\Type("string")
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups = {"create", "updateOwnProfile"}
+     * )
+     * @Assert\Type("string", groups = {"create", "updateOwnProfile"})
      * @Assert\Length(
      *     min = 1,
      *     max = 50,
      *     minMessage = "error.minCharacters",
-     *     maxMessage = "error.maxCharacters"
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create", "updateOwnProfile"}
      * )
      */
     private $firstName;
@@ -66,28 +79,36 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180)
      * 
-     * @Assert\NotBlank(message = "error.requiredField")
-     * @Assert\Type("string")
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups = {"create", "updateOwnProfile"}
+     * )
+     * @Assert\Type("string", groups = {"create", "updateOwnProfile"})
      * @Assert\Length(
      *     min = 1,
      *     max = 180,
      *     minMessage = "error.minCharacters",
-     *     maxMessage = "error.maxCharacters"
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create", "updateOwnProfile"}
      * )
-     * @Assert\Email(message = "error.validEmailAddress")
+     * @Assert\Email(
+     *     message = "error.validEmailAddress", 
+     *     groups = {"create", "updateOwnProfile"}
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string")
      * 
-     * @Assert\NotBlank(message = "error.requiredField")
-     * @Assert\Type("string")
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"create"})
+     * @Assert\Type("string", groups = {"create"})
      * @Assert\Length(
      *     min = 1,
      *     max = 255,
      *     minMessage = "error.minCharacters",
-     *     maxMessage = "error.maxCharacters"
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
      * )
      */
     private $role;
@@ -95,18 +116,20 @@ class User implements UserInterface
     /**
      * @var string The unhashed password
      * 
-     * @Assert\NotBlank(message = "error.requiredField")
-     * @Assert\Type("string")
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"create"})
+     * @Assert\Type("string", groups = {"create"})
      * @Assert\Length(
      *     min = 8,
      *     max = 50,
      *     minMessage = "error.minCharacters",
-     *     maxMessage = "error.maxCharacters"
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
      * )
      * @Assert\Regex(
      *     pattern = "/^((?=.*\d)(?=.*[A-Z])(?=.*[a-z])((?=.*\W)|(?=.*\_)).{8,50})/",
      *     match   = true,
-     *     message = "error.safePassword"
+     *     message = "error.safePassword",
+     *     groups = {"create"}
      * )
      */
     private $plainPassword;
@@ -114,11 +137,12 @@ class User implements UserInterface
     /**
      * @var string 
      * 
-     * @Assert\NotBlank(message = "error.requiredField")
-     * @Assert\Type("string")
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"create"})
+     * @Assert\Type("string", groups = {"create"})
      * @Assert\EqualTo(
      *     propertyPath = "plainPassword",
-     *     message      = "De wachtwoorden komen niet overeen."
+     *     message = "error.passwordsUnmatched",
+     *     groups = {"create"}
      * )
      */
     private $confirmPassword;
@@ -133,13 +157,14 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=20)
      * 
-     * @Assert\NotBlank(message = "error.requiredField")
-     * @Assert\Type("string")
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"create"})
+     * @Assert\Type("string", groups = {"create"})
      * @Assert\Length(
      *     min = 1,
      *     max = 20,
      *     minMessage = "error.minCharacters",
-     *     maxMessage = "error.maxCharacters"
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
      * )
      */
     private $status;
