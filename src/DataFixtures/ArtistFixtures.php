@@ -8,7 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use App\Entity\Artist;
 
-class ArtistFixture extends Fixture
+class ArtistFixtures extends Fixture
 {
     /**
      * Generate test data for the artists
