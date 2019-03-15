@@ -19,32 +19,17 @@ class ArtistRepository extends ServiceEntityRepository
         parent::__construct($registry, Artist::class);
     }
 
-    // /**
-    //  * @return Artist[] Returns an array of Artist objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Get the non-deleted artists
+     * 
+     * @return Query
+     */
+    public function findNonDeletedQuery()
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+            ->andWhere('a.status != :deletedStatus')
+            ->setParameter('deletedStatus', Artist::STATUS_DELETED)
+            ->orderBy('a.sortName', 'ASC')
+            ->getQuery();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Artist
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

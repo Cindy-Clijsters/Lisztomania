@@ -14,6 +14,8 @@ class Artist
     const STATUS_INACTIVE = 'inactive';
     const STATUS_DELETED = 'deleted';
     
+    const LIST_ITEMS = 10;
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
