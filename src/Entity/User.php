@@ -308,7 +308,9 @@ class User implements UserInterface
      */
     public function setUsername(string $username):self
     {
-        return $this->username;
+        $this->username = $username;
+        
+        return $this;
     }
 
     /**

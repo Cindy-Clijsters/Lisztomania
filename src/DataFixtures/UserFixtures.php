@@ -36,6 +36,7 @@ class UserFixtures extends Fixture
         $user1->setLastName('Clijsters');
         $user1->setFirstName('Cindy');
         $user1->setEmail('cindy.clijsters@gmail.com');
+        $user1->setUsername('cindy.clijsters');
         $user1->setRole(User::ROLE_SUPERADMIN);
         $user1->setPassword($this->passwordEncoder->encodePassword($user1, 'testTEST123@'));
         $user1->setStatus(User::STATUS_ACTIVE);
@@ -45,6 +46,7 @@ class UserFixtures extends Fixture
         $user2->setLastName('Smeets');
         $user2->setFirstName('Anna');
         $user2->setEmail('anna.smeets@testmail.com');
+        $user2->setUsername('anna.smeets');
         $user2->setRole(User::ROLE_ADMIN);
         $user2->setPassword($this->passwordEncoder->encodePassword($user2, 'testTEST123@'));
         $user2->setStatus(User::STATUS_ACTIVE);
@@ -54,6 +56,7 @@ class UserFixtures extends Fixture
         $user3->setLastName('Hendriks');
         $user3->setFirstName('Jan');
         $user3->setEmail('jan.hendriks@testmail.com');
+        $user3->setUsername('jan.hendriks');
         $user3->setRole(User::ROLE_ADMIN);
         $user3->setPassword($this->passwordEncoder->encodePassword($user3, 'testTEST123@'));
         $user3->setStatus(User::STATUS_UNCONFIRMED);
@@ -63,6 +66,7 @@ class UserFixtures extends Fixture
         $user4->setLastName('Beckers');
         $user4->setFirstName('Fons');
         $user4->setEmail('fons.beckers@testmail.com');
+        $user4->setUsername('fons.beckers');
         $user4->setRole(User::ROLE_SUPERADMIN);
         $user4->setPassword($this->passwordEncoder->encodePassword($user4, 'testTEST123@'));
         $user4->setStatus(User::STATUS_INACTIVE);
@@ -72,6 +76,7 @@ class UserFixtures extends Fixture
         $user5->setLastName('Hermans');
         $user5->setFirstName('Ria');
         $user5->setEmail('ria.hermans@testmail.com');
+        $user5->setUsername('ria.hermans');
         $user5->setRole(User::ROLE_ADMIN);
         $user5->setPassword($this->passwordEncoder->encodePassword($user5, 'testTEST123@'));
         $user5->setStatus(User::STATUS_DELETED);
@@ -81,6 +86,7 @@ class UserFixtures extends Fixture
         $user6->setLastName('Peeters');
         $user6->setFirstName('Emma');
         $user6->setEmail('emma.peeters@testmail.com');
+        $user6->setUsername('emma.peeters');
         $user6->setRole(User::ROLE_USER);
         $user6->setPassword($this->passwordEncoder->encodePassword($user6, 'testTEST123@'));
         $user6->setStatus(User::STATUS_ACTIVE);
@@ -90,6 +96,7 @@ class UserFixtures extends Fixture
         $user7->setLastName('Janssens');
         $user7->setFirstName('Liam');
         $user7->setEmail('liam.janssen@testmail.com');
+        $user7->setUsername('liam.janssen');
         $user7->setRole(User::ROLE_USER);
         $user7->setPassword($this->passwordEncoder->encodePassword($user7, 'testTEST123@'));
         $user7->setStatus(User::STATUS_ACTIVE);
@@ -99,6 +106,7 @@ class UserFixtures extends Fixture
         $user8->setLastName('Maes');
         $user8->setFirstName('Olivia');
         $user8->setEmail('olivia.maes@testmail.com');
+        $user8->setUsername('olivia.maes');
         $user8->setRole(User::ROLE_USER);
         $user8->setPassword($this->passwordEncoder->encodePassword($user8, 'testTEST123@'));
         $user8->setStatus(User::STATUS_ACTIVE);
@@ -108,6 +116,7 @@ class UserFixtures extends Fixture
         $user9->setLastName('Jacobs');
         $user9->setFirstName('Adam');
         $user9->setEmail('adam.jacobs@testmail.com');
+        $user9->setUsername('adam.jacobs');
         $user9->setRole(User::ROLE_USER);
         $user9->setPassword($this->passwordEncoder->encodePassword($user9, 'testTEST123@'));
         $user9->setStatus(User::STATUS_INACTIVE);
@@ -117,6 +126,7 @@ class UserFixtures extends Fixture
         $user10->setLastName('Mertens');
         $user10->setFirstName('Louise');
         $user10->setEmail('louise.mertens@testmail.com');
+        $user10->setUsername('louise.mertens');
         $user10->setRole(User::ROLE_USER);
         $user10->setPassword($this->passwordEncoder->encodePassword($user10, 'testTEST123@'));
         $user10->setStatus(User::STATUS_ACTIVE);
@@ -126,6 +136,7 @@ class UserFixtures extends Fixture
         $user11->setLastName('Willems');
         $user11->setFirstName('Arthur');
         $user11->setEmail('arthur.willems@testmail.com');
+        $user11->setUsername('arthur.willems');
         $user11->setRole(User::ROLE_USER);
         $user11->setPassword($this->passwordEncoder->encodePassword($user11, 'testTEST123@'));
         $user11->setStatus(User::STATUS_UNCONFIRMED);
@@ -135,6 +146,7 @@ class UserFixtures extends Fixture
         $user12->setLastName('Dubois');
         $user12->setFirstName('Mila');
         $user12->setEmail('mila.dubois@testmail.com');
+        $user12->setUsername('mila.dubois');
         $user12->setRole(User::ROLE_USER);
         $user12->setPassword($this->passwordEncoder->encodePassword($user12, 'testTEST123@'));
         $user12->setStatus(User::STATUS_ACTIVE);
@@ -144,6 +156,7 @@ class UserFixtures extends Fixture
         $user13->setLastName('Lambert');
         $user13->setFirstName('Noah');
         $user13->setEmail('noah.lambert@testmail.com');
+        $user13->setUsername('noah.lambert');
         $user13->setRole(User::ROLE_USER);
         $user13->setPassword($this->passwordEncoder->encodePassword($user13, 'testTEST123@'));
         $user13->setStatus(User::STATUS_BLOCKED);
@@ -153,6 +166,7 @@ class UserFixtures extends Fixture
         $user14->setLastName('Diallo');
         $user14->setFirstName('Alice');
         $user14->setEmail('alice.diallo@testmail.com');
+        $user14->setUsername('alice.diallo');
         $user14->setRole(User::ROLE_USER);
         $user14->setPassword($this->passwordEncoder->encodePassword($user14, 'testTEST123@'));
         $user14->setStatus(User::STATUS_DELETED);
@@ -162,6 +176,7 @@ class UserFixtures extends Fixture
         $user15->setLastName('Dupont');
         $user15->setFirstName('Lucas');
         $user15->setEmail('lucas.dupont@testmail.com');
+        $user15->setUsername('lucas.dupont');
         $user15->setRole(User::ROLE_USER);
         $user15->setPassword($this->passwordEncoder->encodePassword($user15, 'testTEST123@'));
         $user15->setStatus(User::STATUS_ACTIVE);
@@ -171,6 +186,7 @@ class UserFixtures extends Fixture
         $user16->setLastName('Claes');
         $user16->setFirstName('Lina');
         $user16->setEmail('lina.claes@testmail.com');
+        $user16->setUsername('lina.claes');
         $user16->setRole(User::ROLE_USER);
         $user16->setPassword($this->passwordEncoder->encodePassword($user16, 'testTEST123@'));
         $user16->setStatus(User::STATUS_ACTIVE);
@@ -180,6 +196,7 @@ class UserFixtures extends Fixture
         $user17->setLastName('Wouters');
         $user17->setFirstName('Youssef');
         $user17->setEmail('youssef.wouters@testmail.com');
+        $user17->setUsername('youssef.wouters');
         $user17->setRole(User::ROLE_USER);
         $user17->setPassword($this->passwordEncoder->encodePassword($user17, 'testTEST123@'));
         $user17->setStatus(User::STATUS_ACTIVE);
@@ -189,6 +206,7 @@ class UserFixtures extends Fixture
         $user18->setLastName('Goossens');
         $user18->setFirstName('Gabriel');
         $user18->setEmail('gabriel.goossens@testmail.com');
+        $user18->setUsername('gabriel.goossens');
         $user18->setRole(User::ROLE_USER);
         $user18->setPassword($this->passwordEncoder->encodePassword($user18, 'testTEST123@'));
         $user18->setStatus(User::STATUS_ACTIVE);
@@ -198,6 +216,7 @@ class UserFixtures extends Fixture
         $user19->setLastName('De Smet');
         $user19->setFirstName('David');
         $user19->setEmail('david.de.smet@testmail.com');
+        $user19->setUsername('david.de.smet');
         $user19->setRole(User::ROLE_USER);
         $user19->setPassword($this->passwordEncoder->encodePassword($user19, 'testTEST123@'));
         $user19->setStatus(User::STATUS_ACTIVE);
@@ -207,6 +226,7 @@ class UserFixtures extends Fixture
         $user20->setLastName('Bah');
         $user20->setFirstName('Sarah');
         $user20->setEmail('sarah-bah@testmail.com');
+        $user20->setUsername('sarah-bah');
         $user20->setRole(User::ROLE_USER);
         $user20->setPassword($this->passwordEncoder->encodePassword($user20, 'testTEST123@'));
         $user20->setStatus(User::STATUS_ACTIVE);
@@ -216,6 +236,7 @@ class UserFixtures extends Fixture
         $user21->setLastName('Nguyen');
         $user21->setFirstName('Finn');
         $user21->setEmail('finn.nguyen@testmail.com');
+        $user21->setUsername('finn.nguyen');
         $user21->setRole(User::ROLE_USER);
         $user21->setPassword($this->passwordEncoder->encodePassword($user21, 'testTEST123@'));
         $user21->setStatus(User::STATUS_ACTIVE);
@@ -225,6 +246,7 @@ class UserFixtures extends Fixture
         $user22->setLastName('Lejeune');
         $user22->setFirstName('Yasmine');
         $user22->setEmail('yasmine.lejeune@testmail.com');
+        $user22->setUsername('yasmine.lejeune');
         $user22->setRole(User::ROLE_USER);
         $user22->setPassword($this->passwordEncoder->encodePassword($user22, 'testTEST123@'));
         $user22->setStatus(User::STATUS_INACTIVE);
@@ -234,6 +256,7 @@ class UserFixtures extends Fixture
         $user23->setLastName('Renard');
         $user23->setFirstName('Mathis');
         $user23->setEmail('mathis.renard@testmail.com');
+        $user23->setUsername('mathis.renard');
         $user23->setRole(User::ROLE_USER);
         $user23->setPassword($this->passwordEncoder->encodePassword($user23, 'testTEST123@'));
         $user23->setStatus(User::STATUS_ACTIVE);
@@ -243,6 +266,7 @@ class UserFixtures extends Fixture
         $user24->setLastName('Dumont');
         $user24->setFirstName('Mia');
         $user24->setEmail('mia.dumont@testmail.com');
+        $user24->setUsername('mia.dumont');
         $user24->setRole(User::ROLE_USER);
         $user24->setPassword($this->passwordEncoder->encodePassword($user24, 'testTEST123@'));
         $user24->setStatus(User::STATUS_ACTIVE);
@@ -252,6 +276,7 @@ class UserFixtures extends Fixture
         $user25->setLastName('LeClerq');
         $user25->setFirstName('Jules');
         $user25->setEmail('jules.leclerq@testmail.com');
+        $user25->setUsername('jules.leclerq');
         $user25->setRole(User::ROLE_USER);
         $user25->setPassword($this->passwordEncoder->encodePassword($user25, 'testTEST123@'));
         $user25->setStatus(User::STATUS_BLOCKED);
