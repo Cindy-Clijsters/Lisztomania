@@ -44,7 +44,16 @@
                                 <p class="form-control-static">{{ user.email }}</p>
                             </div>
                         </div>
-                        
+                            
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">{% trans from 'users' %}field.username{% endtrans %}</label>:
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <p class="form-control-static">{{ user.username }}</p>
+                            </div>
+                        </div>
+                            
                         <div class="row">
                             <div class="col col-md-3">
                                 <label class=" form-control-label">{% trans from 'users' %}field.role{% endtrans %}</label>:
