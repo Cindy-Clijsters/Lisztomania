@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
 use App\Entity\Artist;
+use App\Service\ListService;
 
 /**
  * Show an overview of the artists
@@ -19,15 +20,20 @@ use App\Entity\Artist;
 class OverviewController extends AbstractController
 {
     private $paginator;
+    private $listSvc;
     
     /**
      * Constructor function
      * 
      * @param PaginatorInterface $paginator
+     * @param ListService $listService
      */
-    public function __construct(PaginatorInterface $paginator)
-    {
+    public function __construct(
+        PaginatorInterface $paginator,
+        ListService $listService
+    ) {
         $this->paginator = $paginator;
+        $this->listSvc   = $listService;
     }
     
     /**
@@ -54,7 +60,7 @@ class OverviewController extends AbstractController
         $artists = $this->paginator->paginate($artistQry, $pageNr, Artist::LIST_ITEMS);
         
         // Get the start- and end record for the shown items
-        list($startRecord, $endRecord) = $this->getStartEndRecord(
+        list($startRecord, $endRecord) = $this->listSvc->getStartEndRecord(
             $pageNr,
             Artist::LIST_ITEMS,
             $artists->getTotalItemCount()
@@ -71,24 +77,4 @@ class OverviewController extends AbstractController
         );
     }
     
-    /**
-     * Calculate the number of the start- and end record
-     * 
-     * @param int $pageNr
-     * @param int $itemsByPage
-     * @param int $totalCount
-     * 
-     * @return array
-     */
-    private function getStartEndRecord(int $pageNr, int $itemsByPage, int $totalCount): array
-    {
-        $startRecord = ($pageNr - 1) * $itemsByPage + 1;
-        $endRecord   = $startRecord + $itemsByPage - 1;
-        
-        if ($endRecord > $totalCount) {
-            $endRecord = $totalCount;
-        }
-        
-        return [$startRecord, $endRecord];
-    }    
 }
