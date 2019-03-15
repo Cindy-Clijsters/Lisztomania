@@ -13,6 +13,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * 
  * @UniqueEntity(
+ *     "username",
+ *     message = "error.uniqueUsername",
+ *     groups = {"create"}
+ * )
+ * 
+ * @UniqueEntity(
  *     "email",
  *     repositoryMethod = "findNonDeletedForConstraint",
  *     message = "error.uniqueEmail",
@@ -97,6 +103,24 @@ class User implements UserInterface
      * )
      */
     private $email;
+    
+    /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     * 
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups = {"create"}
+     * )
+     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Length(
+     *     min = 6,
+     *     max = 100,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
+     * )
+     */
+    private $username;
 
     /**
      * @ORM\Column(type="string")
@@ -262,6 +286,8 @@ class User implements UserInterface
     }
 
     /**
+     * Get the user name
+     * 
      * A visual identifier that represents this user.
      *
      * @see UserInterface
@@ -270,7 +296,19 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
+    }
+    
+    /**
+     * Set the username
+     * 
+     * @param string $username
+     * 
+     * @return \self
+     */
+    public function setUsername(string $username):self
+    {
+        return $this->username;
     }
 
     /**
@@ -421,7 +459,8 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        $this->plainPassword = null;
+        $this->plainPassword   = null;
+        $this->confirmPassword = null;
     }
 
 }

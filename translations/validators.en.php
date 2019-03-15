@@ -6,5 +6,6 @@ return [
     'error.safePassword' => 'The password must contain at least one letter, one capital letter, one digit and one special character.',
     'error.validEmailAddress' => 'This field must contain a valid e-mail address.',
     'error.passwordsUnmatched' => 'The passwords do not match.',
+    'error.uniqueUsername' => 'This username is already in  use.',
     'error.uniqueEmail' => 'This e-mail address is already in use.'
 ];

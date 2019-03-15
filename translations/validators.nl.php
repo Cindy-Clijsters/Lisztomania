@@ -6,5 +6,6 @@ return [
     'error.safePassword' => 'Het wachtwoord moet minstens één letter, één hoofdletter, één cijfer en één speciaal karakter bevatten.',
     'error.validEmailAddress' => 'Dit veld moet een geldig e-mailadres bevatten.',
     'error.passwordsUnmatched' => 'De wachtwoorden komen niet overeen.' ,
+    'error.uniqueUsername' => 'Deze gebruikersnaam is reeds in gebruik.',
     'error.uniqueEmail' => 'Dit e-mailadres is reeds in gebruik.'
 ];
