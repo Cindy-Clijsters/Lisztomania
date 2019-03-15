@@ -61,6 +61,16 @@ class CreateType extends AbstractType
                 ]
             )
             ->add(
+                'username',
+                TextType::class,
+                [
+                    'label'      => 'field.username',
+                    'required'   => true,
+                    'attr'       => ['maxlength' => 110],
+                    'empty_data' => '',
+                ]
+            )
+            ->add(
                 'plainPassword',
                 PasswordType::class,
                 [
