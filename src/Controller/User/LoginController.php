@@ -36,14 +36,14 @@ class LoginController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         
         // Get the last email entered by the user
-        $lastEmail = $authenticationUtils->getLastUsername();
+        $lastUsername = $authenticationUtils->getLastUsername();
         
         // Generate the form
         $user = new User();
         $form = $this->createForm(
             LoginType::class,
             $user,
-            ['lastEmail' => $lastEmail]
+            ['lastUsername' => $lastUsername]
         );
 
         // Display the view

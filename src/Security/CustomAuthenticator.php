@@ -18,6 +18,8 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 
 class CustomAuthenticator extends AbstractFormLoginAuthenticator
 {
@@ -27,13 +29,20 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator
     private $urlGenerator;
     private $csrfTokenManager;
     private $passwordEncoder;
+    private $translator;
 
-    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        UrlGeneratorInterface $urlGenerator,
+        CsrfTokenManagerInterface $csrfTokenManager,
+        UserPasswordEncoderInterface $passwordEncoder,
+        TranslatorInterface $translator
+    ) {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
+        $this->translator = $translator;
     }
 
     public function supports(Request $request)
@@ -47,14 +56,14 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator
         $formData = $request->request->get('login');
 
         $credentials = [
-            'email'      => (array_key_exists('email', $formData) ? $formData['email'] : null),
+            'username'   => (array_key_exists('username', $formData) ? $formData['username'] : null),
             'password'   => (array_key_exists('plainPassword', $formData) ? $formData['plainPassword'] : null),
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
         
         $request->getSession()->set(
             Security::LAST_USERNAME,
-            $credentials['email']
+            $credentials['username']
         );
 
         return $credentials;
@@ -68,31 +77,31 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
-            'email' => $credentials['email']
+            'username' => $credentials['username']
         ]);
 
         if (!$user or $user->getStatus() === User::STATUS_DELETED) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('You\'re email address couldn\'t been found.');
+            throw new CustomUserMessageAuthenticationException($this->translator->trans('error.userNotFound', [], 'validators'));
         }
         
         if (
             !in_array(User::ROLE_ADMIN, $user->getRoles())
             && !in_array(User::ROLE_SUPERADMIN, $user->getRoles())
         ) {
-            throw new CustomUserMessageAuthenticationException('You don\'t have access to the administrator module.');
+            throw new CustomUserMessageAuthenticationException($this->translator->trans('error.noAccessToAdmin', [], 'validators'));
         }
         
         if ($user->getStatus() === User::STATUS_UNCONFIRMED) {
-            throw new CustomUserMessageAuthenticationException('You have to confirm your registration before you can log in.');
+            throw new CustomUserMessageAuthenticationException($this->translator->trans('error.confirmRegistration', [], 'validators'));
         }
         
         if ($user->getStatus() === User::STATUS_INACTIVE) {
-            throw new CustomUserMessageAuthenticationException('Your account is inactive.  Contact the administrator');
+            throw new CustomUserMessageAuthenticationException($this->translator->trans('error.accountInactive', [], 'validators'));
         }
         
         if ($user->getStatus() === User::STATUS_BLOCKED) {
-            throw new CustomUserMessageAuthenticationException('Your account is blocked.');
+            throw new CustomUserMessageAuthenticationException($this->translator->trans('error.accountBlocked', [], 'validators'));
         }
 
         return $user;

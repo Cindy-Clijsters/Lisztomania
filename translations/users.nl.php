@@ -3,6 +3,7 @@ return [
     'field.lastName' => 'Achternaam',
     'field.firstName' => 'Voornaam',
     'field.email' => 'E-mailadres',
+    'field.username' => 'Gebruikersnaam',
     'field.password' => 'Wachtwoord',
     'field.confirmPassword' => 'Bevestig wachtwoord',
     'field.role' => 'Rol',

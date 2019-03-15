@@ -3,6 +3,7 @@ return [
     'field.lastName' => 'Last name',
     'field.firstName' => 'First name',
     'field.email' => 'E-mail address',
+    'field.username' => 'Username',
     'field.password' => 'Password',
     'field.confirmPassword' => 'Confirm password',
     'field.role' => 'Role',

@@ -7,5 +7,13 @@ return [
     'error.validEmailAddress' => 'Dit veld moet een geldig e-mailadres bevatten.',
     'error.passwordsUnmatched' => 'De wachtwoorden komen niet overeen.' ,
     'error.uniqueUsername' => 'Deze gebruikersnaam is reeds in gebruik.',
-    'error.uniqueEmail' => 'Dit e-mailadres is reeds in gebruik.'
+    'error.uniqueEmail' => 'Dit e-mailadres is reeds in gebruik.',
+    
+    'error.userNotFound' => 'Je gebruikersnaam kan niet teruggevonden worden.',
+    'error.noAccessToAdmin' => 'Je hebt geen toegang tot de gebruikersmodule.',
+    'error.confirmRegistration' => 'Je moet je registratie bevestigen voordat je kan inloggen.',
+    'error.accountInactive' => 'Je account is inactief.  Contacteer de beheerders.',
+    'error.accountBlocked' => 'Je account is geblokkeerd.'
+    
+   
 ];

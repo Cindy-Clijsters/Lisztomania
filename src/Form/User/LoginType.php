@@ -5,7 +5,7 @@ namespace App\Form\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,7 +28,7 @@ class LoginType extends AbstractType
      */
     public function __construct(TranslatorInterface $translator)
     {
-        $this->translator   = $translator;
+        $this->translator = $translator;
     }
     
     /**
@@ -43,13 +43,13 @@ class LoginType extends AbstractType
     {
         $builder
             ->add(
-                'email',
-                EmailType::class,
+                'username',
+                TextType::class,
                 [
-                    'label' => 'field.email', 
+                    'label' => 'field.username', 
                     'attr'  => [
                         'class' => 'form-control',
-                        'value' => $options['lastEmail']
+                        'value' => $options['lastUsername']
                     ]
                 ]
             )
@@ -82,7 +82,7 @@ class LoginType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'lastEmail'          => '',
+            'lastUsername'       => '',
             'translation_domain' => 'users'
         ]);
     }
