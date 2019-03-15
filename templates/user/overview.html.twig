@@ -47,6 +47,7 @@
                                                         <th>#</th>
                                                         <th>{% trans from 'users' %}field.lastName{% endtrans %}</th>
                                                         <th>{% trans from 'users' %}field.firstName{% endtrans %}</th>
+                                                        <th>{% trans from 'users' %}field.username{% endtrans %}</th>
                                                         <th>{% trans from 'users' %}field.email{% endtrans %}</th>
                                                         <th>{% trans from 'users' %}field.role{% endtrans %}</th>
                                                         <th>{% trans from 'users' %}field.status{% endtrans %}</th>
@@ -59,6 +60,7 @@
                                                             <td>{{ user.id }}</td>
                                                             <td>{{ user.lastName }}</td>
                                                             <td>{{ user.firstName }}</td>
+                                                            <td>{{ user.username }}</td>
                                                             <td>{{ user.email }}</td>
                                                             <td>{{ user.role|userRole }}</td>
                                                             <td>{{ user.status|formatUserStatus }}</td>
