@@ -17,4 +17,6 @@ return [
     'list.noFound' => 'No artists were found.',
     'list.showEntries' => 'Showing %start% to %end% of %total% artists',
     
+    'list.noArtistWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
+    
 ];

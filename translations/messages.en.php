@@ -14,5 +14,6 @@ return [
     
     'action.options' => 'Options',   
     'action.save' => 'Save',
+    'action.backToOverview' => 'Overview'
     
 ];

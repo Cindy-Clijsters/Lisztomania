@@ -12,5 +12,50 @@
 {% endblock %}
 
 {% block mainContent %}  
-    {% trans %}global.comingSoon{% endtrans %}
+
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">                      
+                        
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">{% trans from 'artists' %}field.name{% endtrans %}</label>:
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <p class="form-control-static">{{ artist.name }}</p>
+                            </div>
+                        </div>
+                            
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">{% trans from 'artists' %}field.sortName{% endtrans %}</label>:
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <p class="form-control-static">{{ artist.sortName }}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">{% trans from 'artists' %}field.status{% endtrans %}</label>:
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <p class="form-control-static">{{ artist.status|formatArtistStatus }}</p>
+                            </div>
+                        </div>
+                            
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <a href="{{ path('rtAdminArtistOverview') }}" class="btn btn-sm btn-primary">{% trans %}action.backToOverview{% endtrans %}</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                                
 {% endblock %}

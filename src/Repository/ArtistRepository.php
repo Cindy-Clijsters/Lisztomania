@@ -14,6 +14,11 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class ArtistRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructor function
+     * 
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Artist::class);
@@ -31,5 +36,23 @@ class ArtistRepository extends ServiceEntityRepository
             ->setParameter('deletedStatus', Artist::STATUS_DELETED)
             ->orderBy('a.sortName', 'ASC')
             ->getQuery();
+    }
+    
+    /**
+     * Find an artist by it's id
+     * 
+     * @param int $id
+     * 
+     * @return Artist|null
+     */
+    public function findById(int $id): ?Artist
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.id = :id')
+            ->andWhere('a.status != :deletedStatus')
+            ->setParameter('id', $id)
+            ->setParameter('deletedStatus', Artist::STATUS_DELETED)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }
