@@ -57,10 +57,7 @@ class UpdateMyProfileController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $user = $form->getData();
-            
             // Save the user
-            $this->em->persist($user);
             $this->em->flush();
             
             // Redirect to the overview
