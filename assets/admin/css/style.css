@@ -957,10 +957,21 @@ button {
   -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease; }
 
+a.colored, 
+button.colored {
+    color: #007bff;
+}
+
 a:focus,
 a:hover {
   text-decoration: none;
   color: #000; }
+
+a.colored:focus, 
+a.colored:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
 
 h1,
 h2,
