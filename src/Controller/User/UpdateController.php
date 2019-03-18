@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Service\UserService;
+use App\Form\User\UpdateType;
 
 /**
  * Update a user
@@ -44,10 +45,15 @@ class UpdateController extends AbstractController
     {
         // Get the information to display the view
         $user = $this->userSvc->findById($id);
+        
+        $form = $this->createForm(UpdateType::class, $user);
 
         // Display the view
         return $this->render(
-            'user/update.html.twig'
+            'user/update.html.twig',
+            [
+                'form' => $form->createView()
+            ]
         );
     }
 }
