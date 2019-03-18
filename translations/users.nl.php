@@ -34,5 +34,5 @@ return [
     'msg.addedSuccessfully' => 'De gebruiker "%username%" is met succes toegevoegd.',
     'msg.ownProfileUpdatedSuccessfully' => 'Je profielgegevens zijn met succes gewijzigd',
 
-    'error.noArtistWithId' => 'Er is geen gebruiker gevonden met het id \'%id%\'',
+    'error.noUserWithId' => 'Er is geen gebruiker gevonden met het id \'%id%\'',
 ];

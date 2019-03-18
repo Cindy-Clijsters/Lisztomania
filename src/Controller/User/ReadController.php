@@ -50,7 +50,7 @@ class ReadController extends AbstractController
         if (!$user) {
             throw $this->createNotFoundException(
                 $this->translator->trans(
-                    'error.noArtistWithId',
+                    'error.noUserWithId',
                     ['%id%' => $id],
                     'users'
                 )
