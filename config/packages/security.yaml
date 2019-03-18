@@ -36,7 +36,9 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/beheer/aanmelden, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/beheer, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         
     role_hierarchy:

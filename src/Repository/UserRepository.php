@@ -53,4 +53,22 @@ class UserRepository extends ServiceEntityRepository
                     ->getQuery()
                     ->getResult();
     }
+    
+    /**
+     * Find a user by it's id
+     * 
+     * @param int $id
+     * 
+     * @return User|null
+     */
+    public function findById(int $id): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.id = :id')
+            ->andWhere('u.status != :deletedStatus')
+            ->setParameter('id', $id)
+            ->setParameter('deletedStatus', User::STATUS_DELETED)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
