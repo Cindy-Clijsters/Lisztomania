@@ -7,9 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Symfony\Contracts\Translation\TranslatorInterface;
-
-use App\Entity\User;
+use App\Service\UserService;
 
 /**
  * Read the information of  a user
@@ -18,15 +16,16 @@ use App\Entity\User;
  */
 class ReadController extends AbstractController
 {
-    private $translator;
+    private $userSvc;
     
     /**
      * Constructor function
      * 
-     * @param TranslatorInterface $translator
+     * @param UserService $userService
      */
-    public function __construct(TranslatorInterface $translator) {
-        $this->translator = $translator;
+    public function __construct(UserService $userService)
+    {
+        $this->userSvc = $userService;
     }
     
     /**
@@ -44,18 +43,7 @@ class ReadController extends AbstractController
     public function read(int $id): Response
     {
         // Get the information to display the view
-        $userRps = $this->getDoctrine()->getRepository(User::class);
-        $user    = $userRps->findById($id);
-        
-        if (!$user) {
-            throw $this->createNotFoundException(
-                $this->translator->trans(
-                    'error.noUserWithId',
-                    ['%id%' => $id],
-                    'users'
-                )
-            );
-        }
+        $user = $this->userSvc->findById($id);
         
         // Display the view
         return $this->render(
