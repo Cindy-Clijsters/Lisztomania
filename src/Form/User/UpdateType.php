@@ -28,27 +28,30 @@ class UpdateType extends AbstractType
                 'lastName',
                 TextType::class,
                 [
-                    'label'    => 'field.lastName',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 50]
+                    'label'      => 'field.lastName',
+                    'required'   => true,
+                    'attr'       => ['maxlength' => 50],
+                    'empty_data' => '',
                 ]
             )
             ->add(
                 'firstName',
                 TextType::class,
                 [
-                    'label'    => 'field.firstName',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 50]
+                    'label'      => 'field.firstName',
+                    'required'   => true,
+                    'attr'       => ['maxlength' => 50],
+                    'empty_data' => ''
                 ]
             )
             ->add(
                 'email',
                 EmailType::class,
                 [
-                    'label'    => 'field.email',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 180]
+                    'label'      => 'field.email',
+                    'required'   => true,
+                    'attr'       => ['maxlength' => 180],
+                    'empty_data' => ''
                 ]
             )
             ->add(

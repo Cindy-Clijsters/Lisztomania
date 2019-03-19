@@ -13,6 +13,7 @@ return [
     'global.comingSoon' => 'Binnenkort beschikbaar...',
     
     'action.options' => 'Opties',   
+    'action.cancel' => 'Annuleren',
     'action.save' => 'Opslaan',
     'action.backToOverview' => 'Overzicht'
     

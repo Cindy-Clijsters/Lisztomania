@@ -32,6 +32,7 @@ return [
     'list.showEntries' => 'Showing %start% to %end% of %total% users',
     
     'msg.addedSuccessfully' => 'The user "%username%" has been successfully added.',
+    'msg.changedSuccessfully' => 'The user "%username%" has been successfully changed.',
     'msg.ownProfileUpdatedSuccessfully' => 'Your profile data has been successfully changed.',
     
     'error.noUserWithId' => 'No user with the ID \'%id%\' was found.',
