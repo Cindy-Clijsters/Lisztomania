@@ -10,6 +10,16 @@ use App\Entity\Distributor;
 
 class DistribitorFixtures extends Fixture
 {
+    public const DISTRIBUTOR_1 = 'distributor1';
+    public const DISTRIBUTOR_2 = 'distributor2';
+    public const DISTRIBUTOR_3 = 'distributor3';
+    public const DISTRIBUTOR_4 = 'distributor4';
+    public const DISTRIBUTOR_5 = 'distributor5';
+    public const DISTRIBUTOR_6 = 'distributor6';
+    public const DISTRIBUTOR_7 = 'distributor7';
+    public const DISTRIBUTOR_8 = 'distributor8';
+    public const DISTRIBUTOR_9 = 'distributor9';
+    
     public function load(ObjectManager $manager)
     {
         $distributor1 = new Distributor();
@@ -58,5 +68,15 @@ class DistribitorFixtures extends Fixture
         $manager->persist($distributor9);
 
         $manager->flush();
+        
+        $this->addReference(self::DISTRIBUTOR_1, $distributor1);
+        $this->addReference(self::DISTRIBUTOR_2, $distributor2);
+        $this->addReference(self::DISTRIBUTOR_3, $distributor3);
+        $this->addReference(self::DISTRIBUTOR_4, $distributor4);
+        $this->addReference(self::DISTRIBUTOR_5, $distributor5);
+        $this->addReference(self::DISTRIBUTOR_6, $distributor6);
+        $this->addReference(self::DISTRIBUTOR_7, $distributor7);
+        $this->addReference(self::DISTRIBUTOR_8, $distributor8);
+        $this->addReference(self::DISTRIBUTOR_9, $distributor9);
     }
 }

@@ -10,6 +10,38 @@ use App\Entity\Artist;
 
 class ArtistFixtures extends Fixture
 {
+    public const ARTIST_1  = 'artist1';
+    public const ARTIST_2  = 'artist2';
+    public const ARTIST_3  = 'artist3';
+    public const ARTIST_4  = 'artist4';
+    public const ARTIST_5  = 'artist5';
+    public const ARTIST_6  = 'artist6';
+    public const ARTIST_7  = 'artist7';
+    public const ARTIST_8  = 'artist8';
+    public const ARTIST_9  = 'artist9';
+    public const ARTIST_10 = 'artist10';
+    public const ARTIST_11 = 'artist11';
+    public const ARTIST_12 = 'artist12';
+    public const ARTIST_13 = 'artist13';
+    public const ARTIST_14 = 'artist14';
+    public const ARTIST_15 = 'artist15';
+    public const ARTIST_16 = 'artist16';
+    public const ARTIST_17 = 'artist17';
+    public const ARTIST_18 = 'artist18';
+    public const ARTIST_19 = 'artist19';
+    public const ARTIST_20 = 'artist20';
+    public const ARTIST_21 = 'artist21';
+    public const ARTIST_22 = 'artist22';
+    public const ARTIST_23 = 'artist23';
+    public const ARTIST_24 = 'artist24';
+    public const ARTIST_25 = 'artist25';
+    public const ARTIST_26 = 'artist26';
+    public const ARTIST_27 = 'artist27';
+    public const ARTIST_28 = 'artist28';
+    public const ARTIST_29 = 'artist29';
+    public const ARTIST_30 = 'artist30';
+    public const ARTIST_31 = 'artist31';
+    
     /**
      * Generate test data for the artists
      * 
@@ -203,8 +235,40 @@ class ArtistFixtures extends Fixture
         $artist31->setName('The Smashing Pumpkins');
         $artist31->setSortName('Smashing Pumpkins (The -)');
         $artist31->setStatus(Artist::STATUS_ACTIVE);
-        $manager->persist($artist30); 
+        $manager->persist($artist31); 
 
         $manager->flush();
+        
+        $this->addReference(self::ARTIST_1, $artist1);
+        $this->addReference(self::ARTIST_2, $artist2);
+        $this->addReference(self::ARTIST_3, $artist3);
+        $this->addReference(self::ARTIST_4, $artist4);
+        $this->addReference(self::ARTIST_5, $artist5);
+        $this->addReference(self::ARTIST_6, $artist6);
+        $this->addReference(self::ARTIST_7, $artist7);
+        $this->addReference(self::ARTIST_8, $artist8);
+        $this->addReference(self::ARTIST_9, $artist9);
+        $this->addReference(self::ARTIST_10, $artist10);
+        $this->addReference(self::ARTIST_11, $artist11);
+        $this->addReference(self::ARTIST_12, $artist12);
+        $this->addReference(self::ARTIST_13, $artist13);
+        $this->addReference(self::ARTIST_14, $artist14);
+        $this->addReference(self::ARTIST_15, $artist15);
+        $this->addReference(self::ARTIST_16, $artist16);
+        $this->addReference(self::ARTIST_17, $artist17);
+        $this->addReference(self::ARTIST_18, $artist18);
+        $this->addReference(self::ARTIST_19, $artist19);
+        $this->addReference(self::ARTIST_20, $artist20);
+        $this->addReference(self::ARTIST_21, $artist21);
+        $this->addReference(self::ARTIST_22, $artist22);
+        $this->addReference(self::ARTIST_23, $artist23);
+        $this->addReference(self::ARTIST_24, $artist24);
+        $this->addReference(self::ARTIST_25, $artist25);
+        $this->addReference(self::ARTIST_26, $artist26);
+        $this->addReference(self::ARTIST_27, $artist27);
+        $this->addReference(self::ARTIST_28, $artist28);
+        $this->addReference(self::ARTIST_29, $artist29);
+        $this->addReference(self::ARTIST_30, $artist30);
+        $this->addReference(self::ARTIST_31, $artist31);
     }
 }
