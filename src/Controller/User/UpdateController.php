@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Service\UserService;
 use App\Form\User\UpdateType;
@@ -47,7 +48,10 @@ class UpdateController extends AbstractController
      *  "nl" : "/beheer/gebruikers/wijzigen/{id}",
      *  "en" : "/admin/users/update/{id}"
      * },  name="rtAdminUserUpdate")
+     *
+     * @IsGranted("ROLE_SUPERADMIN")
      * 
+     * @param Request $request
      * @param int $id
      * 
      * @return Response
