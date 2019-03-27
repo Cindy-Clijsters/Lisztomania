@@ -36,4 +36,7 @@ return [
     'msg.ownProfileUpdatedSuccessfully' => 'Your profile data has been successfully changed.',
     
     'error.noUserWithId' => 'No user with the ID \'%id%\' was found.',
+    
+    'setPassword.accountCreated' => 'An account has been created for you on www.lisztomania.be.',
+    'setPassword.clickToSetPassword' => 'Click on the link below to set your password.',    
 ];

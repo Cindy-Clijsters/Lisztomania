@@ -11,6 +11,9 @@ return [
     'global.login' => 'Login',
     'global.logout' => 'Logout',
     'global.comingSoon' => 'Coming soon...',
+    'global.hey' => 'Hey',
+    'global.bestRegards' => 'With best regards,',
+    'global.lisztomaniaTeam' => 'The Lisztomania team',
     
     'action.options' => 'Options', 
     'action.cancel' => 'Cancel',

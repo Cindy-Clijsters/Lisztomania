@@ -11,10 +11,13 @@ return [
     'global.login' => 'Aanmelden',
     'global.logout' => 'Afmelden',
     'global.comingSoon' => 'Binnenkort beschikbaar...',
+    'global.hey' => 'Dag',
+    'global.bestRegards' => 'Met vriendelijke groeten,',
+    'global.lisztomaniaTeam' => 'Het Lisztomania team',
     
     'action.options' => 'Opties',   
     'action.cancel' => 'Annuleren',
     'action.save' => 'Opslaan',
-    'action.backToOverview' => 'Overzicht'
-    
+    'action.backToOverview' => 'Overzicht',
+
 ];

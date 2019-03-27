@@ -36,4 +36,7 @@ return [
     'msg.ownProfileUpdatedSuccessfully' => 'Je profielgegevens zijn met succes gewijzigd',
 
     'error.noUserWithId' => 'Er is geen gebruiker gevonden met het id \'%id%\'',
+    
+    'setPassword.accountCreated' => 'Er is een account voor je aangemaakt op www.lisztomania.be.',
+    'setPassword.clickToSetPassword' => 'Klik op de onderstaande link om je wachtwoord in te stellen.',
 ];
