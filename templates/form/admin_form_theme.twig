@@ -145,12 +145,12 @@
 {%- endblock widget_attributes -%}
 
 {% block button_widget -%}
-    {%- set attr = attr|merge({class: (attr.class|default('mt-4 btn-sm btn-secondary') ~ ' btn ')|trim}) -%}
+    {%- set attr = attr|merge({class: (attr.class|default('mt-2 btn-sm btn-secondary') ~ ' btn ')|trim}) -%}
     {{- parent() -}}
 {%- endblock button_widget %}
 
 {% block submit_widget -%}
-    {%- set attr = attr|merge({class: (attr.class|default('mt-4 btn-sm btn-primary'))|trim}) -%}
+    {%- set attr = attr|merge({class: (attr.class|default('mt-2 btn-sm btn-primary'))|trim}) -%}
     {{- parent() -}}
 {%- endblock submit_widget %}
 

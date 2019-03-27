@@ -19,4 +19,6 @@ return [
     
     'list.noArtistWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
     
+    'msg.addedSuccessfully' => 'The artist "%name%" has been successfully added.',
+    
 ];

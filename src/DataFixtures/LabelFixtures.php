@@ -10,6 +10,27 @@ use App\Entity\Label;
 
 class LabelFixtures extends Fixture
 {
+    public const LABEL_1 = 'label1';
+    public const LABEL_2 = 'label2';
+    public const LABEL_3 = 'label3';
+    public const LABEL_4 = 'label4';
+    public const LABEL_5 = 'label5';
+    public const LABEL_6 = 'label6';
+    public const LABEL_7 = 'label7';
+    public const LABEL_8 = 'label8';
+    public const LABEL_9 = 'label9';
+    public const LABEL_10 = 'label10';
+    public const LABEL_11 = 'label11';
+    public const LABEL_12 = 'label12';
+    public const LABEL_13 = 'label13';
+    public const LABEL_14 = 'label14';
+    public const LABEL_15 = 'label15';
+    public const LABEL_16 = 'label16';
+    public const LABEL_17 = 'label17';
+    public const LABEL_18 = 'label18';
+    public const LABEL_19 = 'label19';
+    public const LABEL_20 = 'label20';
+    
     /**
      * Generate test data for the labels
      * 
@@ -120,5 +141,26 @@ class LabelFixtures extends Fixture
         $manager->persist($label20);
         
         $manager->flush();
+        
+        $this->addReference(self::LABEL_1, $label1);
+        $this->addReference(self::LABEL_2, $label2);
+        $this->addReference(self::LABEL_3, $label3);
+        $this->addReference(self::LABEL_4, $label4);
+        $this->addReference(self::LABEL_5, $label5);
+        $this->addReference(self::LABEL_6, $label6);
+        $this->addReference(self::LABEL_7, $label7);
+        $this->addReference(self::LABEL_8, $label8);
+        $this->addReference(self::LABEL_9, $label9);
+        $this->addReference(self::LABEL_10, $label10);
+        $this->addReference(self::LABEL_11, $label11);
+        $this->addReference(self::LABEL_12, $label12);
+        $this->addReference(self::LABEL_13, $label13);
+        $this->addReference(self::LABEL_14, $label14);
+        $this->addReference(self::LABEL_15, $label15);
+        $this->addReference(self::LABEL_16, $label16);
+        $this->addReference(self::LABEL_17, $label17);
+        $this->addReference(self::LABEL_18, $label18);
+        $this->addReference(self::LABEL_19, $label19);
+        $this->addReference(self::LABEL_20, $label20);
     }
 }

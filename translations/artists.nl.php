@@ -16,7 +16,8 @@ return [
     
     'list.noFound' => 'Er zijn geen artiesten gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% artiesten',
-    
     'list.noArtistWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
+    
+    'msg.addedSuccessfully' => 'De artiest "%name%" is met succes toegevoegd.',
     
 ];

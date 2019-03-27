@@ -32,6 +32,7 @@ return [
     'list.showEntries' => 'Toon %start% tot %end% van %total% gebruikers',
     
     'msg.addedSuccessfully' => 'De gebruiker "%username%" is met succes toegevoegd.',
+    'msg.changedSuccessfully' => 'De gebruiker "%username%" is met succes gewijzigd.',
     'msg.ownProfileUpdatedSuccessfully' => 'Je profielgegevens zijn met succes gewijzigd',
 
     'error.noUserWithId' => 'Er is geen gebruiker gevonden met het id \'%id%\'',

@@ -4,9 +4,19 @@ declare(strict_types = 1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
+ * 
+ * @UniqueEntity(
+ *     "name",
+ *     repositoryMethod = "findNonDeletedForConstraint",
+ *     message = "error.uniqueName",
+ *     groups = {"create"}
+ * )
  */
 class Artist
 {
@@ -25,16 +35,52 @@ class Artist
 
     /**
      * @ORM\Column(type="string", length=100)
+     * 
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups  = "create",
+     * )
+     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 100,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * 
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups  = "create",
+     * )
+     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 100,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
+     * )
      */
     private $sortName;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * 
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"create"})
+     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 20,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
+     * )
      */
     private $status;
 

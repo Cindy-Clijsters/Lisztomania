@@ -22,7 +22,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     "email",
  *     repositoryMethod = "findNonDeletedForConstraint",
  *     message = "error.uniqueEmail",
- *     groups = {"create", "updateOwnProfile"}
+ *     groups = {"create", "update", "updateOwnProfile"}
  * )
  */
 class User implements UserInterface
@@ -51,15 +51,15 @@ class User implements UserInterface
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
-     *     groups = {"create", "updateOwnProfile"}
+     *     groups = {"create", "update", "updateOwnProfile"}
      * )
-     * @Assert\Type("string", groups = {"create", "updateOwnProfile"})
+     * @Assert\Type("string", groups = {"create", "update", "updateOwnProfile"})
      * @Assert\Length(
      *     min = 1,
      *     max = 50,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create", "updateOwnProfile"}
+     *     groups = {"create", "update", "updateOwnProfile"}
      * )
      */
     private $lastName;
@@ -69,15 +69,15 @@ class User implements UserInterface
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
-     *     groups = {"create", "updateOwnProfile"}
+     *     groups = {"create", "update", "updateOwnProfile"}
      * )
-     * @Assert\Type("string", groups = {"create", "updateOwnProfile"})
+     * @Assert\Type("string", groups = {"create", "update", "updateOwnProfile"})
      * @Assert\Length(
      *     min = 1,
      *     max = 50,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create", "updateOwnProfile"}
+     *     groups = {"create", "update", "updateOwnProfile"}
      * )
      */
     private $firstName;
@@ -87,19 +87,19 @@ class User implements UserInterface
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
-     *     groups = {"create", "updateOwnProfile"}
+     *     groups = {"create", "update", "updateOwnProfile"}
      * )
-     * @Assert\Type("string", groups = {"create", "updateOwnProfile"})
+     * @Assert\Type("string", groups = {"create", "update", "updateOwnProfile"})
      * @Assert\Length(
      *     min = 1,
      *     max = 180,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create", "updateOwnProfile"}
+     *     groups = {"create", "update", "updateOwnProfile"}
      * )
      * @Assert\Email(
      *     message = "error.validEmailAddress", 
-     *     groups = {"create", "updateOwnProfile"}
+     *     groups = {"create", "update", "updateOwnProfile"}
      * )
      */
     private $email;
@@ -125,14 +125,14 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string")
      * 
-     * @Assert\NotBlank(message = "error.requiredField", groups = {"create"})
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"create", "update"})
+     * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 255,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      */
     private $role;
@@ -147,7 +147,7 @@ class User implements UserInterface
      *     max = 50,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      * @Assert\Regex(
      *     pattern = "/^((?=.*\d)(?=.*[A-Z])(?=.*[a-z])((?=.*\W)|(?=.*\_)).{8,50})/",
@@ -181,14 +181,14 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=20)
      * 
-     * @Assert\NotBlank(message = "error.requiredField", groups = {"create"})
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"create", "update"})
+     * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 20,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      */
     private $status;

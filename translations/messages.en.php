@@ -12,7 +12,8 @@ return [
     'global.logout' => 'Logout',
     'global.comingSoon' => 'Coming soon...',
     
-    'action.options' => 'Options',   
+    'action.options' => 'Options', 
+    'action.cancel' => 'Cancel',
     'action.save' => 'Save',
     'action.backToOverview' => 'Overview'
     

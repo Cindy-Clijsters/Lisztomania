@@ -29,7 +29,9 @@
                             {{ form_row(form.confirmPassword) }}
                             {{ form_row(form.role) }}
                             {{ form_row(form.status) }}
-                            {{ form_row(form.submit) }}
+                            
+                            {{ form_widget(form.submit) }}
+                            <a href="{{ path('rtAdminUserOverview') }}" class="mt-2 btn btn-sm btn-outline-primary">{% trans %}action.cancel{% endtrans %}</a>
                             
                         {{ form_end(form) }}
                         

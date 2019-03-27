@@ -39,6 +39,24 @@ class ArtistRepository extends ServiceEntityRepository
     }
     
     /**
+     * Check if the name is unique (without deleted artists)
+     * 
+     * @param array $criteria
+     * 
+     * @return ArrayCollection
+     */
+    public function findNonDeletedForConstraint(array $criteria)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.name = :name')
+            ->andWhere('a.status != :deletedStatus')
+            ->setParameter('name', $criteria['name'])
+            ->setParameter('deletedStatus', Artist::STATUS_DELETED)
+            ->getQuery()
+            ->getResult();
+    }
+    
+    /**
      * Find an artist by it's id
      * 
      * @param int $id
