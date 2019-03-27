@@ -58,7 +58,6 @@ class UserFixtures extends Fixture
         $user3->setEmail('jan.hendriks@testmail.com');
         $user3->setUsername('jan.hendriks');
         $user3->setRole(User::ROLE_ADMIN);
-        $user3->setPassword($this->passwordEncoder->encodePassword($user3, 'testTEST123@'));
         $user3->setStatus(User::STATUS_UNCONFIRMED);
         $manager->persist($user3);  
 
@@ -138,7 +137,6 @@ class UserFixtures extends Fixture
         $user11->setEmail('arthur.willems@testmail.com');
         $user11->setUsername('arthur.willems');
         $user11->setRole(User::ROLE_USER);
-        $user11->setPassword($this->passwordEncoder->encodePassword($user11, 'testTEST123@'));
         $user11->setStatus(User::STATUS_UNCONFIRMED);
         $manager->persist($user11);
 
