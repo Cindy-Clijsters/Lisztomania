@@ -70,14 +70,7 @@ class CreateController extends AbstractController
             
             // Get the posted values
             $user = $form->getData();
-            
-            // Encrypt the password
-            $hashedPassword = $this->encoder->encodePassword(
-                $user,
-                $user->getPlainPassword()
-            );
-            
-            $user->setPassword($hashedPassword);
+            $user->setStatus(User::STATUS_UNCONFIRMED);
             
             // Save the user
             $this->em->persist($user);

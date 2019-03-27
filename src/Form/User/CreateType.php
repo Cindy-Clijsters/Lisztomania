@@ -69,25 +69,7 @@ class CreateType extends AbstractType
                     'attr'       => ['maxlength' => 110],
                     'empty_data' => '',
                 ]
-            )
-            ->add(
-                'plainPassword',
-                PasswordType::class,
-                [
-                    'label'    => 'field.password',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 50]
-                ]
-            )
-            ->add(
-                'confirmPassword',
-                PasswordType::class,
-                [
-                    'label'    => 'field.confirmPassword',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 50]
-                ] 
-            )   
+            )  
             ->add(
                 'role',
                  ChoiceType::class,
@@ -104,25 +86,6 @@ class CreateType extends AbstractType
                         'role.ROLE_USER'       => User::ROLE_USER,
                         'role.ROLE_ADMIN'      => User::ROLE_ADMIN,
                         'role.ROLE_SUPERADMIN' => User::ROLE_SUPERADMIN
-                    ]
-                ]
-            )
-            ->add(
-                'status',
-                 ChoiceType::class,
-                [
-                    'label'              => 'field.status',
-                    'required'           => true,
-                    'constraints'        => [
-                        new Choice([
-                            'choices' => ['', User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_UNCONFIRMED]
-                        ])
-                    ],
-                    'choices'     => [
-                        'status.makeChoice'  => '',
-                        'status.active'      => User::STATUS_ACTIVE,
-                        'status.inactive'    => User::STATUS_INACTIVE,
-                        'status.unconfirmed' => User::STATUS_UNCONFIRMED
                     ]
                 ]
             )

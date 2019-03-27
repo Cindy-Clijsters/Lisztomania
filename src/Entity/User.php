@@ -140,8 +140,8 @@ class User implements UserInterface
     /**
      * @var string The unhashed password
      * 
-     * @Assert\NotBlank(message = "error.requiredField", groups = {"create"})
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\NotBlank(message = "error.requiredField")
+     * @Assert\Type("string")
      * @Assert\Length(
      *     min = 8,
      *     max = 50,
@@ -152,8 +152,7 @@ class User implements UserInterface
      * @Assert\Regex(
      *     pattern = "/^((?=.*\d)(?=.*[A-Z])(?=.*[a-z])((?=.*\W)|(?=.*\_)).{8,50})/",
      *     match   = true,
-     *     message = "error.safePassword",
-     *     groups = {"create"}
+     *     message = "error.safePassword"
      * )
      */
     private $plainPassword;
@@ -161,12 +160,11 @@ class User implements UserInterface
     /**
      * @var string 
      * 
-     * @Assert\NotBlank(message = "error.requiredField", groups = {"create"})
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\NotBlank(message = "error.requiredField")
+     * @Assert\Type("string")
      * @Assert\EqualTo(
      *     propertyPath = "plainPassword",
-     *     message = "error.passwordsUnmatched",
-     *     groups = {"create"}
+     *     message = "error.passwordsUnmatched"
      * )
      */
     private $confirmPassword;
@@ -181,14 +179,14 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=20)
      * 
-     * @Assert\NotBlank(message = "error.requiredField", groups = {"create", "update"})
-     * @Assert\Type("string", groups = {"create", "update"})
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"update"})
+     * @Assert\Type("string", groups = {"update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 20,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create", "update"}
+     *     groups = {"update"}
      * )
      */
     private $status;
