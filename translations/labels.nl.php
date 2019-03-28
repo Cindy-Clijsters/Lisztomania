@@ -15,4 +15,6 @@ return [
     
     'list.noFound' => 'Er zijn geen labels gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% labels',
+    
+    'error.noLabelWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
 ];

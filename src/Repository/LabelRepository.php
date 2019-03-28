@@ -31,4 +31,22 @@ class LabelRepository extends ServiceEntityRepository
             ->orderBy('l.name', 'ASC')
             ->getQuery();
     }
+    
+    /**
+     * Find a label by it's id
+     * 
+     * @param int $id
+     * 
+     * @return Label|null
+     */
+    public function findById(int $id): ?Label
+    {
+        return $this->createQueryBuilder('l') 
+            ->andWhere('l.id = :id')
+            ->andWhere('l.status != :deletedStatus')
+            ->setParameter('id', $id)
+            ->setParameter('deletedStatus', Label::STATUS_DELETED)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

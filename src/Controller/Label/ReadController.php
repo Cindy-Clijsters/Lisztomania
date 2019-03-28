@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Service\LabelService;
+
 /**
  * Read the information of a label
  *
@@ -14,6 +16,18 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ReadController extends AbstractController
 {
+    private $labelSvc;
+    
+    /**
+     * Constructor function
+     * 
+     * @param UserService $labelService
+     */
+    public function __construct(LabelService $labelService)
+    {
+        $this->labelSvc = $labelService;
+    }
+    
     /**
      * Read the information of a label
      * 
@@ -28,8 +42,15 @@ class ReadController extends AbstractController
      */
     public function read(int $id): Response
     {
+        // Get the information to display the view
+        $label = $this->labelSvc->findById($id);
+        
+        // Display the view
         return $this->render(
-            'label/read.html.twig'
+            'label/read.html.twig',
+            [
+                'label' => $label
+            ]
         );
     }
 }
