@@ -17,7 +17,11 @@ return [
     'list.showEntries' => 'Showing %start% to %end% of %total% labels',
     
     'error.noLabelWithId' => 'No label was found with the id \'%id%\'',
+    'error.deleteFailed' => 'The label cannot be deleted.',
+    'error.labelLinkedToAlbums' => 'It is linked to one or more albums.',
     
     'msg.addedSuccessfully' => 'The label "%name%" has been successfully added.',    
     'msg.changedSuccessfully' => 'The label "%name%" has been successfully changed.',
+    'msg.deletedSuccessfully' => 'The label "%name%" has been successfully deleted.',
+    
 ];

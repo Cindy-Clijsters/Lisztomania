@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
-use App\Entity\Album;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+
+use App\Entity\Album;
+use App\Entity\Label;
 
 /**
  * @method Album|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,37 +16,32 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class AlbumRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructor function
+     * 
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Album::class);
     }
 
-    // /**
-    //  * @return Album[] Returns an array of Album objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Count the albums of a specified label
+     * 
+     * @param Label $label
+     * 
+     * @return int
+     */
+    public function countAlbumsByLabel(Label $label): int
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('count(a.id)')
+            ->andWhere('a.label = :label')
+            ->andWhere('a.status != :deletedStatus')
+            ->setParameter('label', $label)
+            ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getSingleScalarResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Album
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

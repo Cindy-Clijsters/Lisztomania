@@ -16,8 +16,12 @@ return [
     'list.noFound' => 'Er zijn geen labels gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% labels',
     
-    'error.noLabelWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
+    'error.noLabelWithId' => 'Er is geen label gevonden met het id \'%id%\'',
+    'error.deleteFailed' => 'Het label kan niet verwijderd worden.',
+    'error.labelLinkedToAlbums' => 'Het is gekoppeld aan één of meerdere albums.',
     
     'msg.addedSuccessfully' => 'Het label "%name%" is met succes toegevoegd.',
     'msg.changedSuccessfully' => 'Het label "%name%" is met succes gewijzigd.',
+    'msg.deletedSuccessfully' => 'Het label "%name%" is met succes verwijderd.',
+    
 ];

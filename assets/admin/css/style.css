@@ -949,6 +949,10 @@ p:focus {
   border: none;
   outline: 0; }
 
+p.dark {
+    color: #212529;
+}
+
 a,
 button {
   text-decoration: none;
