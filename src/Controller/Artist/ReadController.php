@@ -37,6 +37,8 @@ class ReadController extends AbstractController
      *  "en" : "/admin/artists/view/{id}"
      * }, name="rtAdminArtistRead")
      * 
+     * @param int $id
+     * 
      * @return Response
      */
     public function read(int $id): Response

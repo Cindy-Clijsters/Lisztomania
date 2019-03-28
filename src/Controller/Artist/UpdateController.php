@@ -22,6 +22,8 @@ class UpdateController extends AbstractController
      *  "en" : "/admin/artists/update/{id}"
      * }, name="rtAdminArtistUpdate")
      * 
+     * @param int $id
+     * 
      * @return Response
      */
    public function update(int $id): Response

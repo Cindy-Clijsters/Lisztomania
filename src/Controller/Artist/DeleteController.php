@@ -15,12 +15,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class DeleteController extends AbstractController
 {
     /**
-     * Delete a new artist
+     * Delete a artist
      * 
      * @Route({
      *  "nl" : "/beheer/artiesten/verwijderen/{id}",
      *  "en" : "/admin/artists/delete/{id}"
      * }, name="rtAdminArtistDelete")
+     * 
+     * @param int $id
      * 
      * @return Response
      */
