@@ -33,6 +33,24 @@ class LabelRepository extends ServiceEntityRepository
     }
     
     /**
+     * Check if the name if unique (without deleted labels)
+     * 
+     * @param array $criteria
+     * 
+     * @return type
+     */
+    public function findNonDeletedForConstraint(array $criteria)
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.name = :name')
+            ->andWhere('l.status != :deletedStatus')
+            ->setParameter('name', $criteria['name'])
+            ->setParameter('deletedStatus', Label::STATUS_DELETED)
+            ->getQuery()
+            ->getResult();
+    }
+    
+    /**
      * Find a label by it's id
      * 
      * @param int $id

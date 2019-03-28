@@ -17,4 +17,6 @@ return [
     'list.showEntries' => 'Toon %start% tot %end% van %total% labels',
     
     'error.noLabelWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
+    
+    'msg.addedSuccessfully' => 'Het label "%name%" is met succes toegevoegd.',
 ];

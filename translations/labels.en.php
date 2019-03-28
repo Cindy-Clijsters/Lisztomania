@@ -17,4 +17,6 @@ return [
     'list.showEntries' => 'Showing %start% to %end% of %total% labels',
     
     'error.noLabelWithId' => 'No label was found with the id \'%id%\'',
+    
+    'msg.addedSuccessfully' => 'The label "%name%" has been successfully added.',    
 ];

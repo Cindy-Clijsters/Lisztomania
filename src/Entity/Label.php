@@ -4,15 +4,27 @@ declare(strict_types = 1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LabelRepository")
+ * 
+ * @UniqueEntity(
+ *     "name",
+ *     repositoryMethod = "findNonDeletedForConstraint",
+ *     message = "error.uniqueName",
+ *     groups = {"create"}
+ * )
  */
 class Label
 {
     const STATUS_ACTIVE   = 'active';
     const STATUS_INACTIVE = 'inactive';
     const STATUS_DELETED  = 'deleted';
+    
+    const VALID_STATUSES = [self::STATUS_ACTIVE, self::STATUS_INACTIVE];
     
     const LIST_ITEMS = 10;
     
@@ -25,11 +37,38 @@ class Label
 
     /**
      * @ORM\Column(type="string", length=50)
+     * 
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups  = "create"
+     * )
+     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 100,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * 
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups  = "create"
+     * )
+     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 20,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
+     * )
+     * @Assert\Choice(choices=Label::VALID_STATUSES, message="error.invalidValue", groups = {"create"})
      */
     private $status;
 
