@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     "name",
  *     repositoryMethod = "findNonDeletedForConstraint",
  *     message = "error.uniqueName",
- *     groups = {"create"}
+ *     groups = {"create", "update"}
  * )
  */
 class Artist
@@ -23,6 +23,8 @@ class Artist
     const STATUS_ACTIVE = 'active';
     const STATUS_INACTIVE = 'inactive';
     const STATUS_DELETED = 'deleted';
+    
+    const VALID_STATUSES = [self::STATUS_ACTIVE, self::STATUS_INACTIVE];
     
     const LIST_ITEMS = 10;
     
@@ -38,15 +40,15 @@ class Artist
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
-     *     groups  = "create",
+     *     groups  = {"create", "update"}
      * )
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 100,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      */
     private $name;
@@ -56,15 +58,15 @@ class Artist
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
-     *     groups  = "create",
+     *     groups  = {"create", "update"},
      * )
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 100,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      */
     private $sortName;
@@ -72,14 +74,22 @@ class Artist
     /**
      * @ORM\Column(type="string", length=20)
      * 
-     * @Assert\NotBlank(message = "error.requiredField", groups = {"create"})
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups = {"create", "update"}
+     * )
+     * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 20,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
+     * )
+     * @Assert\Choice(
+     *     choices = Artist::VALID_STATUSES,
+     *     message = "error.invalidValue",
+     *     groups = {"create", "update"}
      * )
      */
     private $status;

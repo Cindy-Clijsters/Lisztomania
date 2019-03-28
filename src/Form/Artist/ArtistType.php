@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -27,32 +26,30 @@ class ArtistType extends AbstractType
                 'name',
                 TextType::class,
                 [
-                    'label'    => 'field.name',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 100]
+                    'label'      => 'field.name',
+                    'required'   => true,
+                    'attr'       => ['maxlength' => 100],
+                    'empty_data' => '',
                 ]
             )
             ->add(
                 'sortName',
                 TextType::class,
                 [
-                    'label'    => 'field.sortName',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 100]
+                    'label'      => 'field.sortName',
+                    'required'   => true,
+                    'attr'       => ['maxlength' => 100],
+                    'empty_data' => ''
                 ]
             )
             ->add(
                 'status',
                 ChoiceType::class,
                 [
-                    'label' => 'field.status',
-                    'required' => true,
-                    'constraints' => [
-                        new Choice([
-                            'choices' => ['', Artist::STATUS_ACTIVE, Artist::STATUS_INACTIVE]
-                        ])
-                    ],
-                    'choices' => [
+                    'label'       => 'field.status',
+                    'required'    => true,
+                    'empty_data'  => '',
+                    'choices'     => [
                         'status.makeChoice' => '',
                         'status.active'     => Artist::STATUS_ACTIVE,
                         'status.inactive'   => Artist::STATUS_INACTIVE
@@ -73,7 +70,8 @@ class ArtistType extends AbstractType
     {
         $resolver->setDefaults([
             'validation_groups'  => 'create',
-            'translation_domain' => 'artists'
+            'translation_domain' => 'artists',
+            'data_class'         => Artist::class
         ]);
     }
 }
