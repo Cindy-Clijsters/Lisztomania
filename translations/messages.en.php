@@ -7,6 +7,7 @@ return [
     'global.artists' => 'Artists',
     'global.albums' => 'Albums',
     'global.extra' => 'Extra',
+    'global.labels' => 'Labels',
     'global.settings' => 'Settings',
     'global.login' => 'Login',
     'global.logout' => 'Logout',

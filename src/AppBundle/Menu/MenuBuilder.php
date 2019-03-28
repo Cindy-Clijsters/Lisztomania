@@ -133,6 +133,17 @@ class MenuBuilder implements ContainerAwareInterface
                 ]
             );
         
+        // Add the menu for the labels
+        $menu 
+            ->addChild(
+                'labels',
+                [
+                    'route' => 'rtAdminLabelOverview',
+                    'label' => $this->translator->trans('global.labels')
+                ]
+            )
+            ->setExtra('icon', 'fa fa-tag');
+        
         // Add the menu for the settings
         $menu
             ->addChild(
@@ -166,6 +177,10 @@ class MenuBuilder implements ContainerAwareInterface
         if (preg_match("/rtAdminArtist/i", $route)) {
             $menu->getChild('artists')->setCurrent(true);
         }
+        
+        if (preg_match("/rtAdminLabel/i", $route)) {
+            $menu->getChild('labels')->setCurrent(true);
+        }        
         
         if (preg_match("/rtAdminSettings/i", $route)) {
             $menu->getChild('settings')->setCurrent(true);
