@@ -19,4 +19,5 @@ return [
     'error.noLabelWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
     
     'msg.addedSuccessfully' => 'Het label "%name%" is met succes toegevoegd.',
+    'msg.changedSuccessfully' => 'Het label "%name%" is met succes gewijzigd.',
 ];

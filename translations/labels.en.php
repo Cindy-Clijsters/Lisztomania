@@ -19,4 +19,5 @@ return [
     'error.noLabelWithId' => 'No label was found with the id \'%id%\'',
     
     'msg.addedSuccessfully' => 'The label "%name%" has been successfully added.',    
+    'msg.changedSuccessfully' => 'The label "%name%" has been successfully changed.',
 ];

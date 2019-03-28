@@ -34,18 +34,20 @@ class LabelType extends AbstractType
                 'name',
                 TextType::class,
                 [
-                    'label' => 'field.name',
-                    'required' => true,
-                    'attr' => ['maxlength' => 100]
+                    'label'      => 'field.name',
+                    'required'   => true,
+                    'attr'       => ['maxlength' => 100],
+                    'empty_data' => '',
                 ]
             )
             ->add(
                 'status',
                 ChoiceType::class,
                 [
-                    'label' => 'field.status',
-                    'required' => true,
-                    'choices' => [
+                    'label'      => 'field.status',
+                    'required'   => true,
+                    'empty_data' => '',
+                    'choices'    => [
                         'status.makeChoice' => '',
                         'status.active'     => Label::STATUS_ACTIVE,
                         'status.inactive'   => Label::STATUS_INACTIVE
@@ -73,7 +75,8 @@ class LabelType extends AbstractType
     {
         $resolver->setDefaults([
             'validation_groups'  => 'create',
-            'translation_domain' => 'labels'
+            'translation_domain' => 'labels',
+            'data_class'         => Label::class
         ]);
     }
 }
