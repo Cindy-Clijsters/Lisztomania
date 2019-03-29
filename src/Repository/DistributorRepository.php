@@ -40,6 +40,24 @@ class DistributorRepository extends ServiceEntityRepository
     }
     
     /**
+     * Check if the name if unique (without deleted distributors)
+     * 
+     * @param array $criteria
+     * 
+     * @return type
+     */
+    public function findNonDeletedForConstraint(array $criteria)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.name = :name')
+            ->andWhere('d.status != :deletedStatus')
+            ->setParameter('name', $criteria['name'])
+            ->setParameter('deletedStatus', Distributor::STATUS_DELETED)
+            ->getQuery()
+            ->getResult();
+    }    
+    
+    /**
      * Find a distributor by it's id
      * 
      * @param int $id
