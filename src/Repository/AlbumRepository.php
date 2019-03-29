@@ -4,10 +4,12 @@ namespace App\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
+
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 use App\Entity\Album;
 use App\Entity\Label;
+use App\Entity\Artist;
 
 /**
  * @method Album|null find($id, $lockMode = null, $lockVersion = null)
@@ -56,6 +58,25 @@ class AlbumRepository extends ServiceEntityRepository
             ->andWhere('a.label = :label')
             ->andWhere('a.status != :deletedStatus')
             ->setParameter('label', $label)
+            ->setParameter('deletedStatus', Album::STATUS_DELETED)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    
+    /**
+     * Count the albums of a specified artist
+     * 
+     * @param Artist $artist
+     * 
+     * @return int
+     */
+    public function countAlbumsByArtist(Artist $artist): int
+    {
+        return $this->createQueryBuilder('a')
+            ->select('COUNT(a.id)')
+            ->andWhere('a.artist = :artist')
+            ->andWhere('a.status != :deletedStatus')
+            ->setParameter('artist', $artist)
             ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->getQuery()
             ->getSingleScalarResult();

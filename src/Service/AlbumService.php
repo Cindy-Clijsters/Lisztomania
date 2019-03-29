@@ -8,6 +8,7 @@ use Doctrine\ORM\Query;
 
 use App\Entity\Album;
 use App\Entity\Label;
+use App\Entity\Artist;
 use App\Repository\AlbumRepository;
 
 /**
@@ -32,9 +33,9 @@ class AlbumService
     /**
      * Get the repository
      * 
-     * @return object
+     * @return AlbumRepository
      */
-    private function getRepository()
+    private function getRepository(): AlbumRepository
     {
         return $this->em->getRepository(Album::class);
     }
@@ -63,6 +64,21 @@ class AlbumService
     {
         $albumRps = $this->getRepository();
         $amount   = $albumRps->countAlbumsByLabel($label);
+        
+        return $amount;
+    }
+    
+    /**
+     * Count the albums of a specified artist
+     * 
+     * @param Artist $artist
+     * 
+     * @return int
+     */
+    public function countAlbumsByArtist(Artist $artist): int
+    {
+        $albumRps = $this->getRepository();
+        $amount   = $albumRps->countAlbumsByArtist($artist);
         
         return $amount;
     }

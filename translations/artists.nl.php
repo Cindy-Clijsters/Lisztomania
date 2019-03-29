@@ -18,7 +18,11 @@ return [
     'list.showEntries' => 'Toon %start% tot %end% van %total% artiesten',
     'list.noArtistWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
     
+    'error.deleteFailed' => 'De artiest kan niet verwijderd worden.',
+    'error.artistLinkedToAlbums' => 'Deze is gekoppeld aan één of meerdere albums.',    
+    
     'msg.addedSuccessfully' => 'De artiest "%name%" is met succes toegevoegd.',
     'msg.changedSuccessfully' => 'De artiest "%name%" is met succes gewijzigd.',
+    'msg.deletedSuccessfully' => 'De artiest "%name%" is met succes verwijderd.',
     
 ];
