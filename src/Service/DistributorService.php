@@ -6,6 +6,9 @@ namespace App\Service;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 
+use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 use App\Entity\Distributor;
 use App\Repository\DistributorRepository;
 
@@ -17,15 +20,20 @@ use App\Repository\DistributorRepository;
 class DistributorService
 {
     private $em;
+    private $translator;
     
     /**
      * Constructor function
      * 
      * @param EntityManagerInterface $entityManager
+     * @param TranslatorInterface $translator
      */
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->em = $entityManager;
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        TranslatorInterface $translator
+    ) {
+        $this->em         = $entityManager;
+        $this->translator = $translator;
     }
     
     /**
@@ -49,5 +57,34 @@ class DistributorService
         $distributorQry = $distributorRps->findNonDeletedQuery();
         
         return $distributorQry;
+    }
+    
+    /**
+     * Find a distributor by it's id
+     * 
+     * @param int $id
+     * 
+     * @return Distributor|null
+     * @throws NotFoundHttpException
+     */
+    public function findById(int $id): ?Distributor 
+    {
+        // Find the distributor
+        $distributorRps = $this->getRepository();
+        $distributor    = $distributorRps->findById($id);
+        
+        // Display error message when distributor isn't found
+        if (!$distributor) {
+            throw new NotFoundHttpException(
+                $this->translator->trans(
+                    'error.noDistributorWithId',
+                    ['%id%' => $id],
+                    'distributors'
+                )
+            );
+        }
+        
+        // Return the distributor
+        return $distributor;
     }
 }

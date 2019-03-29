@@ -17,4 +17,6 @@ return [
     'list.noFound' => 'Er zijn geen distributeurs gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% distributeurs',
     
+    'error.noDistributorWithId' => 'Er is geen distributor gevonden met het id \'%id%\'',
+    
 ];

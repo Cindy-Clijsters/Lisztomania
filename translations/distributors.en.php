@@ -15,5 +15,7 @@ return [
     
     'list.noFound' => 'No distributors were found.',
     'list.showEntries' => 'Showing %start% to %end% of %total% distributors',
+    
+    'error.noDistributorWithId' => 'No label was found with the id \'%id%\'',
 
 ];

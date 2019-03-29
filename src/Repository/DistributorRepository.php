@@ -38,4 +38,22 @@ class DistributorRepository extends ServiceEntityRepository
             ->orderBy('d.name', 'ASC')
             ->getQuery();
     }
+    
+    /**
+     * Find a distributor by it's id
+     * 
+     * @param int $id
+     * 
+     * @return Distributor|null
+     */
+    public function findById(int $id): ?Distributor
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.id = :id')
+            ->andWhere('d.status != :deletedStatus')
+            ->setParameter('id', $id)
+            ->setParameter('deletedStatus', Distributor::STATUS_DELETED)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
