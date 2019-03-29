@@ -4,9 +4,11 @@ declare(strict_types = 1);
 namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
 
 use App\Entity\Album;
 use App\Entity\Label;
+use App\Repository\AlbumRepository;
 
 /**
  * Hold album functions
@@ -32,9 +34,22 @@ class AlbumService
      * 
      * @return object
      */
-    public function getRepository()
+    private function getRepository()
     {
         return $this->em->getRepository(Album::class);
+    }
+    
+    /**
+     * Get the query to get the non deleted albums
+     * 
+     * @return Query
+     */
+    public function findNonDeletedQuery(): Query
+    {
+        $albumRps = $this->getRepository();
+        $albumQry = $albumRps->findNonDeletedQuery();
+        
+        return $albumQry;
     }
     
     /**

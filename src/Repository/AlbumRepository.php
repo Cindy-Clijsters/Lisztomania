@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 use App\Entity\Album;
@@ -24,6 +25,21 @@ class AlbumRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Album::class);
+    }
+    
+    /**
+     * Get the non-deleted albums
+     * 
+     * @return Query
+     */
+    public function findNonDeletedQuery(): Query
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.artist', 'artist')
+            ->andWhere('a.status != :deletedStatus')
+            ->setParameter('deletedStatus', Album::STATUS_DELETED)
+            ->orderBy('artist.sortName', 'ASC')
+            ->getQuery();
     }
 
     /**

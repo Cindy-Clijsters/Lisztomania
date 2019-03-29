@@ -14,6 +14,8 @@ class Album
     const STATUS_INACTIVE = 'inactive';
     const STATUS_DELETED  = 'deleted';
     
+    const LIST_ITEMS = 10;
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -122,6 +124,22 @@ class Album
         $this->artist = $artist;
 
         return $this;
+    }
+    
+    /**
+     * Get the name of the artist
+     * 
+     * @return string|null
+     */
+    public function getArtistSortName(): ?string
+    {
+        $artistName = '';
+        
+        if ($this->artist !== null) {
+            $artistName = $this->artist->getSortName();
+        }
+        
+        return $artistName;
     }
 
     /**
