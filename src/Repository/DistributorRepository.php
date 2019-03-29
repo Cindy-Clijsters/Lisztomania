@@ -1,10 +1,11 @@
 <?php
-
 namespace App\Repository;
 
-use App\Entity\Distributor;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+
+use App\Entity\Distributor;
 
 /**
  * @method Distributor|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,37 +15,27 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class DistributorRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructor function
+     * 
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Distributor::class);
     }
 
-    // /**
-    //  * @return Distributor[] Returns an array of Distributor objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Get the non-deleted distributors
+     * 
+     * @return Query
+     */
+    public function findNonDeletedQuery(): Query
     {
         return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+            ->andWhere('d.status != :deletedStatus')
+            ->setParameter('deletedStatus', Distributor::STATUS_DELETED)
+            ->orderBy('d.name', 'ASC')
+            ->getQuery();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Distributor
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

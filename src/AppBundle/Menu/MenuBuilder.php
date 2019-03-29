@@ -143,6 +143,17 @@ class MenuBuilder implements ContainerAwareInterface
                 ]
             )
             ->setExtra('icon', 'fa fa-tag');
+
+        // Add the menu for the labels
+        $menu 
+            ->addChild(
+                'distributors',
+                [
+                    'route' => 'rtAdminDistributorOverview',
+                    'label' => $this->translator->trans('global.distributors')
+                ]
+            )
+            ->setExtra('icon', 'fa fa-truck');
         
         // Add the menu for the settings
         $menu
@@ -181,6 +192,10 @@ class MenuBuilder implements ContainerAwareInterface
         if (preg_match("/rtAdminLabel/i", $route)) {
             $menu->getChild('labels')->setCurrent(true);
         }        
+
+        if (preg_match("/rtAdminDistributor/i", $route)) {
+            $menu->getChild('distributors')->setCurrent(true);
+        } 
         
         if (preg_match("/rtAdminSettings/i", $route)) {
             $menu->getChild('settings')->setCurrent(true);

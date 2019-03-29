@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lisztomania :: {% trans from 'distributors' %}action.view{% endtrans %}{% endblock %}
+{% block pageTitle %}{% trans from 'distributors' %}action.view{% endtrans %}{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb text-right">
+        <li><a href="{{ path('rtAdminDashboard') }}">{% trans %}global.dashboard{% endtrans %}</a></li>
+        <li><a href="{{ path('rtAdminDistributorOverview') }}">{% trans %}global.distributors{% endtrans %}</a></li>
+        <li class="active">{% trans from 'distributors' %}action.view{% endtrans %}</li>
+    </ol>
+{% endblock %}
+
+{% block mainContent %}  
+    {% trans %}global.comingSoon{% endtrans %}
+{% endblock %}

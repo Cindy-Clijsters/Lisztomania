@@ -8,6 +8,7 @@ return [
     'global.albums' => 'Albums',
     'global.extra' => 'Extra',
     'global.labels' => 'Labels',
+    'global.distributors' => 'Distributors',    
     'global.settings' => 'Settings',
     'global.login' => 'Login',
     'global.logout' => 'Logout',
