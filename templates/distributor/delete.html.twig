@@ -12,5 +12,30 @@
 {% endblock %}
 
 {% block mainContent %}  
-    {% trans %}global.comingSoon{% endtrans %}
+    
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">                      
+                        
+                        <div class="row">
+                            <div class="col col-md-12">
+                                <p class="dark">{% trans from 'distributors' %}error.deleteFailed{% endtrans %}<br/>
+                                   {% trans from 'distributors' %}error.distributorLinkedToAlbums{% endtrans %}</p>
+                            </div>
+                        </div> 
+                            
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <a href="{{ path('rtAdminDistributorOverview') }}" class="btn btn-outline-primary">{% trans %}action.backToOverview{% endtrans %}</a>
+                            </div>
+                        </div>                            
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                                   
 {% endblock %}

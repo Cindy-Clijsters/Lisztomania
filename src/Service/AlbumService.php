@@ -9,6 +9,7 @@ use Doctrine\ORM\Query;
 use App\Entity\Album;
 use App\Entity\Label;
 use App\Entity\Artist;
+use App\Entity\Distributor;
 use App\Repository\AlbumRepository;
 
 /**
@@ -79,6 +80,21 @@ class AlbumService
     {
         $albumRps = $this->getRepository();
         $amount   = $albumRps->countAlbumsByArtist($artist);
+        
+        return $amount;
+    }
+    
+    /**
+     * Count the albums of a specified distributor
+     * 
+     * @param \App\Service\Distributor $distributor
+     * 
+     * @return int
+     */
+    public function countAlbumsByDistributor(Distributor $distributor): int
+    {
+        $albumRps = $this->getRepository();
+        $amount   = $albumRps->countAlbumsByDistributor($distributor);
         
         return $amount;
     }

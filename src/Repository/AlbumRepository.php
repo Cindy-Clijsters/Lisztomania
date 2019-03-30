@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 use App\Entity\Album;
 use App\Entity\Label;
 use App\Entity\Artist;
+use App\Entity\Distributor;
 
 /**
  * @method Album|null find($id, $lockMode = null, $lockVersion = null)
@@ -77,6 +78,25 @@ class AlbumRepository extends ServiceEntityRepository
             ->andWhere('a.artist = :artist')
             ->andWhere('a.status != :deletedStatus')
             ->setParameter('artist', $artist)
+            ->setParameter('deletedStatus', Album::STATUS_DELETED)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    
+    /**
+     * Count the albums of a specified distributor
+     * 
+     * @param Distributor $distributor
+     * 
+     * @return int
+     */
+    public function countAlbumsByDistributor(Distributor $distributor): int
+    {
+        return $this->createQueryBuilder('a')
+            ->select('count(a.id)')
+            ->andWhere('a.distributor = :distributor')
+            ->andWhere('a.status != :deletedStatus')
+            ->setParameter('distributor', $distributor)
             ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->getQuery()
             ->getSingleScalarResult();

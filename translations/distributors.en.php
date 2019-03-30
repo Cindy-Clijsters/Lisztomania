@@ -17,8 +17,11 @@ return [
     'list.showEntries' => 'Showing %start% to %end% of %total% distributors',
     
     'error.noDistributorWithId' => 'No label was found with the id \'%id%\'',
+    'error.deleteFailed' => 'The distributor cannot be deleted.',
+    'error.distributorLinkedToAlbums' => 'It is linked to one or more albums.',
     
     'msg.addedSuccessfully' => 'The distributor "%name%" has been successfully added.', 
     'msg.changedSuccessfully' => 'The distributor "%name%" has been successfully changed.',
+    'msg.deletedSuccessfully' => 'The distributor "%name%" has been successfully deleted.',
 
 ];
