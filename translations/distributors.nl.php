@@ -19,4 +19,6 @@ return [
     
     'error.noDistributorWithId' => 'Er is geen distributor gevonden met het id \'%id%\'',
     
+    'msg.addedSuccessfully' => 'De distributeur "%name%" is met succes toegevoegd.',
+    
 ];

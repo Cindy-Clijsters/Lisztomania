@@ -17,5 +17,7 @@ return [
     'list.showEntries' => 'Showing %start% to %end% of %total% distributors',
     
     'error.noDistributorWithId' => 'No label was found with the id \'%id%\'',
+    
+    'msg.addedSuccessfully' => 'The distributor "%name%" has been successfully added.', 
 
 ];
