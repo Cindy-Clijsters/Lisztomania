@@ -19,5 +19,6 @@ return [
     'error.noDistributorWithId' => 'No label was found with the id \'%id%\'',
     
     'msg.addedSuccessfully' => 'The distributor "%name%" has been successfully added.', 
+    'msg.changedSuccessfully' => 'The distributor "%name%" has been successfully changed.',
 
 ];

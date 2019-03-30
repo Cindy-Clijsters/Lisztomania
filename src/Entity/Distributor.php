@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     "name",
  *     repositoryMethod = "findNonDeletedForConstraint",
  *     message = "error.uniqueName",
- *     groups = {"create"}
+ *     groups = {"create", "update"}
  * )
  */
 class Distributor
@@ -40,15 +40,15 @@ class Distributor
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
-     *     groups  = {"create"}
+     *     groups  = {"create", "update"}
      * )
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 50,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * ) 
      */
     private $name;
@@ -58,20 +58,20 @@ class Distributor
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
-     *     groups  = {"create"}
+     *     groups  = {"create", "update"}
      * )
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 20,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      * @Assert\Choice(
      *     choices = Label::VALID_STATUSES,
      *     message = "error.invalidValue",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      */
     private $status;

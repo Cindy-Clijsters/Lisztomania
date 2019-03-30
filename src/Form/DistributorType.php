@@ -36,7 +36,7 @@ class DistributorType extends AbstractType
                 [
                     'label'      => 'field.name',
                     'required'   => true,
-                    'attr'       => ['maxlength' => 100],
+                    'attr'       => ['maxlength' => 50],
                     'empty_data' => ''
                 ]
             )
