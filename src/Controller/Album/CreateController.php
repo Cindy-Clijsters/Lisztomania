@@ -5,7 +5,12 @@ namespace App\Controller\Album;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
+use App\Entity\Album;
+use App\Service\AlbumService;
+use App\Form\AlbumType;
 
 /**
  * Create an album
@@ -14,6 +19,14 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CreateController extends AbstractController
 {
+    private $albumSvc;
+    
+    public function __construct(AlbumService $albumService)
+    {
+        $this->albumSvc = $albumService;
+    }
+    
+    
     /**
      * Create a new album
      * 
@@ -22,13 +35,28 @@ class CreateController extends AbstractController
      *  "en" : "/admin/albums/add"
      * }, name="rtAdminAlbumCreate")
      * 
+     * @param Request $request
+     * 
      * @return Response
      */    
-    public function create(): Response
+    public function create(Request $request): Response
     {
+        // Generate the form
+        $album = new Album();
+        
+        $form = $this->createForm(
+            AlbumType::class,
+            $album,
+            ['validation_groups' => 'create']
+        );
+        $form->handleRequest($request);
+        
         // Display the view
         return $this->render(
-            'album/create.html.twig'
+            'album/create.html.twig',
+            [
+                'form' => $form->createView()
+            ]
         );        
     }
 }

@@ -1,6 +1,7 @@
 <?php
 return [
     
+    'field.multipleArtists' => 'Multiple artists',
     'field.artist' => 'Artist',
     'field.title' => 'Title',
     'field.alternativeTitle' => 'Alternative title',
@@ -9,6 +10,10 @@ return [
     'field.releaseYear' => 'Release year', 
     'field.releaseDate' => 'Release date',
     'field.status' => 'Status', 
+    
+    'artist.makeChoice' => '- Choose an artist -',
+    'label.makeChoice' => '- Choose a label -',
+    'distributor.makeChoice' => '- Choose a distributor -',
     
     'fieldValue.multipleArtists' => '- Multiple artists -',
     

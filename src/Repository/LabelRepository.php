@@ -51,6 +51,21 @@ class LabelRepository extends ServiceEntityRepository
     }
     
     /**
+     * Get an array with the active labels
+     * 
+     * @return array
+     */
+    public function findActive(): array
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.status = :activeStatus')
+            ->setParameter('activeStatus', Label::STATUS_ACTIVE)
+            ->orderBy('l.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    
+    /**
      * Find a label by it's id
      * 
      * @param int $id

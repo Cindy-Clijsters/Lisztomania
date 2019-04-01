@@ -60,6 +60,19 @@ class DistributorService
     }
     
     /**
+     * Get an array with active records
+     * 
+     * @return array
+     */
+    public function findActive(): array
+    {
+        $distributorRps = $this->getRepository();
+        $distributors   = $distributorRps->findActive();
+        
+        return $distributors;  
+    }
+    
+    /**
      * Find a distributor by it's id
      * 
      * @param int $id

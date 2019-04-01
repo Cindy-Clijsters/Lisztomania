@@ -45,6 +45,19 @@ class LabelService
     }  
     
     /**
+     * Get an array with active labels
+     * 
+     * @return array
+     */
+    public function findActive(): array
+    {
+        $labelRps = $this->getRepository();
+        $labels    = $labelRps->findActive();
+        
+        return $labels;
+    }
+    
+    /**
      * Find a label by it's id
      * 
      * @param int $id

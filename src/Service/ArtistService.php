@@ -45,6 +45,19 @@ class ArtistService
     }
     
     /**
+     * Get an array with the active artists
+     * 
+     * @return array
+     */
+    public function findActive()
+    {
+        $artistRps = $this->getRepository();
+        $artists   = $artistRps->findActive();
+        
+        return $artists;
+    }
+    
+    /**
      * Find a artist by it's id
      * 
      * @param int $id

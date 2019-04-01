@@ -39,6 +39,21 @@ class ArtistRepository extends ServiceEntityRepository
     }
     
     /**
+     * Get an array with active artists
+     * 
+     * @return array
+     */
+    public function findActive(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.status = :activeStatus')
+            ->setParameter('activeStatus', Artist::STATUS_ACTIVE)
+            ->orderBy('a.sortName', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    
+    /**
      * Check if the name is unique (without deleted artists)
      * 
      * @param array $criteria

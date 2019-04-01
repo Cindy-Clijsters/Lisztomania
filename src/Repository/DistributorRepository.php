@@ -58,6 +58,21 @@ class DistributorRepository extends ServiceEntityRepository
     }    
     
     /**
+     * Get an array with the active distributors
+     * 
+     * @return array
+     */
+    public function findActive(): array
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.status = :activeStatus')
+            ->setParameter('activeStatus', Distributor::STATUS_ACTIVE)
+            ->orderBy('d.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    
+    /**
      * Find a distributor by it's id
      * 
      * @param int $id
