@@ -6,6 +6,9 @@ namespace App\Service;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 
+use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 use App\Entity\Album;
 use App\Entity\Label;
 use App\Entity\Artist;
@@ -20,15 +23,20 @@ use App\Repository\AlbumRepository;
 class AlbumService
 {
     private $em;
+    private $translator;
     
     /**
      * Constructor function
      * 
      * @param EntityManagerInterface $entityManager
+     * @param TranslatorInterface $translator
      */
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->em = $entityManager;
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        TranslatorInterface $translator
+    ) {
+        $this->em         = $entityManager;
+        $this->translator = $translator;
     }
     
     /**
@@ -52,6 +60,34 @@ class AlbumService
         $albumQry = $albumRps->findNonDeletedQuery();
         
         return $albumQry;
+    }
+    
+    /**
+     * Find an album by it's id
+     * 
+     * @param int $id
+     * 
+     * @return Album|null
+     * @throws NotFoundHttpException
+     */
+    public function findById(int $id): ?Album
+    {
+        $albumRps = $this->getRepository();
+        $album    = $albumRps->findById($id);
+        
+        // Display error message when album isn't found
+        if (!$album) {
+            throw new NotFoundHttpException(
+                $this->translator->trans(
+                    'error.noAlbumWithId',
+                    ['%id%' => $id],
+                    'albums'                       
+                )
+            );
+        }
+        
+        // Return the album
+        return $album;
     }
     
     /**

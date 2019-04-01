@@ -3,7 +3,11 @@ return [
     
     'field.artist' => 'Artiest',
     'field.title' => 'Titel',
+    'field.alternativeTitle' => 'Alternatieve titel',
+    'field.label' => 'Label',
+    'field.distributor' => 'Distributeur',
     'field.releaseYear' => 'Uitgave jaar', 
+    'field.releaseDate' => 'Uitgave datum',
     'field.status' => 'Status', 
     
     'fieldValue.multipleArtists' => '- Diverse artiesten -',

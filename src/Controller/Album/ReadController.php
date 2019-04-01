@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Service\AlbumService;
+
 /**
  * View the information of an album
  *
@@ -14,6 +16,18 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ReadController extends AbstractController
 {
+    private $albumSvc;
+    
+    /**
+     * Constructor function
+     * 
+     * @param AlbumService $albumService
+     */
+    public function __construct(AlbumService $albumService)
+    {
+        $this->albumSvc = $albumService;
+    }
+    
     /**
      * View the information of an album
      * 
@@ -28,9 +42,15 @@ class ReadController extends AbstractController
      */
     public function read(int $id): Response
     {
+        // Get the information to display the view
+        $album = $this->albumSvc->findById($id);
+        
         // Display the view
         return $this->render(
-            'album/read.html.twig'
+            'album/read.html.twig',
+            [
+                'album' => $album
+            ]
         );
     }
 }

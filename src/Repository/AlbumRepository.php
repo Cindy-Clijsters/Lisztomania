@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -43,6 +42,24 @@ class AlbumRepository extends ServiceEntityRepository
             ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->orderBy('artist.sortName', 'ASC')
             ->getQuery();
+    }
+    
+    /**
+     * Find an album by it's id
+     * 
+     * @param int $id
+     * 
+     * @return Album|null
+     */
+    public function findById(int $id): ?Album
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.id = :id')
+            ->andWhere('a.status != :deletedStatus')
+            ->setParameter('id', $id)
+            ->setParameter('deletedStatus', Album::STATUS_DELETED)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     /**

@@ -213,6 +213,22 @@ class Album
 
         return $this;
     }
+    
+    /**
+     * Get the name of the label
+     * 
+     * @return string
+     */
+    public function getLabelName(): string
+    {
+        $labelName = '';
+        
+        if ($this->label !== null) {
+            $labelName = $this->label->getName();
+        }
+        
+        return $labelName;
+    }
 
     /**
      * Get the distributor
@@ -237,6 +253,22 @@ class Album
 
         return $this;
     }
+    
+    /**
+     * Get the name of the distributor
+     * 
+     * @return string
+     */
+    public function getDistributorName(): string
+    {
+        $distributorName = '';
+        
+        if ($this->distributor !== null) {
+            $distributorName = $this->distributor->getName();
+        }
+        
+        return $distributorName;
+    }    
 
     /**
      * Get the release year

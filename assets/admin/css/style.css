@@ -953,6 +953,10 @@ p.dark {
     color: #212529;
 }
 
+p.form-control-static{
+    min-height: 24px;
+}
+
 a,
 button {
   text-decoration: none;
