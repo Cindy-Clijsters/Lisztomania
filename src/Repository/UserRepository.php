@@ -3,9 +3,12 @@ declare(strict_types = 1);
 
 namespace App\Repository;
 
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+
 use Symfony\Bridge\Doctrine\RegistryInterface;
+
+use App\Entity\User;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,6 +18,11 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructor function
+     * 
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
@@ -25,7 +33,7 @@ class UserRepository extends ServiceEntityRepository
      * 
      * @return Query
      */
-    public function findNonDeletedQuery()
+    public function findNonDeletedQuery(): Query
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.status != :deletedStatus')
@@ -41,17 +49,17 @@ class UserRepository extends ServiceEntityRepository
      * 
      * @param array $criteria
      * 
-     * @return ArrayCollection
+     * @return array
      */
-    public function findNonDeletedForConstraint(array $criteria)
+    public function findNonDeletedForConstraint(array $criteria): array
     {
         return $this->createQueryBuilder('u')
-                    ->andWhere('u.email = :email')
-                    ->andWhere('u.status != :deletedStatus')
-                    ->setParameter('email', $criteria['email'])
-                    ->setParameter('deletedStatus', User::STATUS_DELETED)
-                    ->getQuery()
-                    ->getResult();
+            ->andWhere('u.email = :email')
+            ->andWhere('u.status != :deletedStatus')
+            ->setParameter('email', $criteria['email'])
+            ->setParameter('deletedStatus', User::STATUS_DELETED)
+            ->getQuery()
+            ->getResult();
     }
     
     /**

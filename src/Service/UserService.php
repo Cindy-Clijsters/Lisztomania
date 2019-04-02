@@ -4,11 +4,13 @@ declare(strict_types = 1);
 namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 
 /**
  * Hold user functions
@@ -37,11 +39,24 @@ class UserService
     /**
      * Get the repository
      * 
-     * @return object
+     * @return UserRepository
      */
-    public function getRepository()
+    public function getRepository(): UserRepository
     {
         return $this->em->getRepository(User::class);
+    }
+    
+    /**
+     * Get the query for finding the non-deleted users
+     * 
+     * @return Query
+     */
+    public function findNonDeletedQuery(): Query
+    {
+        $userRps = $this->getRepository();
+        $userQry = $userRps->findNonDeletedQuery();
+        
+        return $userQry;
     }
     
     /**

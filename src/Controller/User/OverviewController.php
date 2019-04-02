@@ -7,9 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
 use Knp\Component\Pager\PaginatorInterface;
 
 use App\Entity\User;
+use App\Service\UserService;
 use App\Service\ListService;
 
 /**
@@ -20,19 +22,23 @@ use App\Service\ListService;
 class OverviewController extends AbstractController
 {
     private $paginator;
+    private $userSvc;
     private $listSvc;
     
     /**
-     * Contructor function
+     * Constructor function
      * 
      * @param PaginatorInterface $paginator
+     * @param UserService $userService
      * @param ListService $listService
      */
     public function __construct(
         PaginatorInterface $paginator,
+        UserService $userService,
         ListService $listService
     ) {
         $this->paginator = $paginator;
+        $this->userSvc   = $userService;
         $this->listSvc   = $listService;
     }
     
@@ -54,10 +60,12 @@ class OverviewController extends AbstractController
         $pageNr = $request->query->getInt('page', 1);
         
         // Get the non-deleted users
-        $userRps  = $this->getDoctrine()->getRepository(User::class);
-        $usersQry = $userRps->findNonDeletedQuery();
-        
-        $users = $this->paginator->paginate($usersQry, $pageNr, User::LIST_ITEMS);
+        $usersQry = $this->userSvc->findNonDeletedQuery();
+        $users    = $this->paginator->paginate(
+            $usersQry,
+            $pageNr,
+            User::LIST_ITEMS
+        );
         
         // Get the start- and end record of the shown items
         list($startRecord, $endRecord) = $this->listSvc->getStartEndRecord(

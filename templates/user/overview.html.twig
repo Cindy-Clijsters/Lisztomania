@@ -12,101 +12,107 @@
 
 {% block mainContent %}  
     
-        <div class="animated fadeIn">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
 
-                                {% for label, messages in app.flashes %}
-                                    {% for message in messages %}
-                                        {%  if (label == 'notice') %}
-                                            <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
-                                                {{ message }}
-                                            </div>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endfor %}
-                    
-                                {% if is_granted('ROLE_SUPERADMIN') %}
-                                    <div class="row mt-2 mb-4">
-                                        <div class="col-sm-12">
-                                            <a href="{{ path('rtAdminUserCreate') }}" class="btn btn-link mr-4">{% trans from 'users'%}action.add{% endtrans %}</a>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                                    
-                                {% if users is not empty %}
-                                    
-                                    <div class="row">
-                                        <div class="col-sm-12">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            {%  if (label == 'notice') %}
+                                <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                                    {{ message }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
 
-                                            <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>{% trans from 'users' %}field.lastName{% endtrans %}</th>
-                                                        <th>{% trans from 'users' %}field.firstName{% endtrans %}</th>
-                                                        <th>{% trans from 'users' %}field.username{% endtrans %}</th>
-                                                        <th>{% trans from 'users' %}field.email{% endtrans %}</th>
-                                                        <th>{% trans from 'users' %}field.role{% endtrans %}</th>
-                                                        <th>{% trans from 'users' %}field.status{% endtrans %}</th>
-                                                        <th>{% trans %}action.options{% endtrans %}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {% for user in users %}
-                                                        <tr>
-                                                            <td>{{ user.id }}</td>
-                                                            <td>{{ user.lastName }}</td>
-                                                            <td>{{ user.firstName }}</td>
-                                                            <td>{{ user.username }}</td>
-                                                            <td>{{ user.email|formatMailTo }}</td>
-                                                            <td>{{ user.role|userRole }}</td>
-                                                            <td>{{ user.status|formatUserStatus }}</td>
-                                                            <td>
-                                                                <a href="{{ path('rtAdminUserRead', {'id' : user.id}) }}" class="mr-2"><i class="ti ti-search"></i></a>
-                                                                {% if is_granted('ROLE_SUPERADMIN') %}
-                                                                    <a href="{{ path('rtAdminUserUpdate', {'id' : user.id}) }}" class="mr-2"><i class="ti ti-pencil-alt"></i></a>
-                                                                    <a href="{{ path('rtAdminUserDelete', {'id' : user.id}) }}"><i class="ti ti-trash"></i></a>
-                                                                {% endif %}
-                                                            </td>
-                                                        </tr>
-                                                    {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                        
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-5">
-                                            <div class="dataTables_info">
-                                                {% trans with {'%start%': startRecord, '%end%' : endRecord, '%total%' : users.getTotalItemCount} from 'users' %}list.showEntries{% endtrans %}
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-12 col-md-7">
-                                            <div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table-export_paginate">
-                                                {{ knp_pagination_render(users) }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                        
-                                {% else %}
-                                    
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <p class="mt-2">{% trans from 'users' %}list.noFound{% endtrans %}</p>
-                                        </div>
-                                    </div>
-                                    
-                                {%  endif %}
-
+                    {% if is_granted('ROLE_SUPERADMIN') %}
+                        <div class="row mt-2 mb-4">
+                            <div class="col-sm-12">
+                                <a href="{{ path('rtAdminUserCreate') }}" class="btn btn-link mr-4">{% trans from 'users'%}action.add{% endtrans %}</a>
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
+
+                    {% if users is not empty %}
+
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>{% trans from 'users' %}field.lastName{% endtrans %}</th>
+                                            <th>{% trans from 'users' %}field.firstName{% endtrans %}</th>
+                                            <th>{% trans from 'users' %}field.username{% endtrans %}</th>
+                                            <th>{% trans from 'users' %}field.email{% endtrans %}</th>
+                                            <th>{% trans from 'users' %}field.role{% endtrans %}</th>
+                                            <th>{% trans from 'users' %}field.status{% endtrans %}</th>
+                                            <th>{% trans %}action.options{% endtrans %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for user in users %}
+                                            <tr>
+                                                <td>{{ user.id }}</td>
+                                                <td>{{ user.lastName }}</td>
+                                                <td>{{ user.firstName }}</td>
+                                                <td>{{ user.username }}</td>
+                                                <td>{{ user.email|formatMailTo }}</td>
+                                                <td>{{ user.role|userRole }}</td>
+                                                <td>{{ user.status|formatUserStatus }}</td>
+                                                <td>
+                                                    <a href="{{ path('rtAdminUserRead', {'id' : user.id}) }}" class="mr-2" title="{% trans from 'users' %}action.view{% endtrans %}">
+                                                        <i class="ti ti-search"></i>
+                                                    </a>
+                                                    {% if is_granted('ROLE_SUPERADMIN') %}
+                                                        <a href="{{ path('rtAdminUserUpdate', {'id' : user.id}) }}" class="mr-2" title="{% trans from 'users' %}action.update{% endtrans %}">
+                                                            <i class="ti ti-pencil-alt"></i>
+                                                        </a>
+                                                        <a href="{{ path('rtAdminUserDelete', {'id' : user.id}) }}" title="{% trans from 'users' %}action.delete{% endtrans %}">
+                                                            <i class="ti ti-trash"></i>
+                                                        </a>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info">
+                                    {% trans with {'%start%': startRecord, '%end%' : endRecord, '%total%' : users.getTotalItemCount} from 'users' %}list.showEntries{% endtrans %}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table-export_paginate">
+                                    {{ knp_pagination_render(users) }}
+                                </div>
+                            </div>
+                        </div>
+
+                    {% else %}
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p class="mt-2">{% trans from 'users' %}list.noFound{% endtrans %}</p>
+                            </div>
+                        </div>
+
+                    {%  endif %}
+
                 </div>
             </div>
         </div>
+    </div>
+</div>
             
 {% endblock %}
 
