@@ -1,9 +1,12 @@
 <?php
 namespace App\Repository;
 
-use App\Entity\Label;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+
 use Symfony\Bridge\Doctrine\RegistryInterface;
+
+use App\Entity\Label;
 
 /**
  * @method Label|null find($id, $lockMode = null, $lockVersion = null)
@@ -13,6 +16,11 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class LabelRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructor function
+     * 
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Label::class);
@@ -21,9 +29,9 @@ class LabelRepository extends ServiceEntityRepository
     /**
      * Get the non-deleted labels
      * 
-     * @return Object
+     * @return Query
      */
-    public function findNonDeletedQuery()
+    public function findNonDeletedQuery(): Query
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.status != :deletedStatus')

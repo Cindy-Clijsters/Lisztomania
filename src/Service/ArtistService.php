@@ -4,11 +4,13 @@ declare(strict_types = 1);
 namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use App\Entity\Artist;
+use App\Repository\ArtistRepository;
 
 /**
  * Holds artist functions
@@ -37,11 +39,24 @@ class ArtistService
     /**
      * Get the repository
      * 
-     * @return object
+     * @return ArtistRepository
      */
-    public function getRepository()
+    public function getRepository(): ArtistRepository
     {
         return $this->em->getRepository(Artist::class);
+    }
+    
+    /**
+     * Get the query for finding the non-deleted artists
+     * 
+     * @return Query
+     */
+    public function findNonDeletedQuery(): Query
+    {
+        $artistRps = $this->getRepository();
+        $artistQry = $artistRps->findNonDeletedQuery();
+        
+        return $artistQry;
     }
     
     /**
@@ -49,7 +64,7 @@ class ArtistService
      * 
      * @return array
      */
-    public function findActive()
+    public function findActive(): array
     {
         $artistRps = $this->getRepository();
         $artists   = $artistRps->findActive();

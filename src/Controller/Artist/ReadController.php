@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\Artist;
+use App\Service\ArtistService;
 
 /**
  * Read the information of a artist
@@ -19,23 +20,33 @@ use App\Entity\Artist;
 class ReadController extends AbstractController
 {
     private $translator;
+    private $artistSvc;
     
     /**
      * Constructor function
      * 
      * @param TranslatorInterface $translator
+     * @param ArtistService $artistService
      */
-    public function __construct(TranslatorInterface $translator) {
+    public function __construct(
+        TranslatorInterface $translator,
+        ArtistService $artistService
+    ) {
         $this->translator = $translator;
+        $this->artistSvc  = $artistService;
     }
     
     /**
      * Read the information of an artist
      * 
-     * @Route({
+     * @Route(
+     * {
      *  "nl" : "/beheer/artiesten/bekijken/{id}",
      *  "en" : "/admin/artists/view/{id}"
-     * }, name="rtAdminArtistRead")
+     * },
+     * name="rtAdminArtistRead",
+     * requirements={"id"="\d+"}
+     * )
      * 
      * @param int $id
      * 
@@ -44,18 +55,7 @@ class ReadController extends AbstractController
     public function read(int $id): Response
     {
         // Get the information to display the view
-        $artistRps = $this->getDoctrine()->getRepository(Artist::class);
-        $artist    = $artistRps->findById($id);
-
-        if (!$artist) {
-            throw $this->createNotFoundException(
-                $this->translator->trans(
-                    'list.noArtistWithId',
-                    ['%id%' => $id],
-                    'artists'
-                )
-            );
-        }
+        $artist = $this->artistSvc->findById($id);
 
         // Display the view
         return $this->render(

@@ -7,9 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 use Knp\Component\Pager\PaginatorInterface;
 
 use App\Entity\Artist;
+use App\Service\ArtistService;
 use App\Service\ListService;
 
 /**
@@ -20,19 +22,23 @@ use App\Service\ListService;
 class OverviewController extends AbstractController
 {
     private $paginator;
+    private $artistSvc;
     private $listSvc;
     
     /**
      * Constructor function
      * 
      * @param PaginatorInterface $paginator
+     * @param ArtistService $artistService
      * @param ListService $listService
      */
     public function __construct(
         PaginatorInterface $paginator,
+        ArtistService $artistService,
         ListService $listService
     ) {
         $this->paginator = $paginator;
+        $this->artistSvc = $artistService;
         $this->listSvc   = $listService;
     }
     
@@ -54,10 +60,8 @@ class OverviewController extends AbstractController
         $pageNr = $request->query->getInt('page', 1);
         
         // Get the non-deleted artists
-        $artistRps = $this->getDoctrine()->getRepository(Artist::class);
-        $artistQry = $artistRps->findNonDeletedQuery();
-        
-        $artists = $this->paginator->paginate($artistQry, $pageNr, Artist::LIST_ITEMS);
+        $artistQry = $this->artistSvc->findNonDeletedQuery();
+        $artists   = $this->paginator->paginate($artistQry, $pageNr, Artist::LIST_ITEMS);
         
         // Get the start- and end record for the shown items
         list($startRecord, $endRecord) = $this->listSvc->getStartEndRecord(

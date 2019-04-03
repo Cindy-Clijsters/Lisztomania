@@ -4,11 +4,13 @@ declare(strict_types = 1);
 namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use App\Entity\Label;
+use App\Repository\LabelRepository;
 
 /**
  * Hold label functions
@@ -37,12 +39,25 @@ class LabelService
     /**
      * Get the repository
      * 
-     * @return object
+     * @return LabelRepository
      */
-    public function getRepository()
+    public function getRepository(): LabelRepository
     {
         return $this->em->getRepository(Label::class);
     }  
+    
+    /**
+     * Get a query to get the non-deleted labels
+     * 
+     * @return Query
+     */
+    public function findNonDeletedQuery(): Query
+    {
+        $labelRps = $this->getRepository();
+        $labelQry = $labelRps->findNonDeletedQuery();
+        
+        return $labelQry;
+    }
     
     /**
      * Get an array with active labels

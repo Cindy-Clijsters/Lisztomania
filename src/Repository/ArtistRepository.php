@@ -2,9 +2,12 @@
 
 namespace App\Repository;
 
-use App\Entity\Artist;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+
 use Symfony\Bridge\Doctrine\RegistryInterface;
+
+use App\Entity\Artist;
 
 /**
  * @method Artist|null find($id, $lockMode = null, $lockVersion = null)
@@ -29,7 +32,7 @@ class ArtistRepository extends ServiceEntityRepository
      * 
      * @return Query
      */
-    public function findNonDeletedQuery()
+    public function findNonDeletedQuery(): Query
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.status != :deletedStatus')
@@ -58,9 +61,9 @@ class ArtistRepository extends ServiceEntityRepository
      * 
      * @param array $criteria
      * 
-     * @return ArrayCollection
+     * @return array
      */
-    public function findNonDeletedForConstraint(array $criteria)
+    public function findNonDeletedForConstraint(array $criteria): array
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.name = :name')
