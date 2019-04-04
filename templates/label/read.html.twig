@@ -13,40 +13,42 @@
 
 {% block mainContent %}  
 
-    <div class="animated fadeIn">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">                      
-                        
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'labels' %}field.name{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ label.name }}</p>
-                            </div>
-                        </div>
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">                      
 
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'labels' %}field.status{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ label.status|formatLabelStatus }}</p>
-                            </div>
-                        </div>  
-                            
-                        <div class="row mt-2">
-                            <div class="col-md-12">
-                                <a href="{{ path('rtAdminLabelOverview') }}" class="btn btn-outline-primary">{% trans %}action.backToOverview{% endtrans %}</a>
-                            </div>
-                        </div>                            
-                        
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'labels' %}field.name{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ label.name }}</p>
+                        </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'labels' %}field.status{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ label.status|formatLabelStatus }}</p>
+                        </div>
+                    </div>  
+
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <a href="{{ path('rtAdminLabelOverview') }}" class="btn btn-outline-primary">
+                                {% trans %}action.backToOverview{% endtrans %}
+                            </a>
+                        </div>
+                    </div>                            
+
                 </div>
             </div>
         </div>
     </div>
+</div>
                                 
 {% endblock %}

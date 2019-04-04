@@ -7,9 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Symfony\Contracts\Translation\TranslatorInterface;
-
-use App\Entity\Artist;
 use App\Service\ArtistService;
 
 /**
@@ -19,21 +16,16 @@ use App\Service\ArtistService;
  */
 class ReadController extends AbstractController
 {
-    private $translator;
     private $artistSvc;
     
     /**
      * Constructor function
      * 
-     * @param TranslatorInterface $translator
      * @param ArtistService $artistService
      */
-    public function __construct(
-        TranslatorInterface $translator,
-        ArtistService $artistService
-    ) {
-        $this->translator = $translator;
-        $this->artistSvc  = $artistService;
+    public function __construct(ArtistService $artistService)
+    {
+        $this->artistSvc = $artistService;
     }
     
     /**

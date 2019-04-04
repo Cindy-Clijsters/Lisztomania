@@ -21,7 +21,7 @@ class ReadController extends AbstractController
     /**
      * Constructor function
      * 
-     * @param UserService $labelService
+     * @param LabelService $labelService
      */
     public function __construct(LabelService $labelService)
     {
@@ -31,10 +31,14 @@ class ReadController extends AbstractController
     /**
      * Read the information of a label
      * 
-     * @Route({
+     * @Route(
+     * {
      *  "nl" : "/beheer/labels/bekijken/{id}",
      *  "en" : "/admin/labels/view/{id}"
-     * }, name="rtAdminLabelRead")
+     * },
+     * name="rtAdminLabelRead",
+     * requirements={"id"="\d+"}
+     * )
      * 
      * @param int $id
      * 
