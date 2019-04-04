@@ -17,7 +17,7 @@ return [
     
     'fieldValue.multipleArtists' => '- Diverse artiesten -',
     
-    'status.makeChoice' => '--- Kies een status ---',
+    'status.makeChoice' => '- Kies een status -',
     'status.active' => 'Actief',
     'status.inactive' => 'Inactief',
     'status.deleted' => 'Verwijderd', 
@@ -29,5 +29,7 @@ return [
     
     'list.noFound' => 'Er zijn geen albums gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% albums',    
+    
+    'error.noAlbumWithId' => 'Er is geen album gevonden met het id \'%id%\'',
     
 ];

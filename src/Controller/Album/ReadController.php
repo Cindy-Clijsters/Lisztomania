@@ -31,10 +31,14 @@ class ReadController extends AbstractController
     /**
      * View the information of an album
      * 
-     * @Route({
+     * @Route(
+     * {
      *  "nl" : "/beheer/albums/bekijken/{id}",
      *  "en" : "/admin/albums/view/{id}"
-     * }, name="rtAdminAlbumRead")
+     * },
+     * name="rtAdminAlbumRead",
+     * requirements={"id"="\d+"}
+     * )
      * 
      * @param int $id
      * 

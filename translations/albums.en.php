@@ -17,7 +17,7 @@ return [
     
     'fieldValue.multipleArtists' => '- Multiple artists -',
     
-    'status.makeChoice' => '--- Choose a status ---',
+    'status.makeChoice' => '- Choose a status -',
     'status.active' => 'Active',
     'status.inactive' => 'Inactive',
     'status.deleted' => 'Deleted',  
@@ -29,5 +29,7 @@ return [
     
     'list.noFound' => 'No albums were found.',
     'list.showEntries' => 'Showing %start% to %end% of %total% albums',    
+    
+    'error.noAlbumWithId' => 'No album was found with the id \'%id%\'',
     
 ];

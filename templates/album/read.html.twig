@@ -13,104 +13,104 @@
 
 {% block mainContent %}  
 
-    <div class="animated fadeIn">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">                      
-                        
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'albums' %}field.artist{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">
-                                    {% if album.artistSortName is not same as ('') %}
-                                        {{ album.artistSortName }}
-                                    {% elseif album.multipleArtists is same as (true) %}
-                                        {% trans from 'albums' %}fieldValue.multipleArtists{% endtrans %}
-                                    {% endif %}
-                                </p>
-                            </div>                            
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'albums' %}field.title{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ album.title }}</p>
-                            </div>
-                        </div>
-                            
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'albums' %}field.alternativeTitle{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ album.alternativeTitle }}</p>
-                            </div>
-                        </div>          
-                            
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'albums' %}field.label{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ album.labelName }}</p>
-                            </div>
-                        </div>  
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">                      
 
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'albums' %}field.distributor{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ album.distributorName }}</p>
-                            </div>
-                        </div>  
-                            
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'albums' %}field.releaseYear{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ album.releaseYear }}</p>
-                            </div>
-                        </div>        
-                            
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'albums' %}field.releaseDate{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">
-                                    {% if album.releaseDate is not null %}   
-                                        {{ album.releaseDate|date("d/m/Y") }}
-                                    {% endif %}
-                                </p>
-                            </div>
-                        </div> 
-
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'albums' %}field.status{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ album.status|formatAlbumStatus }}</p>
-                            </div>
-                        </div>  
-                            
-                        <div class="row mt-2">
-                            <div class="col-md-12">
-                                <a href="{{ path('rtAdminAlbumOverview') }}" class="btn btn-outline-primary">{% trans %}action.backToOverview{% endtrans %}</a>
-                            </div>
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'albums' %}field.artist{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">
+                                {% if album.artistSortName is not same as ('') %}
+                                    {{ album.artistSortName }}
+                                {% elseif album.multipleArtists is same as (true) %}
+                                    {% trans from 'albums' %}fieldValue.multipleArtists{% endtrans %}
+                                {% endif %}
+                            </p>
                         </div>                            
-                        
                     </div>
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'albums' %}field.title{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ album.title }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'albums' %}field.alternativeTitle{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ album.alternativeTitle }}</p>
+                        </div>
+                    </div>          
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'albums' %}field.label{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ album.labelName }}</p>
+                        </div>
+                    </div>  
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'albums' %}field.distributor{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ album.distributorName }}</p>
+                        </div>
+                    </div>  
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'albums' %}field.releaseYear{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ album.releaseYear }}</p>
+                        </div>
+                    </div>        
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'albums' %}field.releaseDate{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">
+                                {% if album.releaseDate is not null %}   
+                                    {{ album.releaseDate|date("d/m/Y") }}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div> 
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'albums' %}field.status{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ album.status|formatAlbumStatus }}</p>
+                        </div>
+                    </div>  
+
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <a href="{{ path('rtAdminAlbumOverview') }}" class="btn btn-outline-primary">{% trans %}action.backToOverview{% endtrans %}</a>
+                        </div>
+                    </div>                            
+
                 </div>
             </div>
         </div>
     </div>
+</div>
                                 
 {% endblock %}
