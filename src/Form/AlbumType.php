@@ -72,7 +72,7 @@ class AlbumType extends AbstractType
                     'label'      => 'field.multipleArtists',
                     'value'      => true,
                     'required'   => false,
-                    'empty_data' => 0
+                    'empty_data' => null
                 ]
             )
             ->add(
@@ -104,7 +104,7 @@ class AlbumType extends AbstractType
                 [
                     'label'      => 'field.alternativeTitle',
                     'required'   => false,
-                    'attr'       => ['maxlength' => 100],
+                    'attr'       => ['maxlength' => 120],
                     'empty_data' => null
                 ]
             )
@@ -154,19 +154,18 @@ class AlbumType extends AbstractType
                     'format'     => 'dd-MM-yyyy',
                     'empty_data' => null,
                     'widget'     => 'choice',
-                    'years'      => $this->albumSvc->getReleaseYearRange(),
-                    'translation_domain' => 'albums'
+                    'years'      => $this->albumSvc->getReleaseYearRange()
                 ]
             )
             ->add(
                 'status',
                 ChoiceType::class,
                 [
-                    'label'      => 'field.status',
-                    'required'   => true,
-                    'empty_data' => '',
-                    'choices'    => [
-                        'status.makeChoice' => '',
+                    'label'       => 'field.status',
+                    'required'    => true,
+                    'placeholder' => 'status.makeChoice',
+                    'empty_data'  => '',
+                    'choices'     => [
                         'status.active'     => Album::STATUS_ACTIVE,
                         'status.inactive'   => Album::STATUS_INACTIVE
                     ]

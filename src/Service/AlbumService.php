@@ -156,4 +156,17 @@ class AlbumService
         
         return array_combine($range, $range);
     }
+    
+    /**
+     * Save the album in the database
+     * 
+     * @param Album $album
+     * 
+     * @return void
+     */
+    public function saveToDb(Album $album): void
+    {
+        $this->em->persist($album);
+        $this->em->flush();
+    }
 }

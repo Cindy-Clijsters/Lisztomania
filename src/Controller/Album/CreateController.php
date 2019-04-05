@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 use App\Entity\Album;
 use App\Service\AlbumService;
 use App\Form\AlbumType;
@@ -20,15 +22,20 @@ use App\Form\AlbumType;
 class CreateController extends AbstractController
 {
     private $albumSvc;
+    private $translator;
     
     /**
      * Constructor
      * 
      * @param AlbumService $albumService
+     * @param TranslatorInterface $translator
      */
-    public function __construct(AlbumService $albumService)
-    {
-        $this->albumSvc = $albumService;
+    public function __construct(
+        AlbumService $albumService,
+        TranslatorInterface $translator
+    ) {
+        $this->albumSvc  = $albumService;
+        $this->translator = $translator;
     }
     
     /**
@@ -54,6 +61,29 @@ class CreateController extends AbstractController
             ['validation_groups' => 'create']
         );
         $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            // Get the posted values
+            $album = $form->getData();
+            
+            // Save the album            
+            $this->albumSvc->saveToDb($album);
+            
+            // Redirect to the overview
+            $this->addFlash(
+                'notice',
+                $this->translator->trans(
+                    'msg.addedSuccessfully',
+                    [
+                        '%title%' => $album->getTitle()
+                    ],
+                    'albums'
+                )
+            );
+            
+            return $this->redirectToRoute('rtAdminAlbumOverview');
+        }
         
         // Display the view
         return $this->render(

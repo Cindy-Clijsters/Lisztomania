@@ -3,6 +3,7 @@ return [
     'error.requiredField' => 'This is a required field.',
     'error.minCharacters' => 'This field must contain at least {{ limit }} characters.',
     'error.maxCharacters' => 'This field can contain a maximum of {{ limit }} characters.',
+    'error.exactCharacters' => 'This field must contain exact {{ limit }} characters.',
     'error.invalidValue'  => 'This field must contain a valid option.',
     'error.safePassword' => 'The password must contain at least one letter, one capital letter, one digit and one special character.',
     'error.validEmailAddress' => 'This field must contain a valid e-mail address.',
@@ -16,4 +17,5 @@ return [
     'error.confirmRegistration' => 'You have to confirm your registration before you can log in',
     'error.accountInactive' => 'Your account is inactive.  Contact the administrator.',
     'error.accountBlocked' => 'Your account is blocked.'
+    
 ];

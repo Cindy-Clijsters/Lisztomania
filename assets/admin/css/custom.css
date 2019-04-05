@@ -8,6 +8,10 @@ label.required:after {
     content: " *";
 }
 
+.is-invalid select {
+    border-color: #dc3545;
+}
+
 /* Login */
 
 .login-form .btn {

@@ -37,4 +37,6 @@ return [
     
     'error.noAlbumWithId' => 'No album was found with the id \'%id%\'',
     
+    'msg.addedSuccessfully' => 'The album "%title%" has been successfully added.',
+    
 ];

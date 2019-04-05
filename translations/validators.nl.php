@@ -3,6 +3,7 @@ return [
     'error.requiredField' => 'Dit is een verplicht veld.',
     'error.minCharacters' => 'Dit veld moet minstens {{ limit }} karakters bevatten.',
     'error.maxCharacters' => 'Dit veld mag maximaal {{ limit }} karakters bevatten.',
+    'error.exactCharacters' => 'Dit veld moet exact {{ limit }} karakters bevatten.',
     'error.invalidValue'  => 'Dit veld moet een geldige optie bevatten.',
     'error.safePassword' => 'Het wachtwoord moet minstens één letter, één hoofdletter, één cijfer en één speciaal karakter bevatten.',
     'error.validEmailAddress' => 'Dit veld moet een geldig e-mailadres bevatten.',
@@ -17,5 +18,4 @@ return [
     'error.accountInactive' => 'Je account is inactief.  Contacteer de beheerders.',
     'error.accountBlocked' => 'Je account is geblokkeerd.'
     
-   
 ];

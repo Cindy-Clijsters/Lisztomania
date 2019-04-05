@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
@@ -13,6 +14,8 @@ class Album
     const STATUS_ACTIVE   = 'active';
     const STATUS_INACTIVE = 'inactive';
     const STATUS_DELETED  = 'deleted';
+    
+    const VALID_STATUSES = [self::STATUS_ACTIVE, self::STATUS_INACTIVE];
     
     const LIST_ITEMS = 10;
     
@@ -35,11 +38,33 @@ class Album
 
     /**
      * @ORM\Column(type="string", length=100)
+     * 
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups  = {"create"}
+     * )
+     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 100,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * 
+     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 100,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
+     * )
      */
     private $alternativeTitle;
 
@@ -55,6 +80,14 @@ class Album
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * 
+     * @Assert\Type("integer", groups = {"create"})
+     * @Assert\Length(
+     *     min = 4,
+     *     max = 4,
+     *     exactMessage = "error.exactCharacters",
+     *     groups = {"create"}
+     * ) 
      */
     private $releaseYear;
 
@@ -65,6 +98,24 @@ class Album
 
     /**
      * @ORM\Column(type="string", length=50)
+     * 
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups = {"create"}
+     * )
+     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 50,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"create"}
+     * )
+     * @Assert\Choice(
+     *     choices = Album::VALID_STATUSES,
+     *     message = "error.invalidValue",
+     *     groups = {"create"}
+     * )
      */
     private $status;
 
