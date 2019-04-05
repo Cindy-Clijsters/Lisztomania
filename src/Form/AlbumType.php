@@ -17,6 +17,7 @@ use App\Entity\Album;
 use App\Entity\Artist;
 use App\Entity\Label;
 use App\Entity\Distributor;
+use App\Service\AlbumService;
 use App\Service\ArtistService;
 use App\Service\LabelService;
 use App\Service\DistributorService;
@@ -28,6 +29,7 @@ use App\Service\DistributorService;
  */
 class AlbumType extends AbstractType
 {
+    private $albumSvc;
     private $artistSvc;
     private $labelSvc;
     private $distributorSvc;
@@ -35,15 +37,18 @@ class AlbumType extends AbstractType
     /**
      * Constructor function
      * 
+     * @param AlbumService $albumService
      * @param ArtistService $artistService
      * @param LabelService $labelService
      * @param DistributorService $distributorService
      */
     public function __construct(
+        AlbumService $albumService,
         ArtistService $artistService,
         LabelService $labelService,
         DistributorService $distributorService
     ){
+        $this->albumSvc       = $albumService;
         $this->artistSvc      = $artistService;
         $this->labelSvc       = $labelService;
         $this->distributorSvc = $distributorService;
@@ -59,7 +64,7 @@ class AlbumType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder 
+        $builder
             ->add(
                 'multipleArtists',
                 CheckboxType::class,
@@ -128,39 +133,39 @@ class AlbumType extends AbstractType
                     'empty_data'   => null,
                     'required'     => false
                 ]
-            )
+            )  
             ->add(
                 'releaseYear',
-                TextType::class,
+                ChoiceType::class,
                 [
-                    'label'      => 'field.releaseYear',
-                    'required'   => false,
-                    'attr'       => ['maxlength' => 4],
-                    'empty_data' => null
+                    'label'                     => 'field.releaseYear',
+                    'required'                  => false,
+                    'empty_data'                => null,
+                    'choices'                   => $this->albumSvc->getReleaseYearArray(),
+                    'choice_translation_domain' => false
                 ]
-            )                
+            )    
             ->add(
                 'releaseDate',
                 DateType::class,
                 [
                     'label'      => 'field.releaseDate',
                     'required'   => false,
-                    'attr'       => ['maxlength' => 10],
                     'format'     => 'dd-MM-yyyy',
                     'empty_data' => null,
-                    'widget'     => 'single_text',
-                    //'years'      => range(date('Y') + 1, 1950)
-                    
+                    'widget'     => 'choice',
+                    'years'      => $this->albumSvc->getReleaseYearRange(),
+                    'translation_domain' => 'albums'
                 ]
             )
             ->add(
                 'status',
                 ChoiceType::class,
                 [
-                    'label' => 'field.status',
-                    'required' => true,
+                    'label'      => 'field.status',
+                    'required'   => true,
                     'empty_data' => '',
-                    'choices' => [
+                    'choices'    => [
                         'status.makeChoice' => '',
                         'status.active'     => Album::STATUS_ACTIVE,
                         'status.inactive'   => Album::STATUS_INACTIVE

@@ -21,14 +21,39 @@
                         
                         {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
                         
-                            {{ form_row(form.multipleArtists) }}
-                            {{ form_row(form.artist) }}
+                            {{ form_label(form.artist) }}
+                            <div class="row form-group">
+                                <div class="col-lg-3 pt-1">
+                                    {{ form_widget(form.multipleArtists) }}
+                                 </div>
+                                <div class="col-lg-1 pt-1 pb-2">
+                                    {% trans from 'albums' %}orAnd{% endtrans %}
+                                 </div>                                 
+                                 <div class="col-lg-8">
+                                    {{ form_widget(form.artist) }}
+                                 </div>                                  
+                            </div>
+                                                            
                             {{ form_row(form.title) }}
                             {{ form_row(form.alternativeTitle) }}
                             {{ form_row(form.label) }}
                             {{ form_row(form.distributor) }}
-                            {{ form_row(form.releaseYear) }}
-                            {{ form_row(form.releaseDate) }}
+                            
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    {{ form_label(form.releaseDate) }}
+                                    {{ form_widget(form.releaseDate) }}
+                                </div>                                
+                                <div class="col-lg-6">
+                                    <fieldset class="form-group">
+                                        {{ form_label(form.releaseYear) }}
+                                        <div class="form-inline">
+                                            {{ form_widget(form.releaseYear) }}
+                                        </div>                                    
+                                    </fieldset>
+                                </div>
+                            </div>
+                          
                             {{ form_row(form.status) }}
                             
                             {{ form_widget(form.submit) }}

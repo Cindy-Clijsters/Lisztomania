@@ -11,6 +11,11 @@ return [
     'field.releaseDate' => 'Release date',
     'field.status' => 'Status', 
     
+    'orAnd' => 'or/and',
+    'Year' => 'Year',
+    'Month' => 'Month',
+    'Day' => 'Day',
+    
     'artist.makeChoice' => '- Choose an artist -',
     'label.makeChoice' => '- Choose a label -',
     'distributor.makeChoice' => '- Choose a distributor -',

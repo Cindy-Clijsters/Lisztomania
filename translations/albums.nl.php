@@ -11,6 +11,11 @@ return [
     'field.releaseDate' => 'Uitgave datum',
     'field.status' => 'Status', 
     
+    'orAnd' => 'of/en',
+    'Year' => 'Jaar',
+    'Month' => 'Maand',
+    'Day' => 'Dag',
+    
     'artist.makeChoice' => '- Kies een artiest -',    
     'label.makeChoice' => '- Kies een label -',
     'distributor.makeChoice' => '- Kies een distributeur -',    

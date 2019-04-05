@@ -21,11 +21,15 @@ class CreateController extends AbstractController
 {
     private $albumSvc;
     
+    /**
+     * Constructor
+     * 
+     * @param AlbumService $albumService
+     */
     public function __construct(AlbumService $albumService)
     {
         $this->albumSvc = $albumService;
     }
-    
     
     /**
      * Create a new album

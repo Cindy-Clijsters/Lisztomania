@@ -134,4 +134,26 @@ class AlbumService
         
         return $amount;
     }
+    
+    /**
+     * Get the range of the release years
+     * 
+     * @return array
+     */
+    public function getReleaseYearRange(): array
+    {
+        return range(1950, date('Y') + 1);
+    }
+    
+    /**
+     * Get the array of the release years
+     * 
+     * @return array
+     */
+    public function getReleaseYearArray(): array
+    {
+        $range = $this->getReleaseYearRange();
+        
+        return array_combine($range, $range);
+    }
 }
