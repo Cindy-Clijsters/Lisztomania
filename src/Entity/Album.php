@@ -5,9 +5,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraints\Album as AlbumAssert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
+ * 
+ * @AlbumAssert\SelectAlbumArtist(groups = {"create"})
  */
 class Album
 {

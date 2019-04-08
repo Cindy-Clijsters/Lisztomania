@@ -34,7 +34,7 @@ class CreateController extends AbstractController
         AlbumService $albumService,
         TranslatorInterface $translator
     ) {
-        $this->albumSvc  = $albumService;
+        $this->albumSvc   = $albumService;
         $this->translator = $translator;
     }
     

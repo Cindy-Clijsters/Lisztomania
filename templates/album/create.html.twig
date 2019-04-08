@@ -28,10 +28,13 @@
                                  </div>
                                 <div class="col-lg-1 pt-1 pb-2">
                                     {% trans from 'albums' %}orAnd{% endtrans %}
-                                 </div>                                 
-                                 <div class="col-lg-8">
-                                    {{ form_widget(form.artist) }}
-                                 </div>                                  
+                                </div>                                 
+                                <div class="col-lg-8">
+                                   {{ form_widget(form.artist) }}
+                                </div>    
+                                <div class="col-lg-12">
+                                    {{ form_errors(form.artist) }}
+                                </div>
                             </div>
                                                             
                             {{ form_row(form.title) }}
