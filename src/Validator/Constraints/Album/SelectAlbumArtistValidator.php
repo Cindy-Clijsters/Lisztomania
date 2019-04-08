@@ -6,8 +6,6 @@ namespace App\Validator\Constraints\Album;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-use App\Entity\Album;
-
 /**
  * Check if the album is linked to multiple artist or one single artist
  *

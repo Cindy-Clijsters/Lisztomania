@@ -36,6 +36,8 @@ class Album
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Artist")
+     * 
+     * @Assert\Valid
      */
     private $artist;
 
@@ -73,11 +75,15 @@ class Album
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Label")
+     * 
+     * @Assert\Valid
      */
     private $label;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Distributor")
+     * 
+     * @Assert\Valid
      */
     private $distributor;
 
