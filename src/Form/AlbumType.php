@@ -166,8 +166,8 @@ class AlbumType extends AbstractType
                     'placeholder' => 'status.makeChoice',
                     'empty_data'  => '',
                     'choices'     => [
-                        'status.active'     => Album::STATUS_ACTIVE,
-                        'status.inactive'   => Album::STATUS_INACTIVE
+                        'status.active'   => Album::STATUS_ACTIVE,
+                        'status.inactive' => Album::STATUS_INACTIVE
                     ]
                 ]
             )

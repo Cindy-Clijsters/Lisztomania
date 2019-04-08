@@ -10,7 +10,7 @@ use App\Validator\Constraints\Album as AlbumAssert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
  * 
- * @AlbumAssert\SelectAlbumArtist(groups = {"create"})
+ * @AlbumAssert\SelectAlbumArtist(groups = {"create", "update"})
  */
 class Album
 {
@@ -46,15 +46,15 @@ class Album
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
-     *     groups  = {"create"}
+     *     groups  = {"create", "update"}
      * )
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 100,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      */
     private $title;
@@ -62,13 +62,13 @@ class Album
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * 
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 100,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      */
     private $alternativeTitle;
@@ -76,32 +76,34 @@ class Album
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Label")
      * 
-     * @Assert\Valid
+     * @Assert\Valid(groups = {"create", "update"})
      */
     private $label;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Distributor")
      * 
-     * @Assert\Valid
+     * @Assert\Valid(groups = {"create", "update"})
      */
     private $distributor;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      * 
-     * @Assert\Type("integer", groups = {"create"})
+     * @Assert\Type("integer", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 4,
      *     max = 4,
      *     exactMessage = "error.exactCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * ) 
      */
     private $releaseYear;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * 
+     * @Assert\Date(groups = {"create", "update"})
      */
     private $releaseDate;
 
@@ -110,20 +112,20 @@ class Album
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
-     * @Assert\Type("string", groups = {"create"})
+     * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
      *     min = 1,
      *     max = 50,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      * @Assert\Choice(
      *     choices = Album::VALID_STATUSES,
      *     message = "error.invalidValue",
-     *     groups = {"create"}
+     *     groups = {"create", "update"}
      * )
      */
     private $status;
