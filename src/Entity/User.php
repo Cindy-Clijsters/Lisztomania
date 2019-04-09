@@ -4,9 +4,10 @@ declare(strict_types = 1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -138,21 +139,41 @@ class User implements UserInterface
     private $role;
 
     /**
+     * @var string (old password)
+     * 
+     * @Assert\NotBlank(message = "error.requiredField", groups = "updatePassword")
+     * @Assert\Type("string", groups = "updatePassword")
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 50,
+     *     minMessage = "error.minCharacters",
+     *     maxMessage = "error.maxCharacters",
+     *     groups = {"updatePassword"}
+     * )
+     * @SecurityAssert\UserPassword(
+     *     message = "error.incorrectOldPassword",
+     *     groups = "updatePassword"
+     * )
+     */
+    private $oldPassword;
+    
+    /**
      * @var string The unhashed password
      * 
-     * @Assert\NotBlank(message = "error.requiredField")
-     * @Assert\Type("string")
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"updatePassword"})
+     * @Assert\Type("string", groups = {"updatePassword"})
      * @Assert\Length(
      *     min = 8,
      *     max = 50,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"create", "update"}
+     *     groups = {"updatePassword"}
      * )
      * @Assert\Regex(
      *     pattern = "/^((?=.*\d)(?=.*[A-Z])(?=.*[a-z])((?=.*\W)|(?=.*\_)).{8,50})/",
      *     match   = true,
-     *     message = "error.safePassword"
+     *     message = "error.safePassword",
+     *     groups = {"updatePassword"}
      * )
      */
     private $plainPassword;
@@ -160,11 +181,12 @@ class User implements UserInterface
     /**
      * @var string 
      * 
-     * @Assert\NotBlank(message = "error.requiredField")
-     * @Assert\Type("string")
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"updatePassword"})
+     * @Assert\Type("string", groups = {"updatePassword"})
      * @Assert\EqualTo(
      *     propertyPath = "plainPassword",
-     *     message = "error.passwordsUnmatched"
+     *     message = "error.passwordsUnmatched",
+     *     groups = {"updatePassword"}
      * )
      */
     private $confirmPassword;
@@ -347,6 +369,30 @@ class User implements UserInterface
         return [$this->role];
     }
 
+    /**
+     * Get the old password
+     * 
+     * @return string|null
+     */
+    public function getOldPassword(): ?string
+    {
+        return $this->oldPassword;
+    }
+    
+    /**
+     * Set the old password
+     * 
+     * @param string $oldPassword
+     * 
+     * @return \self
+     */
+    public function setOldPassword(string $oldPassword): self
+    {
+        $this->oldPassword = $oldPassword;
+        
+        return $this;
+    }
+    
     /**
      * Get the plain password
      * 

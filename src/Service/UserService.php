@@ -8,6 +8,7 @@ use Doctrine\ORM\Query;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
@@ -21,19 +22,23 @@ class UserService
 {
     private $em;
     private $translator;
+    private $encoder;
     
     /**
      * Constructor function
      * 
      * @param EntityManagerInterface $entityManager
      * @param TranslatorInterface $translator
+     * @param UserPasswordEncoderInterface $encoder
      */
     public function __construct(
         EntityManagerInterface $entityManager,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        UserPasswordEncoderInterface $encoder
     ) {
         $this->em         = $entityManager;
         $this->translator = $translator;
+        $this->encoder    = $encoder;
     }
     
     /**
@@ -83,6 +88,49 @@ class UserService
         }
         
         return $user;
+    }
+    
+    /**
+     * Save the user in the database
+     * 
+     * @param User $user
+     * 
+     * @return void
+     */
+    public function saveToDb(User $user): void
+    {
+        $this->em->persist($user);
+        $this->em->flush();
+    }
+    
+    /**
+     * Get the hashed password
+     * 
+     * @param User $user
+     * 
+     * @return string
+     */
+    public function getHashedPassword(User $user): string
+    {
+        $hashedPassword = $this->encoder->encodePassword(
+            $user,
+            $user->getPlainPassword()
+        );
+        
+        return $hashedPassword;
+    }
+    
+    /**
+     * Check if the password is valid
+     * 
+     * @param User $user
+     * @param string $oldPassword
+     * 
+     * @return bool
+     */
+    public function checkValidPassword(User $user, string $oldPassword): bool
+    {
+        return $this->encoder->isPasswordValid($user, $oldPassword);
     }
     
 }

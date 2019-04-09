@@ -5,6 +5,7 @@ return [
     'field.email' => 'E-mail address',
     'field.username' => 'Username',
     'field.password' => 'Password',
+    'field.oldPassword' => 'Old password',
     'field.confirmPassword' => 'Confirm password',
     'field.role' => 'Role',
     'field.status' => 'Status',
@@ -34,6 +35,7 @@ return [
     'msg.addedSuccessfully' => 'The user "%username%" has been successfully added.',
     'msg.changedSuccessfully' => 'The user "%username%" has been successfully changed.',
     'msg.ownProfileUpdatedSuccessfully' => 'Your profile data has been successfully changed.',
+    'msg.updatePasswordSucessfully' => 'Your password has been successfully changed.',
     
     'error.noUserWithId' => 'No user with the ID \'%id%\' was found.',
     

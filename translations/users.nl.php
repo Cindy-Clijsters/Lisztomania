@@ -5,6 +5,7 @@ return [
     'field.email' => 'E-mailadres',
     'field.username' => 'Gebruikersnaam',
     'field.password' => 'Wachtwoord',
+    'field.oldPassword' => 'Oud wachtwoord',
     'field.confirmPassword' => 'Bevestig wachtwoord',
     'field.role' => 'Rol',
     'field.status' => 'Status',    
@@ -33,7 +34,8 @@ return [
     
     'msg.addedSuccessfully' => 'De gebruiker "%username%" is met succes toegevoegd.',
     'msg.changedSuccessfully' => 'De gebruiker "%username%" is met succes gewijzigd.',
-    'msg.ownProfileUpdatedSuccessfully' => 'Je profielgegevens zijn met succes gewijzigd',
+    'msg.ownProfileUpdatedSuccessfully' => 'Je profielgegevens zijn met succes gewijzigd.',
+    'msg.updatePasswordSucessfully' => 'Je wachtoord is met succes gewijzigd.',
 
     'error.noUserWithId' => 'Er is geen gebruiker gevonden met het id \'%id%\'',
     
