@@ -20,6 +20,7 @@ return [
     'action.options' => 'Options', 
     'action.cancel' => 'Cancel',
     'action.save' => 'Save',
-    'action.backToOverview' => 'Overview'
+    'action.backToOverview' => 'Overview',
+    'action.send' => 'Verzenden',
     
 ];

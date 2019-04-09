@@ -45,13 +45,14 @@
                                 <label>
                                     <input type="checkbox" name="_remember_me">&nbsp;Onthoud mijn gegevens
                                 </label>
-                                <label class="pull-right">
-                                    <a href="#">Wachtwoord vergeten?</a>
-                                </label>
                             </div>
                             -->
                             
                             {{ form_widget(form.submit) }}
+                            
+                            <div class="from-group mt-4 center">
+                                <a href="{{ path('rtAdminForgotYourPassword') }}">{% trans from "users" %}action.forgotYourPassword{% endtrans %}</a>
+                            </div>
                             
                         {{ form_end(form) }}
                     </div>

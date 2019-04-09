@@ -21,5 +21,6 @@ return [
     'action.cancel' => 'Annuleren',
     'action.save' => 'Opslaan',
     'action.backToOverview' => 'Overzicht',
+    'action.send' => 'Verzenden',
 
 ];

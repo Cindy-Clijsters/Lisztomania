@@ -23,6 +23,10 @@ label.required:after {
     text-transform: none;
 }
 
+.login-form .center{
+    text-align: center;
+}
+
 /* Pagination */
 
 div.dataTables_paginate

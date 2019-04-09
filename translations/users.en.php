@@ -4,6 +4,7 @@ return [
     'field.firstName' => 'First name',
     'field.email' => 'E-mail address',
     'field.username' => 'Username',
+    'field.usernameOrEmail' => 'E-mail address or username',
     'field.password' => 'Password',
     'field.oldPassword' => 'Old password',
     'field.confirmPassword' => 'Confirm password',
@@ -28,6 +29,7 @@ return [
     'action.delete' => 'Delete a user',
     'action.updateMyProfile' => 'Change my profile information',
     'action.updatePassword' => 'Change my password',
+    'action.forgotYourPassword' => 'Forgot your password?',
     
     'list.noFound' => 'No users were found.',
     'list.showEntries' => 'Showing %start% to %end% of %total% users',
@@ -41,4 +43,6 @@ return [
     
     'setPassword.accountCreated' => 'An account has been created for you on www.lisztomania.be.',
     'setPassword.clickToSetPassword' => 'Click on the link below to set your password.',    
+    
+    'forgotPassword.fillInUsernameOrEmail' => 'Enter your e-mail address or username to set a new password.',
 ];

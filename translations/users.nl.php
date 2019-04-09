@@ -4,6 +4,7 @@ return [
     'field.firstName' => 'Voornaam',
     'field.email' => 'E-mailadres',
     'field.username' => 'Gebruikersnaam',
+    'field.usernameOrEmail' => 'E-mailadres of gebruikersnaam',
     'field.password' => 'Wachtwoord',
     'field.oldPassword' => 'Oud wachtwoord',
     'field.confirmPassword' => 'Bevestig wachtwoord',
@@ -28,6 +29,7 @@ return [
     'action.delete' => 'Een gebruiker verwijderen',
     'action.updateMyProfile' => 'Mijn profielgegevens wijzigen',
     'action.updatePassword' => 'Mijn wachtwoord wijzigen',
+    'action.forgotYourPassword' => 'Wachtwoord vergeten?',
     
     'list.noFound' => 'Er zijn geen gebruikers gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% gebruikers',
@@ -41,4 +43,6 @@ return [
     
     'setPassword.accountCreated' => 'Er is een account voor je aangemaakt op www.lisztomania.be.',
     'setPassword.clickToSetPassword' => 'Klik op de onderstaande link om je wachtwoord in te stellen.',
+    
+    'forgotPassword.fillInUsernameOrEmail' => 'Vul hier uw e-mailadres of gebruikersnaam in om een nieuw wachtwoord in te stellen.',
 ];
