@@ -38,6 +38,7 @@ return [
     'error.noAlbumWithId' => 'No album was found with the id \'%id%\'',
     
     'msg.addedSuccessfully' => 'The album "%title%" has been successfully added.',
-    'msg.changedSuccessfully' => 'The album "%title%" has been successfully changed.',    
+    'msg.changedSuccessfully' => 'The album "%title%" has been successfully changed.', 
+    'msg.deletedSuccessfully' => 'The album "%title%" has been successfully deleted.',
     
 ];

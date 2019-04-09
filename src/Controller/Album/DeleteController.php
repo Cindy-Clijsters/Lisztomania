@@ -7,6 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Symfony\Contracts\Translation\TranslatorInterface;
+
+use App\Entity\Album;
+use App\Service\AlbumService;
+
 /**
  * Delete an album
  *
@@ -14,6 +19,22 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DeleteController extends AbstractController
 {
+    private $albumSvc;
+    private $translator;
+    
+    /**
+     * Constructor function
+     * 
+     * @param AlbumService $albumService
+     */
+    public function __construct(
+        AlbumService $albumService,
+        TranslatorInterface $translator
+    ) {
+        $this->albumSvc   = $albumService;
+        $this->translator = $translator;
+    }
+    
     /**
      * Delete a album
      * 
@@ -28,9 +49,27 @@ class DeleteController extends AbstractController
      */    
     public function delete(int $id): Response
     {
-        // Display the view
-        return $this->render(
-            'album/delete.html.twig'
-        );        
+        // Get the information of an album
+        $album = $this->albumSvc->findById($id);
+        
+        // Set the status to deleted
+        $album->setStatus(Album::STATUS_DELETED);
+        
+        // Save the album
+        $this->albumSvc->saveToDb($album);
+        
+        // Redirect to the overview
+        $this->addFlash(
+            'notice',
+            $this->translator->trans(
+                'msg.deletedSuccessfully',
+                [
+                    '%title%' => $album->getTitle()
+                ],
+                'albums'
+            )
+        );
+        
+        return $this->redirectToRoute('rtAdminAlbumOverview');
     }
 }

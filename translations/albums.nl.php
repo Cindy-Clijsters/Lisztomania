@@ -39,5 +39,6 @@ return [
     
     'msg.addedSuccessfully' => 'Het album "%title%" is met succes toegevoegd.',
     'msg.changedSuccessfully' => 'Het album "%title%" is met succes gewijzigd.',
+    'msg.deletedSuccessfully' => 'Het album "%title%" is met succes verwijderd.',
     
 ];

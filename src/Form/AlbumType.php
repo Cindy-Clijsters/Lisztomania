@@ -163,9 +163,9 @@ class AlbumType extends AbstractType
                 [
                     'label'       => 'field.status',
                     'required'    => true,
-                    'placeholder' => 'status.makeChoice',
                     'empty_data'  => '',
                     'choices'     => [
+                        'status.makeChoice' => '',
                         'status.active'   => Album::STATUS_ACTIVE,
                         'status.inactive' => Album::STATUS_INACTIVE
                     ]
