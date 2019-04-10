@@ -12,6 +12,7 @@ return [
     'error.uniqueEmail' => 'Dit e-mailadres is reeds in gebruik.',
     'error.uniqueName' => 'Deze naam is reeds in gebruik.',
     'error.incorrectOldPassword' => 'Dit wachtwoord komt niet overeen met het huidige wachtwoord.',
+    'error.usernameOrEmailNotFound' => 'Er is geen gebruiker gevonden met deze gebruikersnaam of dit e-mailadres.',
     
     'error.userNotFound' => 'Je gebruikersnaam kan niet teruggevonden worden.',
     'error.noAccessToAdmin' => 'Je hebt geen toegang tot de gebruikersmodule.',

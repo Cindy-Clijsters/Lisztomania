@@ -79,4 +79,26 @@ class UserRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+    
+    /**
+     * Find a administrator of superadministrator by its username or e-mail address
+     * 
+     * @param string $searchValue
+     * 
+     * @return User|null
+     */
+    public function findAdminByUsernameOrEmail(string $searchValue): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.username = :username OR u.email = :email')
+            ->andWhere('u.role = :admin OR u.role = :superadmin')
+            ->andWhere('u.status != :deletedStatus')
+            ->setParameter('username', $searchValue)
+            ->setParameter('email', $searchValue)
+            ->setParameter('admin', User::ROLE_ADMIN)
+            ->setParameter('superadmin', User::ROLE_SUPERADMIN)                
+            ->setParameter('deletedStatus', User::STATUS_DELETED)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

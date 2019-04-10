@@ -16,6 +16,8 @@ return [
     'global.hey' => 'Hey',
     'global.bestRegards' => 'With best regards,',
     'global.lisztomaniaTeam' => 'The Lisztomania team',
+    'global.forgotYourPassword' => 'Forgot your password',
+    'global.resetYourPassword' => 'Reset your password',
     
     'action.options' => 'Options', 
     'action.cancel' => 'Cancel',

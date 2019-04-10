@@ -16,6 +16,8 @@ return [
     'global.hey' => 'Dag',
     'global.bestRegards' => 'Met vriendelijke groeten,',
     'global.lisztomaniaTeam' => 'Het Lisztomania team',
+    'global.forgotYourPassword' => 'Je wachtwoord vergeten',
+    'global.resetYourPassword' => 'Reset je wachtwoord',
     
     'action.options' => 'Opties',   
     'action.cancel' => 'Annuleren',

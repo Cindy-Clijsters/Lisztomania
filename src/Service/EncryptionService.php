@@ -10,8 +10,9 @@ namespace App\Service;
  */
 class EncryptionService
 {
-    const SET_PASSWORD = 'BpJDqPgFRuXUDQA84mv4NbpLQpCZEStS';
-    const CIPHER       = 'aes-256-cbc'; 
+    const SET_PASSWORD    = 'BpJDqPgFRuXUDQA84mv4NbpLQpCZEStS';
+    const FORGOT_PASSWORD = '79jTkzxeg6Tjj2uPp3BzVCM5sXGmQdU4';
+    const CIPHER          = 'aes-256-cbc'; 
     
     /**
      * Encrypt a value

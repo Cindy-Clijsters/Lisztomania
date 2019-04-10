@@ -1,5 +1,6 @@
 <?php
 return [
+    
     'field.lastName' => 'Achternaam',
     'field.firstName' => 'Voornaam',
     'field.email' => 'E-mailadres',
@@ -44,5 +45,10 @@ return [
     'setPassword.accountCreated' => 'Er is een account voor je aangemaakt op www.lisztomania.be.',
     'setPassword.clickToSetPassword' => 'Klik op de onderstaande link om je wachtwoord in te stellen.',
     
-    'forgotPassword.fillInUsernameOrEmail' => 'Vul hier uw e-mailadres of gebruikersnaam in om een nieuw wachtwoord in te stellen.',
+    'forgotPassword.fillInUsernameOrEmail' => 'Vul je e-mailadres of gebruikersnaam in en dan sturen we je een link om je wachtwoord in te resetten.',
+    'forgotPassword.youForgotPassword' => 'We kregen te horen dat je je wachtwoord bent vergeten voor Lisztomania.',
+    'forgotPassword.clickToSetPassword' => 'Klik op de link om je wachtwoord opnieuw in te stellen.',
+    'forgotPassword.ignoreEmail' => 'P.S. Als je deze e-mail niet hebt aangevraagd, kan je deze veilig negeren',
+    'forgotPassword.sendResetPasswordLink' => 'Er is een e-mail verzonden naar je e-mailadres.',
+    
 ];

@@ -91,6 +91,21 @@ class UserService
     }
     
     /**
+     * Find an admin by it's username or e-mail address
+     * 
+     * @param string $searchValue
+     * 
+     * @return User|null
+     */
+    public function findAdminByUsernameOrEmail(string $searchValue)
+    {
+        $userRps = $this->getRepository();
+        $user    = $userRps->findAdminByUsernameOrEmail($searchValue);
+        
+        return $user;
+    }    
+    
+    /**
      * Save the user in the database
      * 
      * @param User $user

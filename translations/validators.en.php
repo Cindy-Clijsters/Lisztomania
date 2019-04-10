@@ -12,6 +12,7 @@ return [
     'error.uniqueEmail' => 'This e-mail address is already in use.',
     'error.uniqueName' => 'This name is already in use.',
     'error.incorrectOldPassword' => 'This password does not match the current password',
+    'error.usernameOrEmailNotFound' => 'No user has been found with this user name or email address.',    
     
     'error.userNotFound' => 'You\'re user couldn\'t been found.',
     'error.noAccessToAdmin' => 'You don\'t have access to the administrator module.',

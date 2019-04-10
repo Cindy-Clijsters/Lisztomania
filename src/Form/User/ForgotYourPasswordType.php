@@ -9,6 +9,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
+use App\Validator\Constraints\User\ContainsAdminWithUsernameOrEmail;
+
 /**
  * Generate the form for requesting a password reset
  *
@@ -31,9 +36,14 @@ class ForgotYourPasswordType extends AbstractType
                 'usernameOrEmail',
                 TextType::class,
                 [
-                    'label'    => 'field.usernameOrEmail',
-                    'required' => true,
-                    'attr'     => ['maxlength' => 180]
+                    'label'       => 'field.usernameOrEmail',
+                    'required'    => true,
+                    'attr'        => ['maxlength' => 180],
+                    'constraints' => [
+                        new NotBlank(),
+                        new Length(['max' => 180]),
+                        new ContainsAdminWithUsernameOrEmail()
+                    ]
                 ]
             )
             ->add(
