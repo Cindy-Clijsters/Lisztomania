@@ -49,7 +49,7 @@ class Distributor
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create", "update"}
-     * ) 
+     * )
      */
     private $name;
 

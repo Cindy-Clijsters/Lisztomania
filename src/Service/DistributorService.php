@@ -100,4 +100,17 @@ class DistributorService
         // Return the distributor
         return $distributor;
     }
+    
+    /**
+     * Save the distributor in the database
+     * 
+     * @param Distributor $distributor
+     * 
+     * @return void
+     */
+    public function saveToDb(Distributor $distributor): void
+    {
+        $this->em->persist($distributor);
+        $this->em->flush();
+    }
 }

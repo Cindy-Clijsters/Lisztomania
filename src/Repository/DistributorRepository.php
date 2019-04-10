@@ -44,9 +44,9 @@ class DistributorRepository extends ServiceEntityRepository
      * 
      * @param array $criteria
      * 
-     * @return type
+     * @return array
      */
-    public function findNonDeletedForConstraint(array $criteria)
+    public function findNonDeletedForConstraint(array $criteria): array
     {
         return $this->createQueryBuilder('d')
             ->andWhere('d.name = :name')

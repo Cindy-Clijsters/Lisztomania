@@ -7,12 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Service\DistributorService;
-use App\Form\DistributorType;
+use App\Form\Distributor\DistributorType;
 
 /**
  * Update a distributor
@@ -22,23 +20,19 @@ use App\Form\DistributorType;
 class UpdateController extends AbstractController
 {
     private $distributorSvc;
-    private $em;
     private $translator;
     
     /**
-     * Contructor function
+     * Constructor function
      * 
      * @param DistributorService $distributorService
-     * @param EntityManagerInterface $em
      * @param TranslatorInterface $translator
      */
     public function __construct(
         DistributorService $distributorService,
-        EntityManagerInterface $em,
         TranslatorInterface $translator
     ) {
         $this->distributorSvc = $distributorService;
-        $this->em             = $em;
         $this->translator     = $translator;
     }
     
@@ -48,7 +42,10 @@ class UpdateController extends AbstractController
      * @Route({
      *  "nl" : "/beheer/distributeurs/wijzigen/{id}",
      *  "en" : "/admin/distributors/update/{id}"
-     * }, name="rtAdminDistributorUpdate")
+     * },
+     * name="rtAdminDistributorUpdate",
+     * requirements={"id"="\d+"}
+     * )
      * 
      * @param Request $request
      * @param int $id
@@ -65,6 +62,7 @@ class UpdateController extends AbstractController
             $distributor,
             ['validation_groups' => 'update']
         );
+        
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -73,8 +71,7 @@ class UpdateController extends AbstractController
             $distributor = $form->getData();
             
             // Save the distributor
-            $this->em->persist($distributor);
-            $this->em->flush();
+            $this->distributorSvc->saveToDb($distributor);
             
             // Redirect to the overview
             $this->addFlash(

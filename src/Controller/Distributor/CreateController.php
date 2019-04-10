@@ -7,12 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\Distributor;
-use App\Form\DistributorType;
+use App\Form\Distributor\DistributorType;
+use App\Service\DistributorService;
 
 /**
  * Create a distributor
@@ -21,21 +20,21 @@ use App\Form\DistributorType;
  */
 class CreateController extends AbstractController
 {    
-    private $em;
+    private $distributorSvc;
     private $translator;
-    
+   
     /**
      * Constructor function
      * 
-     * @param EntityManagerInterface $em
+     * @param DistributorService $distributorService
      * @param TranslatorInterface $translator
      */
     public function __construct(
-        EntityManagerInterface $em,
+        DistributorService $distributorService,
         TranslatorInterface $translator
     ) {
-        $this->em         = $em;
-        $this->translator = $translator;
+        $this->distributorSvc = $distributorService;
+        $this->translator     = $translator;
     }
     
     /**
@@ -69,8 +68,7 @@ class CreateController extends AbstractController
             $distributor = $form->getData();
             
             // Save the distributor
-            $this->em->persist($distributor);
-            $this->em->flush();
+            $this->distributorSvc->saveToDb($distributor);
             
             // Redirect to the overview
             $this->addFlash(

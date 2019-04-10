@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Form;
+namespace App\Form\Distributor;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -46,7 +46,6 @@ class DistributorType extends AbstractType
                 [
                     'label'      => 'field.status',
                     'required'   => true,
-                    'empty_data' => '',
                     'choices'    => [
                         'status.makeChoice' => '',
                         'status.active'     => Distributor::STATUS_ACTIVE,

@@ -4,7 +4,7 @@ return [
     'field.name' => 'Name',
     'field.status' => 'Status',
     
-    'status.makeChoice' => '--- Choose a status ---',
+    'status.makeChoice' => '- Choose a status -',
     'status.active' => 'Active',
     'status.inactive' => 'Inactive',
     'status.deleted' => 'Deleted',      

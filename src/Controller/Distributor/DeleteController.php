@@ -6,8 +6,6 @@ namespace App\Controller\Distributor;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\Distributor;
@@ -23,7 +21,6 @@ class DeleteController extends AbstractController
 {
     private $distributorSvc;
     private $albumSvc;
-    private $em;
     private $translator;
     
     /**
@@ -31,18 +28,15 @@ class DeleteController extends AbstractController
      * 
      * @param DistributorService $distributorService
      * @param AlbumService $albumService
-     * @param EntityManagerInterface $em
      * @param TranslatorInterface $translator
      */
     public function __construct(
         DistributorService $distributorService,
         AlbumService $albumService,
-        EntityManagerInterface $em,
         TranslatorInterface $translator
     ) {
         $this->distributorSvc = $distributorService;
         $this->albumSvc       = $albumService;
-        $this->em             = $em;
         $this->translator     = $translator;
     }
     
@@ -52,7 +46,10 @@ class DeleteController extends AbstractController
      * @Route({
      *  "nl" : "/beheer/distributeurs/verwijderen/{id}",
      *  "en" : "/admin/distributors/delete/{id}"
-     * }, name="rtAdminDistributorDelete")
+     * },
+     * name="rtAdminDistributorDelete",
+     * requirements={"id"="\d+"}
+     * )
      * 
      * @param int $id
      * 
@@ -72,8 +69,7 @@ class DeleteController extends AbstractController
             $distributor->setStatus(Distributor::STATUS_DELETED);
             
             // Save the distributor
-            $this->em->persist($distributor);
-            $this->em->flush();
+            $this->distributorSvc->saveToDb($distributor);
             
             // Redirect to the overview
             $this->addFlash(
