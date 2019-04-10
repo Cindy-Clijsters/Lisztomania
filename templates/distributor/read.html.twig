@@ -13,40 +13,42 @@
 
 {% block mainContent %}  
 
-    <div class="animated fadeIn">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">                      
-                        
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'distributors' %}field.name{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ distributor.name }}</p>
-                            </div>
-                        </div>
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">                      
 
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'distributors' %}field.status{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ distributor.status|formatDistributorStatus }}</p>
-                            </div>
-                        </div>  
-                            
-                        <div class="row mt-2">
-                            <div class="col-md-12">
-                                <a href="{{ path('rtAdminDistributorOverview') }}" class="btn btn-outline-primary">{% trans %}action.backToOverview{% endtrans %}</a>
-                            </div>
-                        </div>                            
-                        
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'distributors' %}field.name{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ distributor.name }}</p>
+                        </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'distributors' %}field.status{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ distributor.status|formatDistributorStatus }}</p>
+                        </div>
+                    </div>  
+
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <a href="{{ path('rtAdminDistributorOverview') }}" class="btn btn-outline-primary">
+                                {% trans %}action.backToOverview{% endtrans %}
+                            </a>
+                        </div>
+                    </div>                            
+
                 </div>
             </div>
         </div>
     </div>
+</div>
                                 
 {% endblock %}

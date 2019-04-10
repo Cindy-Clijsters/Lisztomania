@@ -34,7 +34,9 @@ class ReadController extends AbstractController
      * @Route({
      *  "nl" : "/beheer/distributeurs/bekijken/{id}",
      *  "en" : "/admin/distributors/view/{id}"
-     * }, name="rtAdminDistributorRead")
+     * },
+     * name = "rtAdminDistributorRead",
+     * requirements = {"id" = "\d+"})
      * 
      * @param int $id
      * 
