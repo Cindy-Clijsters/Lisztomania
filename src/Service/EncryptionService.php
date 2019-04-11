@@ -62,7 +62,7 @@ class EncryptionService
                 $options = 0,
                 $iv
             );  
-        }
+            }
         
         return $result;
     }    

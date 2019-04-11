@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Lisztomania :: {% trans %}global.resetYourPassword{% endtrans %}</title>
+        <title>Lisztomania :: {% trans from 'users'%}action.confirmRegistration{% endtrans %}</title>
         <meta name="description" content="Lisztomania">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -22,16 +22,14 @@
                         <span>Lisztomania</span>
                     </div>
                     <div class="login-form">
-                        
-                        <p class="dark">{% trans from 'users' %}forgotPassword.resetPassword{% endtrans %}</p>
-                        
-                        {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
+                        <p>{% trans from 'users' %}accountUnconfirmed.accountUnconfirmed{% endtrans %}<br>
+                           {% trans from 'users' %}accountUnconfirmed.clickLinkInEmail{% endtrans %}</p>
                             
-                            {{ form_row(form.plainPassword) }}   
-                            {{ form_row(form.confirmPassword) }}
-                            {{ form_widget(form.submit) }}
-                            
-                        {{ form_end(form) }}
+                        <!--
+                        <a href="#" class="mt-2 btn btn-sm btn-primary">
+                            {% trans from 'users' %}accountUnconfirmed.resendConfirmationMail{% endtrans %}
+                        </a>
+                        -->
                     </div>
                 </div>
             </div>

@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Service\EncryptionService;
 
 /**
  * Hold user functions
@@ -23,22 +24,26 @@ class UserService
     private $em;
     private $translator;
     private $encoder;
+    private $encryptionSvc;
     
     /**
-     * Constructor function
+     * Consgit tructor function
      * 
      * @param EntityManagerInterface $entityManager
      * @param TranslatorInterface $translator
      * @param UserPasswordEncoderInterface $encoder
+     * @param EncryptionService $encryptionService
      */
     public function __construct(
         EntityManagerInterface $entityManager,
         TranslatorInterface $translator,
-        UserPasswordEncoderInterface $encoder
+        UserPasswordEncoderInterface $encoder,
+        EncryptionService $encryptionService
     ) {
-        $this->em         = $entityManager;
-        $this->translator = $translator;
-        $this->encoder    = $encoder;
+        $this->em            = $entityManager;
+        $this->translator    = $translator;
+        $this->encoder       = $encoder;
+        $this->encryptionSvc = $encryptionService;
     }
     
     /**
@@ -104,6 +109,51 @@ class UserService
         
         return $user;
     }    
+    
+    /**
+     * Find a administrator by it's identifier
+     * 
+     * @param string $identifier
+     * @param string $action
+     * 
+     * @return User|null
+     * @throws NotFoundHttpException
+     */
+    public function findAdminByIdentifier(string $identifier, string $action): ?User
+    {
+        $userName = $this->decryptIdentifier($identifier, $action);
+        
+        $user = null;
+        if ($userName !== '') {
+            $user = $this->findAdminByUsernameOrEmail($userName);
+        }
+        
+        if (!$user) {
+            throw new NotFoundHttpException(
+                $this->translator->trans(
+                    'error.invalidIdentifier'
+                )
+            );
+        }
+        
+        return $user;
+    }
+    
+    /**
+     * Decrypt the identifier
+     * 
+     * @param string $identifier
+     * @param string $action
+     * 
+     * @return string
+     */
+    public function decryptIdentifier(string $identifier, string $action): string
+    {
+        return $this->encryptionSvc->decrypt(
+            $identifier,
+            $action
+        );
+    }
     
     /**
      * Save the user in the database

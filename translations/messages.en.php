@@ -1,5 +1,6 @@
 <?php
 return [
+    
     'global.dashboard' => 'Dashboard',
     'global.myProfile' => 'My profile',
     'global.administration' => 'Administration',
@@ -18,11 +19,13 @@ return [
     'global.lisztomaniaTeam' => 'The Lisztomania team',
     'global.forgotYourPassword' => 'Forgot your password',
     'global.resetYourPassword' => 'Reset your password',
-    
+
     'action.options' => 'Options', 
     'action.cancel' => 'Cancel',
     'action.save' => 'Save',
     'action.backToOverview' => 'Overview',
     'action.send' => 'Verzenden',
+    
+    'error.invalidIdentifier' => 'Invalid identifier',
     
 ];

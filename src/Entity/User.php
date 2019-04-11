@@ -160,20 +160,20 @@ class User implements UserInterface
     /**
      * @var string The unhashed password
      * 
-     * @Assert\NotBlank(message = "error.requiredField", groups = {"updatePassword"})
-     * @Assert\Type("string", groups = {"updatePassword"})
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"updatePassword", "resetPassword"})
+     * @Assert\Type("string", groups = {"updatePassword", "resetPassword"})
      * @Assert\Length(
      *     min = 8,
      *     max = 50,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"updatePassword"}
+     *     groups = {"updatePassword", "resetPassword"}
      * )
      * @Assert\Regex(
      *     pattern = "/^((?=.*\d)(?=.*[A-Z])(?=.*[a-z])((?=.*\W)|(?=.*\_)).{8,50})/",
      *     match   = true,
      *     message = "error.safePassword",
-     *     groups = {"updatePassword"}
+     *     groups = {"updatePassword", "resetPassword"}
      * )
      */
     private $plainPassword;
@@ -181,12 +181,12 @@ class User implements UserInterface
     /**
      * @var string 
      * 
-     * @Assert\NotBlank(message = "error.requiredField", groups = {"updatePassword"})
-     * @Assert\Type("string", groups = {"updatePassword"})
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"updatePassword", "resetPassword"})
+     * @Assert\Type("string", groups = {"updatePassword", "resetPassword"})
      * @Assert\EqualTo(
      *     propertyPath = "plainPassword",
      *     message = "error.passwordsUnmatched",
-     *     groups = {"updatePassword"}
+     *     groups = {"updatePassword", "resetPassword"}
      * )
      */
     private $confirmPassword;

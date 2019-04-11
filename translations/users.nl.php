@@ -31,6 +31,7 @@ return [
     'action.updateMyProfile' => 'Mijn profielgegevens wijzigen',
     'action.updatePassword' => 'Mijn wachtwoord wijzigen',
     'action.forgotYourPassword' => 'Wachtwoord vergeten?',
+    'action.confirmRegistration' => 'Bevestig je registratie',
     
     'list.noFound' => 'Er zijn geen gebruikers gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% gebruikers',
@@ -38,10 +39,10 @@ return [
     'msg.addedSuccessfully' => 'De gebruiker "%username%" is met succes toegevoegd.',
     'msg.changedSuccessfully' => 'De gebruiker "%username%" is met succes gewijzigd.',
     'msg.ownProfileUpdatedSuccessfully' => 'Je profielgegevens zijn met succes gewijzigd.',
-    'msg.updatePasswordSucessfully' => 'Je wachtoord is met succes gewijzigd.',
+    'msg.updatePasswordSucessfully' => 'Je wachtwoord is met succes gewijzigd.',
 
     'error.noUserWithId' => 'Er is geen gebruiker gevonden met het id \'%id%\'',
-    
+
     'setPassword.accountCreated' => 'Er is een account voor je aangemaakt op www.lisztomania.be.',
     'setPassword.clickToSetPassword' => 'Klik op de onderstaande link om je wachtwoord in te stellen.',
     
@@ -50,5 +51,12 @@ return [
     'forgotPassword.clickToSetPassword' => 'Klik op de link om je wachtwoord opnieuw in te stellen.',
     'forgotPassword.ignoreEmail' => 'P.S. Als je deze e-mail niet hebt aangevraagd, kan je deze veilig negeren',
     'forgotPassword.sendResetPasswordLink' => 'Er is een e-mail verzonden naar je e-mailadres.',
+    'forgotPassword.resetPassword' => 'Vul je nieuwe wachtwoord in.',
+    'forgotPassword.passwordIsReset' => 'Je wachtwoord is met succes gewijzigd.',
+    'forgotPassword.clickToLogin' => 'Klik op de onderstaande knop om je aan te melden.',
+    
+    'accountUnconfirmed.accountUnconfirmed' => 'Je account is niet bevestigd.',
+    'accountUnconfirmed.clickLinkInEmail' => 'Klik op de link in de e-mail die we hebben verzonden.',
+    'accountUnconfirmed.resendConfirmationMail' => 'Klik hier om de e-mail opnieuw te versturen',
     
 ];

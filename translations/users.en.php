@@ -31,6 +31,7 @@ return [
     'action.updateMyProfile' => 'Change my profile information',
     'action.updatePassword' => 'Change my password',
     'action.forgotYourPassword' => 'Forgot your password?',
+    'action.confirmRegistration' => 'Confirm your registration',    
     
     'list.noFound' => 'No users were found.',
     'list.showEntries' => 'Showing %start% to %end% of %total% users',
@@ -50,5 +51,12 @@ return [
     'forgotPassword.clickToSetPassword' => 'To reset your password, please click this link.',
     'forgotPassword.ignoreEmail' => 'P.S. If you didn\'t request this email, you may safely ignore it.',
     'forgotPassword.sendResetPasswordLink' => 'An email has been send to your email address.',
+    'forgotPassword.resetPassword' => 'Enter your new password below.',
+    'forgotPassword.passwordIsReset' => 'Your password has been successfully changed.',
+    'forgotPassword.clickToLogin' => 'Click on the button below to login.',
+    
+    'accountUnconfirmed.accountUnconfirmed' => 'Your account has not been confirmed.',
+    'accountUnconfirmed.clickLinkInEmail' => 'Please click the link in the email we sent.',
+    'accountUnconfirmed.resendConfirmationMail' => 'Click here to resent it',
     
 ];
