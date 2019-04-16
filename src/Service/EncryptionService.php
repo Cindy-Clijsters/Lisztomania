@@ -26,7 +26,7 @@ class EncryptionService
     {
         $length = openssl_cipher_iv_length(self::CIPHER);
         $iv     = substr(str_shuffle(str_repeat("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", $length)), 0, $length);
-
+        
         $encrypted = openssl_encrypt(
             $value,
             self::CIPHER,
@@ -49,20 +49,22 @@ class EncryptionService
     public function decrypt(string $value, string $key): string
     {
         $result        = '';
-        $base64Decoded = base64_decode($value);
+        $base64Decoded = base64_decode($value);        
         $position      = strrpos($base64Decoded, '::');
         
         if ($position !== false) {
             list($encrypted_data, $iv) = explode('::', $base64Decoded, 2);
             
-            $result = openssl_decrypt(
-                $encrypted_data,
-                self::CIPHER,
-                $key,
-                $options = 0,
-                $iv
-            );  
+            if (strlen($iv) === openssl_cipher_iv_length(self::CIPHER)) {
+                $result = openssl_decrypt(
+                    $encrypted_data,
+                    self::CIPHER,
+                    $key,
+                    $options = 0,
+                    $iv
+                );  
             }
+        }
         
         return $result;
     }    
