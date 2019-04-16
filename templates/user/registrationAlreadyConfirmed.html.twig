@@ -1,0 +1,15 @@
+{% extends 'loggedOut.html.twig' %}
+
+{% block title %}Lisztomania :: {% trans from 'users'%}action.confirmRegistration{% endtrans %}{% endblock %}
+
+{% block mainContent %}  
+ 
+<p>{% trans from 'users' %}accountAlreadyConfirmed.accountConfirmed{% endtrans %}<br>
+   {% trans from 'users' %}accountAlreadyConfirmed.clickToLogin{% endtrans %}</p>
+
+<a href="{{ path('rtAdminLogin') }}" class="mt-2 btn btn-sm btn-primary">
+    {% trans %}global.login{% endtrans %}
+</a>
+    
+{% endblock %}
+

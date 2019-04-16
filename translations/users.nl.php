@@ -59,4 +59,12 @@ return [
     'accountUnconfirmed.clickLinkInEmail' => 'Klik op de link in de e-mail die we hebben verzonden.',
     'accountUnconfirmed.resendConfirmationMail' => 'Klik hier om de bevestigingsmail opnieuw te versturen',
     
+    'accountAlreadyConfirmed.accountConfirmed' => 'Je account is al bevestigd.',
+    'accountAlreadyConfirmed.clickToLogin'     => 'Klik op de onderstaande knop om je aan te melden.',
+    
+    'accountConfirmed.accountConfirmed' => 'Je account is bevestigd.',
+    'accountConfirmed.clickToLogin'     => 'Klik op de onderstaande knop om je aan te melden.',    
+    
+    'confirmRegistration.enterPassword' => 'Vul een wachtwoord in om je registratie te bevestigen.',    
+    
 ];

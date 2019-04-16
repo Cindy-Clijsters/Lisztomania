@@ -87,7 +87,7 @@ class CreateController extends AbstractController
             // Send an mail to the new user
             $identifier = $this->encryptSvc->encrypt(
                 $user->getUsername(),
-                $this->encryptSvc::SET_PASSWORD
+                $this->encryptSvc::CONFIRM_REGISTRATION
             );
             
             $userEmail = $user->getEmail();
@@ -100,7 +100,7 @@ class CreateController extends AbstractController
                         'emails/setPassword.html.twig',
                         [
                             'name' => $user->getFullName(),
-                            'link' => $this->router->generate('rtUserSetPassword', ['identifier' => $identifier], UrlGeneratorInterface::ABSOLUTE_URL)
+                            'link' => $this->router->generate('rtUserConfirmRegistration', ['identifier' => $identifier], UrlGeneratorInterface::ABSOLUTE_URL)
                         ]
                     ),
                     'text/html'

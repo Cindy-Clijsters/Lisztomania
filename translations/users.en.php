@@ -59,4 +59,12 @@ return [
     'accountUnconfirmed.clickLinkInEmail' => 'Please click the link in the confirmation email we sent.',
     'accountUnconfirmed.resendConfirmationMail' => 'Click here to resent it',
     
+    'accountAlreadyConfirmed.accountConfirmed' => 'Your account has already been confirmed.',
+    'accountAlreadyConfirmed.clickToLogin'     => 'Click on the button below to login.',    
+    
+    'accountConfirmed.accountConfirmed' => 'Your account has already been confirmed.',
+    'accountConfirmed.clickToLogin'     => 'Click on the button below to login.',       
+    
+    'confirmRegistration.enterPassword' => 'Enter a password to confirm your registration.',
+    
 ];

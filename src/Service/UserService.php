@@ -96,6 +96,53 @@ class UserService
     }
     
     /**
+     * Find an user by it's username
+     * 
+     * @param string $searchValue
+     * 
+     * @return User|null
+     */
+    public function findByUsername(string $searchValue): ?User
+    {
+        $userRps = $this->getRepository();
+        $user    = $userRps->findByUsername($searchValue);
+        
+        return $user;
+    }
+    
+    /**
+     * Find a user by it's identifier
+     * 
+     * @param string $identifier
+     * @param string $action
+     * 
+     * @return User|null
+     * @throws NotFoundHttpException
+     */
+    public function findByIdentifier(string $identifier, string $action): ?User
+    {
+        // Get the username
+        $username = $this->decryptIdentifier($identifier, $action);
+        
+        // Get the user
+        $user = null;
+        if ($username !== '') {
+            $user = $this->findByUsername($username);
+        }
+        
+        // Throw error message when user isn't found
+        if (!$user) {
+            throw new NotFoundHttpException(
+                $this->translator->trans(
+                    'error.invalidIdentifier'
+                )
+            );
+        }
+        
+        return $user;
+    }
+    
+    /**
      * Find an admin by it's username or e-mail address
      * 
      * @param string $searchValue

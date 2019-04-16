@@ -28,7 +28,7 @@ class SetPasswordType extends AbstractType
                     'label'      => 'field.password',
                     'required'   => true,
                     'empty_data' => '',
-                    'attr'       => ['maxlength' => 150]
+                    'attr'       => ['maxlength' => 50]
                 ]
             )
             ->add(
@@ -38,7 +38,7 @@ class SetPasswordType extends AbstractType
                    'label'      => 'field.confirmPassword',
                    'required'   => true,
                    'empty_data' => '',
-                   'attr'       => ['maxlength' => 150]
+                   'attr'       => ['maxlength' => 50]
                ]
             )
             ->add(

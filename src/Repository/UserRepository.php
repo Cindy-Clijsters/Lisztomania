@@ -81,6 +81,24 @@ class UserRepository extends ServiceEntityRepository
     }
     
     /**
+     * Find a user by its username
+     * 
+     * @param string $username
+     * 
+     * @return User|null
+     */
+    public function findByUsername(string $username): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.username = :username')
+            ->andWhere('u.status != :deletedStatus')
+            ->setParameter('username', $username)           
+            ->setParameter('deletedStatus', User::STATUS_DELETED)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }    
+    
+    /**
      * Find a administrator of superadministrator by its username or e-mail address
      * 
      * @param string $searchValue

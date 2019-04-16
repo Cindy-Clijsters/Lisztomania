@@ -1,0 +1,17 @@
+{% extends 'loggedOut.html.twig' %}
+
+{% block title %}Lisztomania :: {% trans from 'users' %}action.confirmRegistration{% endtrans %}{% endblock %}
+
+{% block mainContent %}  
+
+<p class="dark">{% trans from 'users' %}confirmRegistration.enterPassword{% endtrans %}</p>
+
+{{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
+
+    {{ form_row(form.plainPassword) }}   
+    {{ form_row(form.confirmPassword) }}
+    {{ form_widget(form.submit) }}
+
+{{ form_end(form) }}
+    
+{% endblock %}
