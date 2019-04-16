@@ -1,44 +1,16 @@
-<html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Lisztomania :: {% trans from 'users'%}action.confirmRegistration{% endtrans %}</title>
-        <meta name="description" content="Lisztomania">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        {% block stylesheets %}
-            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            {{ encore_entry_link_tags('admin') }}
+{% extends 'loggedOut.html.twig' %}
 
-            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-        {% endblock %}
-    </head>
+{% block title %}Lisztomania :: {% trans from 'users'%}action.confirmRegistration{% endtrans %}{% endblock %}
 
-    <body class="bg-dark">
-        <div class="sufee-login d-flex align-content-center flex-wrap">
-            <div class="container">
-                <div class="login-content">
-                    <div class="login-logo">
-                        <span>Lisztomania</span>
-                    </div>
-                    <div class="login-form">
-                        <p>{% trans from 'users' %}accountUnconfirmed.accountUnconfirmed{% endtrans %}<br>
-                           {% trans from 'users' %}accountUnconfirmed.clickLinkInEmail{% endtrans %}</p>
-                            
-                        <!--
-                        <a href="#" class="mt-2 btn btn-sm btn-primary">
-                            {% trans from 'users' %}accountUnconfirmed.resendConfirmationMail{% endtrans %}
-                        </a>
-                        -->
-                    </div>
-                </div>
-            </div>
-        </div>
+{% block mainContent %}  
+ 
+<p>{% trans from 'users' %}accountUnconfirmed.accountUnconfirmed{% endtrans %}<br>
+   {% trans from 'users' %}accountUnconfirmed.clickLinkInEmail{% endtrans %}</p>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('admin') }}
-        {% endblock %}
-
-    </body>
-
-</html>
+<!--
+<a href="#" class="mt-2 btn btn-sm btn-primary">
+    {% trans from 'users' %}accountUnconfirmed.resendConfirmationMail{% endtrans %}
+</a>
+-->
+    
+{% endblock %}

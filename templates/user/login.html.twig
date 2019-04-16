@@ -1,70 +1,41 @@
-<html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Lisztomania :: {% trans %}global.login{% endtrans %}</title>
-        <meta name="description" content="Lisztomania">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        {% block stylesheets %}
-            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            {{ encore_entry_link_tags('admin') }}
+{% extends 'loggedOut.html.twig' %}
 
-            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-        {% endblock %}
-    </head>
+{% block title %}Lisztomania :: {% trans %}global.login{% endtrans %}{% endblock %}
 
-    <body class="bg-dark">
-        <div class="sufee-login d-flex align-content-center flex-wrap">
-            <div class="container">
-                <div class="login-content">
-                    <div class="login-logo">
-                        <span>Lisztomania</span>
-                    </div>
-                    <div class="login-form">
-                        {{ form_start(form, {'method': 'POST'}) }}
-                            
-                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                                
-                            {% if error %}
-                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                            {% endif %}
-                            
-                            <div class="form-group">
-                                {{ form_label(form.username) }}
-                                {{ form_widget(form.username) }}
-                            </div>
-                            
-                            <div class="form-group">                             
-                                {{ form_label(form.plainPassword) }}
-                                {{ form_widget(form.plainPassword) }}
-                            </div>
-                            
-                            <!--
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="_remember_me">&nbsp;Onthoud mijn gegevens
-                                </label>
-                            </div>
-                            -->
-                            
-                            {{ form_widget(form.submit) }}
-                            
-                            <div class="from-group mt-4 center">
-                                <a href="{{ path('rtAdminForgotYourPassword') }}">{% trans from "users" %}action.forgotYourPassword{% endtrans %}</a>
-                            </div>
-                            
-                        {{ form_end(form) }}
-                    </div>
-                </div>
-            </div>
-        </div>
+{% block mainContent %}  
 
+{{ form_start(form, {'method': 'POST'}) }}
+                       
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('admin') }}
-        {% endblock %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-    </body>
+    <div class="form-group">
+        {{ form_label(form.username) }}
+        {{ form_widget(form.username) }}
+    </div>
 
-</html>
+    <div class="form-group">                             
+        {{ form_label(form.plainPassword) }}
+        {{ form_widget(form.plainPassword) }}
+    </div>
+
+    <!--
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="_remember_me">&nbsp;Onthoud mijn gegevens
+        </label>
+    </div>
+    -->
+
+    {{ form_widget(form.submit) }}
+
+    <div class="from-group mt-4 center">
+        <a href="{{ path('rtAdminForgotYourPassword') }}">{% trans from "users" %}action.forgotYourPassword{% endtrans %}</a>
+    </div>
+
+{{ form_end(form) }}
+
+{% endblock %}

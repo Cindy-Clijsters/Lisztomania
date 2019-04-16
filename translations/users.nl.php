@@ -46,17 +46,17 @@ return [
     'setPassword.accountCreated' => 'Er is een account voor je aangemaakt op www.lisztomania.be.',
     'setPassword.clickToSetPassword' => 'Klik op de onderstaande link om je wachtwoord in te stellen.',
     
-    'forgotPassword.fillInUsernameOrEmail' => 'Vul je e-mailadres of gebruikersnaam in en dan sturen we je een link om je wachtwoord in te resetten.',
+    'forgotPassword.fillInUsernameOrEmail' => 'Vul je e-mailadres of gebruikersnaam in en dan sturen we je een link om je wachtwoord opnieuw in te stellen.',
     'forgotPassword.youForgotPassword' => 'We kregen te horen dat je je wachtwoord bent vergeten voor Lisztomania.',
     'forgotPassword.clickToSetPassword' => 'Klik op de link om je wachtwoord opnieuw in te stellen.',
     'forgotPassword.ignoreEmail' => 'P.S. Als je deze e-mail niet hebt aangevraagd, kan je deze veilig negeren',
-    'forgotPassword.sendResetPasswordLink' => 'Er is een e-mail verzonden naar je e-mailadres.',
+    'forgotPassword.sendResetPasswordLink' => 'Er is een e-mail verzonden naar je e-mailadres met de instructies om je wachtwoord opnieuw in te stellen.',
     'forgotPassword.resetPassword' => 'Vul je nieuwe wachtwoord in.',
     'forgotPassword.passwordIsReset' => 'Je wachtwoord is met succes gewijzigd.',
     'forgotPassword.clickToLogin' => 'Klik op de onderstaande knop om je aan te melden.',
     
     'accountUnconfirmed.accountUnconfirmed' => 'Je account is niet bevestigd.',
     'accountUnconfirmed.clickLinkInEmail' => 'Klik op de link in de e-mail die we hebben verzonden.',
-    'accountUnconfirmed.resendConfirmationMail' => 'Klik hier om de e-mail opnieuw te versturen',
+    'accountUnconfirmed.resendConfirmationMail' => 'Klik hier om de bevestigingsmail opnieuw te versturen',
     
 ];
