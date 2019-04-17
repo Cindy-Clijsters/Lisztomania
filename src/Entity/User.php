@@ -141,18 +141,18 @@ class User implements UserInterface
     /**
      * @var string (old password)
      * 
-     * @Assert\NotBlank(message = "error.requiredField", groups = "updatePassword")
-     * @Assert\Type("string", groups = "updatePassword")
+     * @Assert\NotBlank(message = "error.requiredField", groups = {"updatePassword", "confirmPassword"})
+     * @Assert\Type("string", groups = {"updatePassword", "confirmPassword"})
      * @Assert\Length(
      *     min = 1,
      *     max = 50,
      *     minMessage = "error.minCharacters",
      *     maxMessage = "error.maxCharacters",
-     *     groups = {"updatePassword"}
+     *     groups = {"updatePassword", "confirmPassword"}
      * )
      * @SecurityAssert\UserPassword(
      *     message = "error.incorrectOldPassword",
-     *     groups = "updatePassword"
+     *     groups = {"updatePassword", "confirmPassword"}
      * )
      */
     private $oldPassword;

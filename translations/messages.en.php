@@ -23,6 +23,7 @@ return [
     'action.options' => 'Options', 
     'action.cancel' => 'Cancel',
     'action.save' => 'Save',
+    'action.delete' => 'Delete',
     'action.backToOverview' => 'Overview',
     'action.send' => 'Verzenden',
     

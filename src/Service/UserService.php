@@ -245,4 +245,19 @@ class UserService
         return $this->encoder->isPasswordValid($user, $oldPassword);
     }
     
+    /**
+     * Count the number of active superadmins after deleting the user
+     * 
+     * @param User $user
+     * 
+     * @return int
+     */
+    public function countActiveSuperadminsAfterDeletion(User $user): int
+    {
+        $userRps = $this->getRepository();
+        $amount  = $userRps->countActiveSuperadminsAfterDeletion($user);
+        
+        return $amount;
+    }
+    
 }

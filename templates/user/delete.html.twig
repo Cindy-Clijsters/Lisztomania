@@ -12,5 +12,43 @@
 {% endblock %}
 
 {% block mainContent %}  
-    {% trans %}global.comingSoon{% endtrans %}
+
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">                      
+
+                    {% if error != '' %}
+                        
+                        <p>{{ error }}</p>
+                        
+                        <a href="{{ path('rtAdminUserOverview') }}" class="mt-2 btn btn-sm btn-outline-primary">
+                            {% trans %}action.cancel{% endtrans %}
+                        </a>
+                        
+                    {% else %}
+                        
+                        <p class="dark">{% trans with {'%fullName%': user.fullName, '%username%' : user.username } from 'users' %}deleteUser.confirmWithPassword{% endtrans %}<br>
+                        {% trans from 'users' %}deleteUser.account{% endtrans %}</p>
+
+                        {{ form_start(form, {'attr' : {'novalidate' : 'novalidate'}}) }}
+
+                            {{ form_row(form.oldPassword) }}
+                            {{ form_widget(form.submit) }}
+                            <a href="{{ path('rtAdminUserOverview') }}" class="mt-2 btn btn-sm btn-outline-primary">
+                                {% trans %}action.cancel{% endtrans %}
+                            </a>
+
+                        {{ form_end(form) }}
+                    
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                                
 {% endblock %}
+
+

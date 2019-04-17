@@ -119,4 +119,27 @@ class UserRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+    
+    /**
+     * Count the number of superadmins after deleting the user
+     * 
+     * @param User $user
+     * 
+     * @return int
+     */
+    public function countActiveSuperadminsAfterDeletion(User $user): int
+    {
+        $amount = $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->andWhere('u.id != :user')
+            ->andWhere('u.role = :superadmin')
+            ->andWhere('u.status = :activeStatus')
+            ->setParameter('superadmin', User::ROLE_SUPERADMIN)
+            ->setParameter('activeStatus', User::STATUS_ACTIVE)
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleScalarResult();
+        
+        return intval($amount);
+    }
 }

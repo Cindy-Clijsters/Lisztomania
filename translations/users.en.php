@@ -38,6 +38,7 @@ return [
     
     'msg.addedSuccessfully' => 'The user "%username%" has been successfully added.',
     'msg.changedSuccessfully' => 'The user "%username%" has been successfully changed.',
+    'msg.deletedSuccessfully' => 'The user "%fullName% (%username%)" has been successfully deleted.',
     'msg.ownProfileUpdatedSuccessfully' => 'Your profile data has been successfully changed.',
     'msg.updatePasswordSucessfully' => 'Your password has been successfully changed.',
     
@@ -66,5 +67,9 @@ return [
     'accountConfirmed.clickToLogin'     => 'Click on the button below to login.',       
     
     'confirmRegistration.enterPassword' => 'Enter a password to confirm your registration.',
+    
+    'deleteUser.confirmWithPassword' => 'Enter your password to delete this account from "%fullName% (%username%)".',
+    'deleteUser.account' => 'If the account has been deleted, you cannot restore it!',
+    'deleteUser.onlySuperadminError' => '"%fullName% (%username%)" is currently the only active administrator and therefore cannot be deleted. Add an active administrator and try again.',
     
 ];

@@ -38,6 +38,7 @@ return [
     
     'msg.addedSuccessfully' => 'De gebruiker "%username%" is met succes toegevoegd.',
     'msg.changedSuccessfully' => 'De gebruiker "%username%" is met succes gewijzigd.',
+    'msg.deletedSuccessfully' => 'De gebruiker "%fullName% (%username%)" is met succes verwijderd.',
     'msg.ownProfileUpdatedSuccessfully' => 'Je profielgegevens zijn met succes gewijzigd.',
     'msg.updatePasswordSucessfully' => 'Je wachtwoord is met succes gewijzigd.',
 
@@ -65,6 +66,10 @@ return [
     'accountConfirmed.accountConfirmed' => 'Je account is bevestigd.',
     'accountConfirmed.clickToLogin'     => 'Klik op de onderstaande knop om je aan te melden.',    
     
-    'confirmRegistration.enterPassword' => 'Vul een wachtwoord in om je registratie te bevestigen.',    
+    'confirmRegistration.enterPassword' => 'Vul een wachtwoord in om je registratie te bevestigen.', 
+    
+    'deleteUser.confirmWithPassword' => 'Geef je wachtwoord in om deze account van "%fullName% (%username%)" te verwijderen.',
+    'deleteUser.account' => 'Als de account verwijderd is, kan je deze niet meer herstellen!',
+    'deleteUser.onlySuperadminError' => '"%fullName% (%username%)" is momenteel de enige actieve beheerder en kan daarom niet verwijderd worden. Voeg een actieve beheerder toe en probeer opnieuw.',
     
 ];
