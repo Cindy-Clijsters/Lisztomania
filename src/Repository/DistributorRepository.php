@@ -89,18 +89,18 @@ class DistributorRepository extends ServiceEntityRepository
     }
     
     /**
-     * Find a distributor by it's id
+     * Find a distributor by it's slug
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Distributor|null
      */
-    public function findById(int $id): ?Distributor
+    public function findBySlug(string $slug): ?Distributor
     {
         return $this->createQueryBuilder('d')
-            ->andWhere('d.id = :id')
+            ->andWhere('d.slug = :slug')
             ->andWhere('d.status != :deletedStatus')
-            ->setParameter('id', $id)
+            ->setParameter('slug', $slug)
             ->setParameter('deletedStatus', Distributor::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();

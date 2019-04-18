@@ -18,8 +18,8 @@ return [
     'list.noFound' => 'No distributors were found.',
     'list.showEntries' => 'Showing %start% to %end% of %total% distributors',
     
-    'error.noDistributorWithId' => 'No label was found with the id \'%id%\'',
-    'error.deleteFailed' => 'The distributor cannot be deleted.',
+    'error.noDistributorWithSlug' => 'No label was found with the slug \'%slug%\'',
+    'error.deleteFailed' => 'The distributor "%name%" cannot be deleted.',
     'error.distributorLinkedToAlbums' => 'It is linked to one or more albums.',
     
     'msg.addedSuccessfully' => 'The distributor "%name%" has been successfully added.', 

@@ -76,25 +76,25 @@ class DistributorService
     }
     
     /**
-     * Find a distributor by it's id
+     * Find a distributor by it's slug
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Distributor|null
      * @throws NotFoundHttpException
      */
-    public function findById(int $id): ?Distributor 
+    public function findBySlug(string $slug): ?Distributor 
     {
         // Find the distributor
         $distributorRps = $this->getRepository();
-        $distributor    = $distributorRps->findById($id);
+        $distributor    = $distributorRps->findBySlug($slug);
         
         // Display error message when distributor isn't found
         if (!$distributor) {
             throw new NotFoundHttpException(
                 $this->translator->trans(
-                    'error.noDistributorWithId',
-                    ['%id%' => $id],
+                    'error.noDistributorWithSlug',
+                    [ '%slug%' => $slug ],
                     'distributors'
                 )
             );

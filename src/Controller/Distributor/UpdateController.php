@@ -40,22 +40,19 @@ class UpdateController extends AbstractController
      * Update a distributor
      * 
      * @Route({
-     *  "nl" : "/beheer/distributeurs/wijzigen/{id}",
-     *  "en" : "/admin/distributors/update/{id}"
-     * },
-     * name="rtAdminDistributorUpdate",
-     * requirements={"id"="\d+"}
-     * )
+     *  "nl" : "/beheer/distributeurs/wijzigen/{slug}",
+     *  "en" : "/admin/distributors/update/{slug}"
+     * }, name="rtAdminDistributorUpdate")
      * 
      * @param Request $request
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function update(Request $request, int $id): Response
+    public function update(Request $request, string $slug): Response
     {
         // Get the information to display the view
-        $distributor = $this->distributorSvc->findById($id);
+        $distributor = $this->distributorSvc->findBySlug($slug);
         
         $form = $this->createForm(
             DistributorType::class,

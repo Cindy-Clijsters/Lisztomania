@@ -32,20 +32,18 @@ class ReadController extends AbstractController
      * Read the information of a distributor
      * 
      * @Route({
-     *  "nl" : "/beheer/distributeurs/bekijken/{id}",
-     *  "en" : "/admin/distributors/view/{id}"
-     * },
-     * name = "rtAdminDistributorRead",
-     * requirements = {"id" = "\d+"})
+     *  "nl" : "/beheer/distributeurs/bekijken/{slug}",
+     *  "en" : "/admin/distributors/view/{slug}"
+     * }, name = "rtAdminDistributorRead")
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function read(int $id): Response
+    public function read(string $slug): Response
     {
         // Get the info to display the view
-        $distributor = $this->distributorSvc->findById($id);
+        $distributor = $this->distributorSvc->findBySlug($slug);
         
         // Display the view
         return $this->render(

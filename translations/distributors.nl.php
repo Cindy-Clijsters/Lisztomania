@@ -18,8 +18,8 @@ return [
     'list.noFound' => 'Er zijn geen distributeurs gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% distributeurs',
     
-    'error.noDistributorWithId' => 'Er is geen distributeur gevonden met het id \'%id%\'',
-    'error.deleteFailed' => 'De distributeur kan niet verwijderd worden.',
+    'error.noDistributorWithSlug' => 'Er is geen distributeur gevonden met het slug \'%slug%\'',
+    'error.deleteFailed' => 'De distributeur "%name%" kan niet verwijderd worden.',
     'error.distributorLinkedToAlbums' => 'Het is gekoppeld aan één of meerdere albums.',
     
     'msg.addedSuccessfully' => 'De distributeur "%name%" is met succes toegevoegd.',

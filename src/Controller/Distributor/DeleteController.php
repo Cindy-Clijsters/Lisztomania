@@ -44,21 +44,18 @@ class DeleteController extends AbstractController
      * Delete a distributor
      * 
      * @Route({
-     *  "nl" : "/beheer/distributeurs/verwijderen/{id}",
-     *  "en" : "/admin/distributors/delete/{id}"
-     * },
-     * name="rtAdminDistributorDelete",
-     * requirements={"id"="\d+"}
-     * )
+     *  "nl" : "/beheer/distributeurs/verwijderen/{slug}",
+     *  "en" : "/admin/distributors/delete/{slug}"
+     * }, name="rtAdminDistributorDelete")
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function delete(int $id): Response
+    public function delete(string $slug): Response
     {
         // Get the information of the distributor
-        $distributor = $this->distributorSvc->findById($id);
+        $distributor = $this->distributorSvc->findBySlug($slug);
         
         // Check if the distributor is linked to an album
         $albumCount = $this->albumSvc->countAlbumsByDistributor($distributor);
@@ -88,7 +85,10 @@ class DeleteController extends AbstractController
         
         // Display the view
         return $this->render(
-            'distributor/delete.html.twig'
+            'distributor/delete.html.twig',
+            [
+                'distributor' => $distributor
+            ]
         );          
     }
 }
