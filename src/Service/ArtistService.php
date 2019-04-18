@@ -97,4 +97,17 @@ class ArtistService
         
         return $artist;
     } 
+    
+    /**
+     * Save the artist into the database
+     * 
+     * @param Artist $artist
+     * 
+     * @return void
+     */
+    public function saveToDb(Artist $artist): void
+    {
+        $this->em->persist($artist);
+        $this->em->flush();
+    }
 }

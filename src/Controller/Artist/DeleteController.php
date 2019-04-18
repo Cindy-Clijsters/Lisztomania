@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\Artist;
@@ -23,7 +22,6 @@ class DeleteController extends AbstractController
 {
     private $artistSvc;
     private $albumSvc;
-    private $em;
     private $translator;    
     
     /**
@@ -31,18 +29,15 @@ class DeleteController extends AbstractController
      * 
      * @param ArtistService $artistService
      * @param AlbumService $albumService
-     * @param EntityManagerInterface $em
      * @param TranslatorInterface $translator
      */
     public function __construct(
         ArtistService $artistService,
         AlbumService $albumService,
-        EntityManagerInterface $em,
         TranslatorInterface $translator            
     ) {
         $this->artistSvc  = $artistService;
         $this->albumSvc   = $albumService;
-        $this->em         = $em;
         $this->translator = $translator;        
     }
     
@@ -72,8 +67,7 @@ class DeleteController extends AbstractController
             $artist->setStatus(Artist::STATUS_DELETED);
 
             // Save the artist
-            $this->em->persist($artist);
-            $this->em->flush();
+            $this->artistSvc->saveToDb($artist);
             
             // Redirect the the overview
             $this->addFlash(
@@ -92,7 +86,10 @@ class DeleteController extends AbstractController
        
        // Display the message that label can't be deleted
        return $this->render(
-           'artist/delete.html.twig'
+           'artist/delete.html.twig',
+           [
+               'artist' => $artist
+           ]
        );
    }
 }

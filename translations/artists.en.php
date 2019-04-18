@@ -18,7 +18,7 @@ return [
     'list.showEntries' => 'Showing %start% to %end% of %total% artists',
     'list.noArtistWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
     
-    'error.deleteFailed' => 'The artist cannot be deleted.',
+    'error.deleteFailed' => 'The artist "%name%" cannot be deleted.',
     'error.artistLinkedToAlbums' => 'It is linked to one or more albums.',
     
     'msg.addedSuccessfully' => 'The artist "%name%" has been successfully added.',

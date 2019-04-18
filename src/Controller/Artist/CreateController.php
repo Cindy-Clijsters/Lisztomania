@@ -8,11 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\Artist;
 use App\Form\Artist\ArtistType;
+use App\Service\ArtistService;
 
 /**
  * Create a artist
@@ -21,16 +21,20 @@ use App\Form\Artist\ArtistType;
  */
 class CreateController extends AbstractController
 {
-    private $em;
+    private $artistSvc;
     private $translator;
     
     /**
-     * @param EntityManagerInterface $em
+     * Constructor function
+     * 
+     * @param ArtistService $artistService
      * @param TranslatorInterface $translator
      */
-    public function __construct(EntityManagerInterface $em, TranslatorInterface $translator)
-    {
-        $this->em         = $em;
+    public function __construct(
+        ArtistService $artistService,
+        TranslatorInterface $translator
+    ){
+        $this->artistSvc  = $artistService;
         $this->translator = $translator;
     }
     
@@ -60,8 +64,7 @@ class CreateController extends AbstractController
            $artist = $form->getData();
            
            // Save the artist
-           $this->em->persist($artist);
-           $this->em->flush();
+           $this->artistSvc->saveToDb($artist);
            
            // Redirect to the overview
            $this->addFlash(

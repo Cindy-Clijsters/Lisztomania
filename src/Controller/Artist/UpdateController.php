@@ -8,11 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-use App\Service\ArtistService;
 use App\Form\Artist\ArtistType;
+use App\Service\ArtistService;
 
 /**
  * Update a artist
@@ -22,28 +21,24 @@ use App\Form\Artist\ArtistType;
 class UpdateController extends AbstractController
 {
     private $artistSvc;
-    private $em;
     private $translator;
     
     /**
      * Constructor function
      * 
      * @param ArtistService $artistService
-     * @param EntityManagerInterface $em
      * @param TranslatorInterface $translator
      */
     public function __construct(
         ArtistService $artistService,
-        EntityManagerInterface $em,
         TranslatorInterface $translator
     ) {
         $this->artistSvc  = $artistService;
-        $this->em         = $em;
         $this->translator = $translator;
     }
     
     /**
-     * Update a new artist
+     * Update an artist
      * 
      * @Route({
      *  "nl" : "/beheer/artiesten/wijzigen/{id}",
@@ -59,8 +54,12 @@ class UpdateController extends AbstractController
    {
        // Get the information to display the view
        $artist = $this->artistSvc->findById($id);
-       $form   = $this->createForm(ArtistType::class, $artist, ['validation_groups' => 'update']);
        
+       $form = $this->createForm(
+            ArtistType::class,
+            $artist,
+            ['validation_groups' => 'update']
+        );
        $form->handleRequest($request);
        
        if ($form->isSubmitted() && $form->isValid()) {
@@ -69,8 +68,7 @@ class UpdateController extends AbstractController
             $artist = $form->getData();
            
             // Save the artist
-            $this->em->persist($artist);
-            $this->em->flush();
+            $this->artistSvc->saveToDb($artist);
            
             // Redirect to the overview
             $this->addFlash(
