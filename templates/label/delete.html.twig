@@ -13,29 +13,31 @@
 
 {% block mainContent %}  
     
-    <div class="animated fadeIn">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">                      
-                        
-                        <div class="row">
-                            <div class="col col-md-12">
-                                <p class="dark">{% trans from 'labels' %}error.deleteFailed{% endtrans %}<br/>
-                                   {% trans from 'labels' %}error.distributorLinkedToAlbums{% endtrans %}</p>
-                            </div>
-                        </div> 
-                            
-                        <div class="row mt-2">
-                            <div class="col-md-12">
-                                <a href="{{ path('rtAdminLabelOverview') }}" class="btn btn-outline-primary">{% trans %}action.backToOverview{% endtrans %}</a>
-                            </div>
-                        </div>                            
-                        
-                    </div>
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">                      
+
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <p class="dark">{% trans with{'%name%' : label.name} from 'labels' %}error.deleteFailed{% endtrans %}<br/>
+                               {% trans from 'labels' %}error.labelLinkedToAlbums{% endtrans %}</p>
+                        </div>
+                    </div> 
+
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <a href="{{ path('rtAdminLabelOverview') }}" class="btn btn-sm btn-outline-primary">
+                                {% trans %}action.backToOverview{% endtrans %}
+                            </a>
+                        </div>
+                    </div>                            
+
                 </div>
             </div>
         </div>
     </div>
+</div>
                                    
 {% endblock %}

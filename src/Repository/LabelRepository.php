@@ -45,9 +45,9 @@ class LabelRepository extends ServiceEntityRepository
      * 
      * @param array $criteria
      * 
-     * @return type
+     * @return arrat
      */
-    public function findNonDeletedForConstraint(array $criteria)
+    public function findNonDeletedForConstraint(array $criteria): array
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.name = :name')
@@ -74,18 +74,18 @@ class LabelRepository extends ServiceEntityRepository
     }
     
     /**
-     * Find a label by it's id
+     * Find a label by it's slug
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Label|null
      */
-    public function findById(int $id): ?Label
+    public function findBySlug(string $slug): ?Label
     {
         return $this->createQueryBuilder('l') 
-            ->andWhere('l.id = :id')
+            ->andWhere('l.slug = :slug')
             ->andWhere('l.status != :deletedStatus')
-            ->setParameter('id', $id)
+            ->setParameter('slug', $slug)
             ->setParameter('deletedStatus', Label::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();

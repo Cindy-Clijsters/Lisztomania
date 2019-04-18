@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\Label;
@@ -23,26 +22,22 @@ class DeleteController extends AbstractController
 {
     private $labelSvc;
     private $albumSvc;
-    private $em;
     private $translator;
 
     /**
      * Constructor function
      * 
-     * @param UserService $userService
+     * @param LabelService $labelService
      * @param AlbumService $albumService
-     * @param EntityManagerInterface $em
      * @param TranslatorInterface $translator
      */
     public function __construct(
         LabelService $labelService,
         AlbumService $albumService,
-        EntityManagerInterface $em,
         TranslatorInterface $translator
     ) {
         $this->labelSvc   = $labelService;
         $this->albumSvc   = $albumService;
-        $this->em         = $em;
         $this->translator = $translator;        
     }
     
@@ -50,18 +45,18 @@ class DeleteController extends AbstractController
      * Delete a label
      * 
      * @Route({
-     *  "nl" : "/beheer/labels/verwijderen/{id}",
-     *  "en" : "/admin/labels/delete/{id}"
+     *  "nl" : "/beheer/labels/verwijderen/{slug}",
+     *  "en" : "/admin/labels/delete/{slug}"
      * }, name="rtAdminLabelDelete")
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function delete(int $id): Response
+    public function delete(string $slug): Response
     {
         // Get the information of the label
-        $label = $this->labelSvc->findById($id);
+        $label = $this->labelSvc->findBySlug($slug);
         
         // Check if the label is connected to an album
         $albumCount = $this->albumSvc->countAlbumsByLabel($label);
@@ -72,8 +67,7 @@ class DeleteController extends AbstractController
             $label->setStatus(Label::STATUS_DELETED);
             
             // Save the label
-            $this->em->persist($label);
-            $this->em->flush();
+            $this->labelSvc->saveToDb($label);
             
             // Redirect to the overview
             $this->addFlash(
@@ -92,7 +86,10 @@ class DeleteController extends AbstractController
         
         // Display message that label can't be deleted
         return $this->render(
-            'label/delete.html.twig'
+            'label/delete.html.twig',
+            [
+                'label' => $label
+            ]
         );
         
     }

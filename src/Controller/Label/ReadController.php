@@ -33,21 +33,18 @@ class ReadController extends AbstractController
      * 
      * @Route(
      * {
-     *  "nl" : "/beheer/labels/bekijken/{id}",
-     *  "en" : "/admin/labels/view/{id}"
-     * },
-     * name="rtAdminLabelRead",
-     * requirements={"id"="\d+"}
-     * )
+     *  "nl" : "/beheer/labels/bekijken/{slug}",
+     *  "en" : "/admin/labels/view/{slug}"
+     * }, name="rtAdminLabelRead")
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function read(int $id): Response
+    public function read(string $slug): Response
     {
         // Get the information to display the view
-        $label = $this->labelSvc->findById($id);
+        $label = $this->labelSvc->findBySlug($slug);
         
         // Display the view
         return $this->render(

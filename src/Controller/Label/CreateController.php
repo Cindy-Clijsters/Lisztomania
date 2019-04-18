@@ -8,11 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\Label;
 use App\Form\Label\LabelType;
+use App\Service\LabelService;
 
 /**
  * Create a label
@@ -21,18 +21,20 @@ use App\Form\Label\LabelType;
  */
 class CreateController extends AbstractController
 {
-    private $em;
+    private $labelSvc;
     private $translator;
     
     /**
-     * @param EntityManagerInterface $em
+     * Constructor function
+     * 
+     * @param LabelService $labelService
      * @param TranslatorInterface $translator
      */
     public function __construct(
-        EntityManagerInterface $em,
+        LabelService $labelService,
         TranslatorInterface $translator
     ){
-        $this->em         = $em;
+        $this->labelSvc   = $labelService;
         $this->translator = $translator;
     }
     
@@ -62,8 +64,7 @@ class CreateController extends AbstractController
             $label = $form->getData();
             
             // Save the label
-            $this->em->persist($label);
-            $this->em->flush();
+            $this->labelSvc->saveToDb($label);
             
             // Redirect to the overview
             $this->addFlash(

@@ -4,8 +4,10 @@ declare(strict_types = 1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -52,6 +54,13 @@ class Label
      * )
      */
     private $name;
+    
+    /**
+     * @ORM\Column(type="string", length=128, unique=true)
+     * 
+     * @Gedmo\Slug(fields={"name"})
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="string", length=20)
@@ -109,9 +118,19 @@ class Label
 
         return $this;
     }
+    
+    /**
+     * Get the slug
+     * 
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
 
     /**
-     * Set the status
+     * Get the status
      * 
      * @return string|null
      */

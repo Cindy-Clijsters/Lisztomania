@@ -73,28 +73,41 @@ class LabelService
     }
     
     /**
-     * Find a label by it's id
+     * Find a label by it's slug
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Label|null
      * @throws NotFoundHttpException
      */
-    public function findById(int $id): ?Label
+    public function findBySlug(string $slug): ?Label
     {
         $labelRps = $this->getRepository();
-        $label    = $labelRps->findById($id);
+        $label    = $labelRps->findBySlug($slug);
         
         if (!$label) {
             throw new NotFoundHttpException(
                 $this->translator->trans(
-                    'error.noLabelWithId',
-                    ['%id%' => $id],
+                    'error.noLabelWithSlug',
+                    ['%slug%' => $slug],
                     'labels'
                 )
             );
         }
         
         return $label;
+    }
+    
+    /**
+     * Save the label into the database
+     * 
+     * @param Label $label
+     * 
+     * @return void
+     */
+    public function saveToDb(Label $label): void
+    {
+        $this->em->persist($label);
+        $this->em->flush();
     }
 }

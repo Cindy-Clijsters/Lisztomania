@@ -7,8 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Service\LabelService;
@@ -22,21 +20,19 @@ use App\Form\Label\LabelType;
 class UpdateController extends AbstractController
 {
     private $labelSvc;
-    private $em;
     private $translator;
 
     /**
      * Constructor function
      * 
-     * @param UserService $userService
+     * @param LabelService $labelService
+     * @param TranslatorInterface $translator
      */
     public function __construct(
         LabelService $labelService,
-        EntityManagerInterface $em,
         TranslatorInterface $translator
     ) {
         $this->labelSvc   = $labelService;
-        $this->em         = $em;
         $this->translator = $translator;        
     }
     
@@ -44,21 +40,25 @@ class UpdateController extends AbstractController
      * Update a label
      * 
      * @Route({
-     *  "nl" : "/beheer/labels/wijzigen/{id}",
-     *  "en" : "/admin/labels/update/{id}"
+     *  "nl" : "/beheer/labels/wijzigen/{slug}",
+     *  "en" : "/admin/labels/update/{slug}"
      * }, name="rtAdminLabelUpdate")
      * 
      * @param Request $request
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function update(Request $request, int $id): Response
+    public function update(Request $request, string $slug): Response
     {
         // Get the information to display the view
-        $label = $this->labelSvc->findById($id);
-        $form  = $this->createForm(LabelType::class, $label, ['validation_groups' => 'update']);
+        $label = $this->labelSvc->findBySlug($slug);
         
+        $form = $this->createForm(
+            LabelType::class,
+            $label,
+            ['validation_groups' => 'update']
+        );
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -67,8 +67,7 @@ class UpdateController extends AbstractController
             $label = $form->getData();
             
             // Save the label
-            $this->em->persist($label);
-            $this->em->flush();
+            $this->labelSvc->saveToDb($label);
             
             // Redirect to the overview
             $this->addFlash(

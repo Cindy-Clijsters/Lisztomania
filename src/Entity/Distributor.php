@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Gedmo\Mapping\Annotation as Gedmo;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -55,8 +56,9 @@ class Distributor
     private $name;
     
     /**
+     * @ORM\Column(type="string", length=128, unique=true)
+     * 
      * @Gedmo\Slug(fields={"name"})
-     * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
