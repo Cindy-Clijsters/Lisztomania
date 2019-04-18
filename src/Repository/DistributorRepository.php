@@ -28,15 +28,31 @@ class DistributorRepository extends ServiceEntityRepository
     /**
      * Get the non-deleted distributors
      * 
+     * @param string $searchValue
+     * @param string $status
+     * 
      * @return Query
      */
-    public function findNonDeletedQuery(): Query
+    public function findNonDeletedQuery(string $searchValue = '', string $status = ''): Query
     {
-        return $this->createQueryBuilder('d')
+        $query = $this->createQueryBuilder('d')
             ->andWhere('d.status != :deletedStatus')
-            ->setParameter('deletedStatus', Distributor::STATUS_DELETED)
-            ->orderBy('d.name', 'ASC')
-            ->getQuery();
+            ->setParameter('deletedStatus', Distributor::STATUS_DELETED);
+        
+        if ($searchValue !== '') {
+            $query = $query->andWhere('d.name LIKE :searchValue')
+                ->setParameter('searchValue', '%' . addcslashes($searchValue, '%_') . '%');
+        }
+        
+        if ($status !== '') {
+            $query = $query->andWhere('d.status = :searchStatus')
+                ->setParameter('searchStatus', $status);
+        }
+        
+        $query = $query->orderBy('d.name', 'ASC')
+                    ->getQuery();
+        
+        return $query;
     }
     
     /**

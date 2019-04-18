@@ -145,7 +145,7 @@
 {%- endblock widget_attributes -%}
 
 {% block button_widget -%}
-    {%- set attr = attr|merge({class: (attr.class|default('mt-2 btn-sm btn-secondary') ~ ' btn ')|trim}) -%}
+    {%- set attr = attr|merge({class: (attr.class|default('mt-2 btn-sm btn-outline-primary') ~ ' btn ')|trim}) -%}
     {{- parent() -}}
 {%- endblock button_widget %}
 
@@ -153,6 +153,11 @@
     {%- set attr = attr|merge({class: (attr.class|default('mt-2 btn-sm btn-primary'))|trim}) -%}
     {{- parent() -}}
 {%- endblock submit_widget %}
+
+{%- block button_attributes -%}
+    id="{{ id }}" {% if type|default('button') != 'submit' %}name="{{ full_name }}"{% endif %}{% if disabled %} disabled="disabled"{% endif -%}
+    {{ block('attributes') }}
+{%- endblock button_attributes -%}
 
 {% block checkbox_widget -%}
     {%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}

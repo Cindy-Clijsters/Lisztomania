@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
 use App\Entity\Distributor;
+use App\Form\Distributor\FilterType;
 use App\Service\DistributorService;
 use App\Service\ListService;
 
@@ -55,29 +56,51 @@ class OverviewController extends AbstractController
      * @return Response
      */
     public function overview(Request $request): Response
-    {
-        // Get the page nr
-        $pageNr = $request->query->getInt('page', 1);
+    {        
+        // Create the form for filtering distributors
+        $form = $this->createForm(FilterType::class, null);
+        $form->handleRequest($request);
         
-        // Get the non-deleted distributors
-        $distributorQry = $this->distributorSvc->findNonDeletedQuery();
-        $distributors   = $this->paginator->paginate($distributorQry, $pageNr, Distributor::LIST_ITEMS);
+        // Get the distributors
+        $distributors = $this->getDistributors($request);
         
         // Get the start- and endrecord of the shown items
         list($startRecord, $endRecord) = $this->listSvc->getStartEndRecord(
-            $pageNr,
+            $request->query->getInt('page', 1),
             Distributor::LIST_ITEMS,
             $distributors->getTotalItemCount()
         );
-                
+                        
         // Display the view
         return $this->render(
             'distributor/overview.html.twig',
             [
+                'form'         => $form->createView(),
                 'distributors' => $distributors,
                 'startRecord'  => $startRecord,
                 'endRecord'    => $endRecord
             ]
         );
+    }
+    
+    /**
+     * Get the distributors
+     * 
+     * @param Request $request
+     * 
+     * @return object
+     */
+    private function getDistributors(Request $request): object
+    {
+         // Get the filter values
+        $pageNr      = $request->query->getInt('page', 1);
+        $searchValue = $request->query->get('searchValue', '');
+        $status      = $request->query->get('status', '');
+        
+        // Get the non-deleted distributors
+        $distributorQry = $this->distributorSvc->findNonDeletedQuery($searchValue, $status);
+        $distributors   = $this->paginator->paginate($distributorQry, $pageNr, Distributor::LIST_ITEMS);
+        
+        return $distributors;
     }
 }

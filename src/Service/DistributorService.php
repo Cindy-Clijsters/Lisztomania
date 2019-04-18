@@ -49,12 +49,15 @@ class DistributorService
     /**
      * Get the query for getting the non-deleted distributors
      * 
+     * @param string $searchValue
+     * @param string $status
+     * 
      * @return Query
      */
-    public function findNonDeletedQuery(): Query
+    public function findNonDeletedQuery(string $searchValue = '', string $status = ''): Query 
     {
         $distributorRps = $this->getRepository();
-        $distributorQry = $distributorRps->findNonDeletedQuery();
+        $distributorQry = $distributorRps->findNonDeletedQuery($searchValue, $status);
         
         return $distributorQry;
     }

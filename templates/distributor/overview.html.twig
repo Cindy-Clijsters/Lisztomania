@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-
+                    
                     {% for label, messages in app.flashes %}
                         {% for message in messages %}
                             {%  if (label == 'notice') %}
@@ -36,6 +36,25 @@
                         </div>
                     </div>
 
+                    {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
+                    
+                        <div class="row form-group">
+                            <div class="col-xl-5 col-lg-5 pt-1">
+                                {{ form_widget(form.searchValue) }}
+                            </div>
+                            <div class="col-xl-4 col-lg-4 pt-1">
+                                {{ form_widget(form.status) }}
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                {{ form_widget(form.filter) }}
+                                <a href="{{ path('rtAdminDistributorOverview') }}" class="mt-2 btn btn-sm btn-outline-primary">
+                                    {% trans %}action.reset{% endtrans %}
+                                </a>
+                            </div>
+                        </div>
+                    
+                    {{ form_end(form) }}
+                    
                     {% if distributors is not empty %}
 
                         <div class="row">

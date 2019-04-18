@@ -26,6 +26,8 @@ return [
     'action.delete' => 'Delete',
     'action.backToOverview' => 'Overview',
     'action.send' => 'Verzenden',
+    'action.filter' => 'Filter',
+    'action.reset' => 'Reset',
     
     'error.invalidIdentifier' => 'Invalid identifier',
     
