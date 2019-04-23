@@ -67,14 +67,14 @@
                                                     <td>{{ album.releaseYear }}</td>
                                                     <td>{{ album.status|formatAlbumStatus }}</td>
                                                     <td>
-                                                        <a href="{{ path('rtAdminAlbumRead', {'id' : album.id}) }}" class="mr-2" title="{% trans from 'albums' %}action.view{% endtrans %}">
-                                                            <i class="ti ti-search"></i>
+                                                        <a href="{{ path('rtAdminAlbumRead', {'slug' : album.slug}) }}" class="mr-2">
+                                                            <i class="ti ti-search" title="{% trans from 'albums' %}action.view{% endtrans %}"></i>
                                                         </a>
-                                                        <a href="{{ path('rtAdminAlbumUpdate', {'id' : album.id}) }}" class="mr-2" title="{% trans from 'albums' %}action.update{% endtrans %}">
-                                                            <i class="ti ti-pencil-alt"></i>
+                                                        <a href="{{ path('rtAdminAlbumUpdate', {'slug' : album.slug}) }}" class="mr-2">
+                                                            <i class="ti ti-pencil-alt" title="{% trans from 'albums' %}action.update{% endtrans %}"></i>
                                                         </a>
-                                                        <a href="{{ path('rtAdminAlbumDelete', {'id' : album.id}) }}" title="{% trans from 'albums' %}action.delete{% endtrans %}">
-                                                            <i class="ti ti-trash"></i>
+                                                        <a href="{{ path('rtAdminAlbumDelete', {'slug' : album.slug}) }}">
+                                                            <i class="ti ti-trash" title="{% trans from 'albums' %}action.delete{% endtrans %}"></i>
                                                         </a>
                                                     </td>
                                                 </tr>

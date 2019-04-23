@@ -4,7 +4,11 @@ declare(strict_types = 1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
+use Gedmo\Mapping\Annotation as Gedmo;
+
 use Symfony\Component\Validator\Constraints as Assert;
+
 use App\Validator\Constraints\Album as AlbumAssert;
 
 /**
@@ -107,6 +111,13 @@ class Album
      */
     private $releaseDate;
 
+    /**
+     * @ORM\Column(length=128, unique=true)
+     * 
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
+    
     /**
      * @ORM\Column(type="string", length=50)
      * 
@@ -380,6 +391,16 @@ class Album
         return $this;
     }
 
+    /**
+     * Get the slug
+     * 
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+    
     /**
      * Get the status
      * 

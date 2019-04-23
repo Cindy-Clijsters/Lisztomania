@@ -45,18 +45,18 @@ class AlbumRepository extends ServiceEntityRepository
     }
     
     /**
-     * Find an album by it's id
+     * Find an album by it's slug
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Album|null
      */
-    public function findById(int $id): ?Album
+    public function findBySlug(string $slug): ?Album
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.id = :id')
+            ->andWhere('a.slug = :slug')
             ->andWhere('a.status != :deletedStatus')
-            ->setParameter('id', $id)
+            ->setParameter('slug', $slug)
             ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();

@@ -41,19 +41,19 @@ class UpdateController extends AbstractController
      * Update a album
      * 
      * @Route({
-     *  "nl" : "/beheer/albums/wijzigen/{id}",
-     *  "en" : "/admin/albums/update/{id}"
+     *  "nl" : "/beheer/albums/wijzigen/{slug}",
+     *  "en" : "/admin/albums/update/{slug}"
      * }, name="rtAdminAlbumUpdate")
      * 
      * @param Request $request
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */    
-    public function update(Request $request, int $id): Response
+    public function update(Request $request, string $slug): Response
     {
         // Get the information to display the view
-        $album = $this->albumSvc->findById($id);
+        $album = $this->albumSvc->findBySlug($slug);
         $form  = $this->createForm(AlbumType::class, $album, ['validation_groups' => 'update']);
         
         $form->handleRequest($request);

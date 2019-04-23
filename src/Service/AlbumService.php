@@ -63,24 +63,24 @@ class AlbumService
     }
     
     /**
-     * Find an album by it's id
+     * Find an album by it's slug
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Album|null
      * @throws NotFoundHttpException
      */
-    public function findById(int $id): ?Album
+    public function findBySlug(string $slug): ?Album
     {
         $albumRps = $this->getRepository();
-        $album    = $albumRps->findById($id);
+        $album    = $albumRps->findBySlug($slug);
         
         // Display error message when album isn't found
         if (!$album) {
             throw new NotFoundHttpException(
                 $this->translator->trans(
-                    'error.noAlbumWithId',
-                    ['%id%' => $id],
+                    'error.noAlbumWithSlug',
+                    ['%slug%' => $slug],
                     'albums'                       
                 )
             );

@@ -77,8 +77,6 @@ class Artist
      * @ORM\Column(length = 128, unique = true)
      * 
      * @Gedmo\Slug(fields = {"name"})
-     * 
-     * @var type 
      */
     private $slug;
 

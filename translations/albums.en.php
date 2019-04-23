@@ -35,7 +35,7 @@ return [
     'list.noFound' => 'No albums were found.',
     'list.showEntries' => 'Showing %start% to %end% of %total% albums',    
     
-    'error.noAlbumWithId' => 'No album was found with the id \'%id%\'',
+    'error.noAlbumWithSlug' => 'No album was found with the slug \'%slug%\'',
     
     'msg.addedSuccessfully' => 'The album "%title%" has been successfully added.',
     'msg.changedSuccessfully' => 'The album "%title%" has been successfully changed.', 

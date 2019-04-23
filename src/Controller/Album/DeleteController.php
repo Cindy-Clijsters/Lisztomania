@@ -26,6 +26,7 @@ class DeleteController extends AbstractController
      * Constructor function
      * 
      * @param AlbumService $albumService
+     * @param TranslatorInterface $translator
      */
     public function __construct(
         AlbumService $albumService,
@@ -39,18 +40,18 @@ class DeleteController extends AbstractController
      * Delete a album
      * 
      * @Route({
-     *  "nl" : "/beheer/albums/verwijderen/{id}",
-     *  "en" : "/admin/albums/delete/{id}"
+     *  "nl" : "/beheer/albums/verwijderen/{slug}",
+     *  "en" : "/admin/albums/delete/{slug}"
      * }, name="rtAdminAlbumDelete")
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */    
-    public function delete(int $id): Response
+    public function delete(string $slug): Response
     {
         // Get the information of an album
-        $album = $this->albumSvc->findById($id);
+        $album = $this->albumSvc->findBySlug($slug);
         
         // Set the status to deleted
         $album->setStatus(Album::STATUS_DELETED);

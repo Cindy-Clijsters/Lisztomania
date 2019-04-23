@@ -35,7 +35,7 @@ return [
     'list.noFound' => 'Er zijn geen albums gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% albums',    
     
-    'error.noAlbumWithId' => 'Er is geen album gevonden met het id \'%id%\'',
+    'error.noAlbumWithSlug' => 'Er is geen album gevonden met het slug \'%slug%\'',
     
     'msg.addedSuccessfully' => 'Het album "%title%" is met succes toegevoegd.',
     'msg.changedSuccessfully' => 'Het album "%title%" is met succes gewijzigd.',

@@ -31,23 +31,19 @@ class ReadController extends AbstractController
     /**
      * View the information of an album
      * 
-     * @Route(
-     * {
-     *  "nl" : "/beheer/albums/bekijken/{id}",
-     *  "en" : "/admin/albums/view/{id}"
-     * },
-     * name="rtAdminAlbumRead",
-     * requirements={"id"="\d+"}
-     * )
+     * @Route({
+     *  "nl" : "/beheer/albums/bekijken/{slug}",
+     *  "en" : "/admin/albums/view/{slug}"
+     * }, name="rtAdminAlbumRead")
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function read(int $id): Response
+    public function read(string $slug): Response
     {
         // Get the information to display the view
-        $album = $this->albumSvc->findById($id);
+        $album = $this->albumSvc->findBySlug($slug);
         
         // Display the view
         return $this->render(
