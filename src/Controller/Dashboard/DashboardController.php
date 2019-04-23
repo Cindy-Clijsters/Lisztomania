@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Service\AlbumService;
+
 /**
  * Dashboard page for the administration module
  *
@@ -14,6 +16,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DashboardController extends AbstractController
 {
+    private $albumSvc;
+    
+    /**
+     * Constructor function
+     * 
+     * @param AlbumService $albumService
+     */
+    public function __construct(
+        AlbumService $albumService
+    ) {
+        $this->albumSvc = $albumService;
+    }
+    
     /**
      * Show the dashboard page of the administration module
      * 
@@ -26,9 +41,15 @@ class DashboardController extends AbstractController
      */
     public function dashboard(): Response
     {
+        // Get the amount of albums
+        $albumAmounts = $this->albumSvc->countAlbumsByStatus();
+        
         // Display the view
         return $this->render(
-            'dashboard/dashboard.html.twig'
+            'dashboard/dashboard.html.twig',
+            [
+                'albumAmounts' => $albumAmounts
+            ]
         );
     }
 }

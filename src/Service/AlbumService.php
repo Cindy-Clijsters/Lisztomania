@@ -169,4 +169,27 @@ class AlbumService
         $this->em->persist($album);
         $this->em->flush();
     }
+    
+    /**
+     * Get the amount of albums by status
+     * 
+     * @return array
+     */
+    public function countAlbumsByStatus(): array
+    {
+        // Count the albums as a status
+        $albumRps   = $this->getRepository();
+        $tmpAmounts = $albumRps->countAlbumsByStatus();
+        
+        // Return the results as an array
+        $amounts['total'] = 0;
+        
+        foreach ($tmpAmounts as $tmpAmount) {
+            $amount                         = intVal($tmpAmount['amount']);
+            $amounts[$tmpAmount['status']]  = $amount;
+            $amounts['total']              += $amount;
+        }
+        
+        return $amounts;
+    }
 }
