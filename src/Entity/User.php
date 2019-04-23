@@ -5,6 +5,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
@@ -18,7 +20,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     message = "error.uniqueUsername",
  *     groups = {"create"}
  * )
- * 
  * @UniqueEntity(
  *     "email",
  *     repositoryMethod = "findNonDeletedForConstraint",
@@ -197,6 +198,13 @@ class User implements UserInterface
      * @ORM\Column(type="string", nullable=true)
      */
     private $password;
+    
+    /**
+     * @ORM\Column(length=128, unique=true)
+     * 
+     * @Gedmo\Slug(fields = {"username"})
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="string", length=20)
@@ -465,6 +473,16 @@ class User implements UserInterface
         $this->password = $password;
 
         return $this;
+    }
+    
+    /**
+     * Get the slug
+     * 
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+       return $this->slug; 
     }
 
     /**

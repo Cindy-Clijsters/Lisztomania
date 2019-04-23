@@ -7,9 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Service\UserService;
@@ -23,21 +22,19 @@ use App\Form\User\UpdateType;
 class UpdateController extends AbstractController
 {
     private $userSvc;
-    private $em;
     private $translator;
     
     /**
      * Constructor function
      * 
      * @param UserService $userService
+     * @param TranslatorInterface $translator
      */
     public function __construct(
         UserService $userService,
-        EntityManagerInterface $em,
         TranslatorInterface $translator
     ) {
         $this->userSvc    = $userService;
-        $this->em         = $em;
         $this->translator = $translator;        
     }
     
@@ -45,21 +42,21 @@ class UpdateController extends AbstractController
      * Update the information of a user
      * 
      * @Route({
-     *  "nl" : "/beheer/gebruikers/wijzigen/{id}",
-     *  "en" : "/admin/users/update/{id}"
+     *  "nl" : "/beheer/gebruikers/wijzigen/{slug}",
+     *  "en" : "/admin/users/update/{slug}"
      * },  name="rtAdminUserUpdate")
      *
      * @IsGranted("ROLE_SUPERADMIN")
      * 
      * @param Request $request
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function update(Request $request, int $id): Response
+    public function update(Request $request, string $slug): Response
     {
         // Get the information to display the view
-        $user = $this->userSvc->findById($id);
+        $user = $this->userSvc->findBySlug($slug);
         
         $form = $this->createForm(UpdateType::class, $user);
         $form->handleRequest($request);
@@ -70,8 +67,7 @@ class UpdateController extends AbstractController
             $user = $form->getData();
             
             // Save the user
-            $this->em->persist($user);
-            $this->em->flush();
+            $this->userSvc->saveToDb($user);
             
             // Redirect to the overview
             $this->addFlash(

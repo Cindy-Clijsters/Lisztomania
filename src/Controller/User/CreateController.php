@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -18,6 +17,7 @@ use Swift_Mailer;
 use App\Entity\User;
 use App\Form\User\CreateType;
 use App\Service\EncryptionService;
+use App\Service\UserService;
 
 /**
  * Create a new user
@@ -26,28 +26,29 @@ use App\Service\EncryptionService;
  */
 class CreateController extends AbstractController
 {
-    private $em;
-    private $translator;
+    private $userSvc;    
     private $encryptSvc;
+    private $translator;    
     private $router;
+
     
     /**
      * Constructor function
      * 
-     * @param EntityManagerInterface $em
-     * @param TranslatorInterface $translator
+     * @param UserService $userService
      * @param EncryptionService $encryptionService
+     * @param TranslatorInterface $translator
      * @param UrlGeneratorInterface $router
      */
     public function __construct(
-        EntityManagerInterface $em,
+        UserService $userService,
+        EncryptionService $encryptionService,    
         TranslatorInterface $translator,
-        EncryptionService $encryptionService,
         UrlGeneratorInterface $router    
     ) {
-        $this->em         = $em;
-        $this->translator = $translator;
+        $this->userSvc    = $userService;
         $this->encryptSvc = $encryptionService;
+        $this->translator = $translator;
         $this->router     = $router;
     }
     
@@ -78,11 +79,12 @@ class CreateController extends AbstractController
             
             // Get the posted values
             $user = $form->getData();
+            
+            // Set the status to unconfirmed
             $user->setStatus(User::STATUS_UNCONFIRMED);
             
             // Save the user
-            $this->em->persist($user);
-            $this->em->flush();
+            $this->userSvc->saveToDb($user);
             
             // Send an mail to the new user
             $identifier = $this->encryptSvc->encrypt(
@@ -92,7 +94,7 @@ class CreateController extends AbstractController
             
             $userEmail = $user->getEmail();
             
-            $message = (new \Swift_Message('Set your password'))
+            $message = (new \Swift_Message($this->translator->trans('action.confirmRegistration', [], 'users')))
                 ->setFrom('cindy.clijsters@gmail.com')
                 ->setTo($user->getEmail())
                 ->setBody(

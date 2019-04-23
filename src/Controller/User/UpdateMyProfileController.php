@@ -7,12 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\User;
 use App\Form\User\UpdateMyProfileType;
+use App\Service\UserService;
 
 /**
  * Update your own profile information
@@ -21,17 +20,20 @@ use App\Form\User\UpdateMyProfileType;
  */
 class UpdateMyProfileController extends AbstractController
 {
+    private $userSvc;
+    private $translator;
+    
     /**
      * Constructor function
      * 
-     * @param EntityManagerInterface $em
+     * @param UserService $userService
      * @param TranslatorInterface $translator
      */
     public function __construct(
-        EntityManagerInterface $em,
+        UserService $userService,
         TranslatorInterface $translator
     ) {
-        $this->em         = $em;
+        $this->userSvc    = $userService;
         $this->translator = $translator;
     }
     
@@ -57,8 +59,11 @@ class UpdateMyProfileController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             
+            // Get the posted values
+            $user = $form->getData();
+            
             // Save the user
-            $this->em->flush();
+            $this->userSvc->saveToDb($user);
             
             // Redirect to the overview
             $this->addFlash(

@@ -70,23 +70,23 @@ class UserService
     }
     
     /**
-     * Find a user by it's id
+     * Find a user by it's slug
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return User|null
      * @throws NotFoundHttpException
      */
-    public function findById(int $id): ?User 
+    public function findBySlug(string $slug): ?User 
     {
         $userRps = $this->getRepository();
-        $user    = $userRps->findById($id);
+        $user    = $userRps->findBySlug($slug);
         
         if (!$user) {
             throw new NotFoundHttpException(
                 $this->translator->trans(
-                    'error.noUserWithId',
-                    ['%id%' => $id],
+                    'error.noUserWithSlug',
+                    ['%slug%' => $slug],
                     'users'
                 )
             );

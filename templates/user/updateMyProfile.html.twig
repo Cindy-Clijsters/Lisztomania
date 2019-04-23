@@ -26,7 +26,9 @@
                         {{ form_row(form.email) }}
                         
                         {{ form_widget(form.submit) }}
-                        <a href="{{ path('rtAdminMyProfile') }}" class="mt-2 btn btn-sm btn-outline-primary">{% trans %}action.cancel{% endtrans %}</a>
+                        <a href="{{ path('rtAdminMyProfile') }}" class="mt-2 btn btn-sm btn-outline-primary">
+                            {% trans %}action.cancel{% endtrans %}
+                        </a>
 
                     {{ form_end(form) }}
 

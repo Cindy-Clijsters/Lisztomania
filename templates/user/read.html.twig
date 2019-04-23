@@ -13,78 +13,80 @@
 
 {% block mainContent %}  
 
-    <div class="animated fadeIn">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">                      
-                        
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'users' %}field.lastName{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ user.lastName }}</p>
-                            </div>
-                        </div>
-                            
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'users' %}field.firstName{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ user.firstName }}</p>
-                            </div>
-                        </div>      
-                            
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'users' %}field.email{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ user.email|formatMailTo }}</p>
-                            </div>
-                        </div>     
-                            
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'users' %}field.username{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ user.username }}</p>
-                            </div>
-                        </div>                             
-                            
-                            
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'users' %}field.role{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ user.role|userRole }}</p>
-                            </div>
-                        </div>  
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">                      
 
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class=" form-control-label">{% trans from 'users' %}field.status{% endtrans %}</label>:
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <p class="form-control-static">{{ user.status|formatUserStatus }}</p>
-                            </div>
-                        </div>  
-                            
-                       <div class="row mt-2">
-                            <div class="col-md-12">
-                                <a href="{{ path('rtAdminUserOverview') }}" class="btn btn-outline-primary">{% trans %}action.backToOverview{% endtrans %}</a>
-                            </div>
-                        </div>                            
-                        
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'users' %}field.lastName{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ user.lastName }}</p>
+                        </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'users' %}field.firstName{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ user.firstName }}</p>
+                        </div>
+                    </div>      
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'users' %}field.email{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ user.email|formatMailTo }}</p>
+                        </div>
+                    </div>     
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'users' %}field.username{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ user.username }}</p>
+                        </div>
+                    </div>                             
+
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'users' %}field.role{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ user.role|userRole }}</p>
+                        </div>
+                    </div>  
+
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">{% trans from 'users' %}field.status{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ user.status|formatUserStatus }}</p>
+                        </div>
+                    </div>  
+
+                   <div class="row mt-2">
+                        <div class="col-md-12">
+                            <a href="{{ path('rtAdminUserOverview') }}" class="btn btn-sm btn-outline-primary">
+                                {% trans %}action.backToOverview{% endtrans %}
+                            </a>
+                        </div>
+                    </div>                            
+
                 </div>
             </div>
         </div>
     </div>
+</div>
                                 
 {% endblock %}
 

@@ -65,15 +65,15 @@
                                                 <td>{{ user.role|userRole }}</td>
                                                 <td>{{ user.status|formatUserStatus }}</td>
                                                 <td>
-                                                    <a href="{{ path('rtAdminUserRead', {'id' : user.id}) }}" class="mr-2" title="{% trans from 'users' %}action.view{% endtrans %}">
-                                                        <i class="ti ti-search"></i>
+                                                    <a href="{{ path('rtAdminUserRead', {'slug' : user.slug}) }}" class="mr-2">
+                                                        <i class="ti ti-search" title="{% trans from 'users' %}action.view{% endtrans %}"></i>
                                                     </a>
                                                     {% if is_granted('ROLE_SUPERADMIN') %}
-                                                        <a href="{{ path('rtAdminUserUpdate', {'id' : user.id}) }}" class="mr-2" title="{% trans from 'users' %}action.update{% endtrans %}">
-                                                            <i class="ti ti-pencil-alt"></i>
+                                                        <a href="{{ path('rtAdminUserUpdate', {'slug' : user.slug}) }}" class="mr-2" >
+                                                            <i class="ti ti-pencil-alt" title="{% trans from 'users' %}action.update{% endtrans %}"></i>
                                                         </a>
-                                                        <a href="{{ path('rtAdminUserDelete', {'id' : user.id}) }}" title="{% trans from 'users' %}action.delete{% endtrans %}">
-                                                            <i class="ti ti-trash"></i>
+                                                        <a href="{{ path('rtAdminUserDelete', {'slug' : user.slug}) }}" >
+                                                            <i class="ti ti-trash" title="{% trans from 'users' %}action.delete{% endtrans %}"></i>
                                                         </a>
                                                     {% endif %}
                                                 </td>
@@ -115,4 +115,3 @@
 </div>
             
 {% endblock %}
-

@@ -12,14 +12,14 @@ return [
     'field.role' => 'Role',
     'field.status' => 'Status',
     
-    'status.makeChoice' => '--- Choose a status ---',
+    'status.makeChoice' => '- Choose a status -',
     'status.active' => 'Active',
     'status.inactive' => 'Inactive',
     'status.blocked' => 'Blocked',
     'status.deleted' => 'Deleted',
     'status.unconfirmed' => 'Unconfirmed',
     
-    'role.makeChoice' => '--- Choose a role ---',
+    'role.makeChoice' => '- Choose a role -',
     'role.ROLE_USER' => 'User',
     'role.ROLE_ADMIN' => 'Administrator',
     'role.ROLE_SUPERADMIN' => 'Superadministrator',    
@@ -42,7 +42,7 @@ return [
     'msg.ownProfileUpdatedSuccessfully' => 'Your profile data has been successfully changed.',
     'msg.updatePasswordSucessfully' => 'Your password has been successfully changed.',
     
-    'error.noUserWithId' => 'No user with the ID \'%id%\' was found.',
+    'error.noUserWithSlug' => 'No user with the slug \'%slug%\' was found.',
     
     'setPassword.accountCreated' => 'An account has been created for you on www.lisztomania.be.',
     'setPassword.clickToSetPassword' => 'Click on the link below to set your password.',    
@@ -61,10 +61,10 @@ return [
     'accountUnconfirmed.resendConfirmationMail' => 'Click here to resent it',
     
     'accountAlreadyConfirmed.accountConfirmed' => 'Your account has already been confirmed.',
-    'accountAlreadyConfirmed.clickToLogin'     => 'Click on the button below to login.',    
+    'accountAlreadyConfirmed.clickToLogin' => 'Click on the button below to login.',    
     
     'accountConfirmed.accountConfirmed' => 'Your account has already been confirmed.',
-    'accountConfirmed.clickToLogin'     => 'Click on the button below to login.',       
+    'accountConfirmed.clickToLogin' => 'Click on the button below to login.',       
     
     'confirmRegistration.enterPassword' => 'Enter a password to confirm your registration.',
     

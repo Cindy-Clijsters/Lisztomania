@@ -63,18 +63,18 @@ class UserRepository extends ServiceEntityRepository
     }
     
     /**
-     * Find a user by it's id
+     * Find a user by it's slug
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return User|null
      */
-    public function findById(int $id): ?User
+    public function findBySlug(string $slug): ?User
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.id = :id')
+            ->andWhere('u.slug = :slug')
             ->andWhere('u.status != :deletedStatus')
-            ->setParameter('id', $id)
+            ->setParameter('slug', $slug)
             ->setParameter('deletedStatus', User::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();

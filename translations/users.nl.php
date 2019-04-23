@@ -12,14 +12,14 @@ return [
     'field.role' => 'Rol',
     'field.status' => 'Status',    
     
-    'status.makeChoice' => '--- Kies een status ---',
+    'status.makeChoice' => '- Kies een status -',
     'status.active' => 'Actief',
     'status.inactive' => 'Inactief',
     'status.blocked' => 'Geblokkeerd',
     'status.deleted' => 'Verwijderd',
     'status.unconfirmed' => 'Niet bevestigd',
     
-    'role.makeChoice' => '--- Kies een rol ---',
+    'role.makeChoice' => '- Kies een rol -',
     'role.ROLE_USER' => 'Gebruiker',
     'role.ROLE_ADMIN' => 'Beheerder',
     'role.ROLE_SUPERADMIN' => 'Superbeheerder',    
@@ -42,7 +42,7 @@ return [
     'msg.ownProfileUpdatedSuccessfully' => 'Je profielgegevens zijn met succes gewijzigd.',
     'msg.updatePasswordSucessfully' => 'Je wachtwoord is met succes gewijzigd.',
 
-    'error.noUserWithId' => 'Er is geen gebruiker gevonden met het id \'%id%\'',
+    'error.noUserWithSlug' => 'Er is geen gebruiker gevonden met het slug \'%slug%\'',
 
     'setPassword.accountCreated' => 'Er is een account voor je aangemaakt op www.lisztomania.be.',
     'setPassword.clickToSetPassword' => 'Klik op de onderstaande link om je wachtwoord in te stellen.',
@@ -61,10 +61,10 @@ return [
     'accountUnconfirmed.resendConfirmationMail' => 'Klik hier om de bevestigingsmail opnieuw te versturen',
     
     'accountAlreadyConfirmed.accountConfirmed' => 'Je account is al bevestigd.',
-    'accountAlreadyConfirmed.clickToLogin'     => 'Klik op de onderstaande knop om je aan te melden.',
+    'accountAlreadyConfirmed.clickToLogin' => 'Klik op de onderstaande knop om je aan te melden.',
     
     'accountConfirmed.accountConfirmed' => 'Je account is bevestigd.',
-    'accountConfirmed.clickToLogin'     => 'Klik op de onderstaande knop om je aan te melden.',    
+    'accountConfirmed.clickToLogin' => 'Klik op de onderstaande knop om je aan te melden.',    
     
     'confirmRegistration.enterPassword' => 'Vul een wachtwoord in om je registratie te bevestigen.', 
     

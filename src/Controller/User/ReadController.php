@@ -31,23 +31,19 @@ class ReadController extends AbstractController
     /**
      * Read the information of a user
      * 
-     * @Route(
-     * {
-     *  "nl" : "/beheer/gebruikers/bekijken/{id}",
-     *  "en" : "/admin/users/view/{id}"
-     * },
-     * name="rtAdminUserRead",
-     * requirements={"id"="\d+"}
-     * )
+     * @Route({
+     *  "nl" : "/beheer/gebruikers/bekijken/{slug}",
+     *  "en" : "/admin/users/view/{slug}"
+     * }, name="rtAdminUserRead")
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function read(int $id): Response
+    public function read(string $slug): Response
     {
         // Get the information to display the view
-        $user = $this->userSvc->findById($id);
+        $user = $this->userSvc->findBySlug($slug);
         
         // Display the view
         return $this->render(

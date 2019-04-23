@@ -7,8 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
 use Symfony\Contracts\Translation\TranslatorInterface;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Entity\User;
@@ -42,26 +42,22 @@ class DeleteController extends AbstractController
     /**
      * Delete the information of a user
      * 
-     * @Route(
-     * {
-     *   "nl" : "/beheer/gebruikers/verwijderen/{id}",
-     *   "en" : "/admin/users/delete/{id}"
-     * },
-     * name="rtAdminUserDelete",
-     * requirements={"id"="\d+"}
-     * )
+     * @Route({
+     *   "nl" : "/beheer/gebruikers/verwijderen/{slug}",
+     *   "en" : "/admin/users/delete/{slug}"
+     * }, name="rtAdminUserDelete")
      * 
      * @IsGranted("ROLE_SUPERADMIN")
      * 
      * @param Request $request
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function delete(Request $request, int $id): Response
+    public function delete(Request $request, string $slug): Response
     {
         // Get the information of the user
-        $user = $this->userSvc->findById($id);
+        $user = $this->userSvc->findBySlug($slug);
         
         // Check if there are superadmins left after deletion
         $error = '';
