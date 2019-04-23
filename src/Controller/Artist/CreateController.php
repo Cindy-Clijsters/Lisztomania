@@ -33,7 +33,7 @@ class CreateController extends AbstractController
     public function __construct(
         ArtistService $artistService,
         TranslatorInterface $translator
-    ){
+    ) {
         $this->artistSvc  = $artistService;
         $this->translator = $translator;
     }
@@ -50,44 +50,44 @@ class CreateController extends AbstractController
      * 
      * @return Response
      */
-   public function create(Request $request): Response
-   {
-       // Generate the form
-       $artist = new Artist();
-       $form   = $this->createForm(ArtistType::class, $artist);
+    public function create(Request $request): Response
+    {
+        // Generate the form
+        $artist = new Artist();
+        $form   = $this->createForm(ArtistType::class, $artist);
        
-       $form->handleRequest($request);
+        $form->handleRequest($request);
        
-       if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
            
-           // Get the posted values
-           $artist = $form->getData();
+            // Get the posted values
+            $artist = $form->getData();
            
-           // Save the artist
-           $this->artistSvc->saveToDb($artist);
+            // Save the artist
+            $this->artistSvc->saveToDb($artist);
            
-           // Redirect to the overview
-           $this->addFlash(
-               'notice',
-               $this->translator->trans(
+            // Redirect to the overview
+            $this->addFlash(
+                'notice',
+                $this->translator->trans(
                     'msg.addedSuccessfully',
                     [
                         '%name%' => $artist->getName()
                     ],
                     'artists'
-               )
-           );
+                )
+            );
            
-           return $this->redirectToRoute('rtAdminArtistOverview');
+            return $this->redirectToRoute('rtAdminArtistOverview');
            
-       }
+        }
        
-       // Display the view
-       return $this->render(
-           'artist/create.html.twig',
+        // Display the view
+        return $this->render(
+            'artist/create.html.twig',
             [
                 'form' => $form->createView()
             ]
-       );
-   }
+        );
+    }
 }

@@ -31,23 +31,19 @@ class ReadController extends AbstractController
     /**
      * Read the information of an artist
      * 
-     * @Route(
-     * {
-     *  "nl" : "/beheer/artiesten/bekijken/{id}",
-     *  "en" : "/admin/artists/view/{id}"
-     * },
-     * name="rtAdminArtistRead",
-     * requirements={"id"="\d+"}
-     * )
+     * @Route({
+     *  "nl" : "/beheer/artiesten/bekijken/{slug}",
+     *  "en" : "/admin/artists/view/{slug}"
+     * }, name="rtAdminArtistRead")
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-    public function read(int $id): Response
+    public function read(string $slug): Response
     {
         // Get the information to display the view
-        $artist = $this->artistSvc->findById($id);
+        $artist = $this->artistSvc->findBySlug($slug);
 
         // Display the view
         return $this->render(

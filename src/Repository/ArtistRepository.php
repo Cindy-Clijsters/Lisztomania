@@ -75,18 +75,18 @@ class ArtistRepository extends ServiceEntityRepository
     }
     
     /**
-     * Find an artist by it's id
+     * Find an artist by it's slug
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Artist|null
      */
-    public function findById(int $id): ?Artist
+    public function findBySlug(string $slug): ?Artist
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.id = :id')
+            ->andWhere('a.slug = :slug')
             ->andWhere('a.status != :deletedStatus')
-            ->setParameter('id', $id)
+            ->setParameter('slug', $slug)
             ->setParameter('deletedStatus', Artist::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();

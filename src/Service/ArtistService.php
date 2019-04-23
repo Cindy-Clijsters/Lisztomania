@@ -75,21 +75,21 @@ class ArtistService
     /**
      * Find a artist by it's id
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Artist|null
      * @throws NotFoundHttpException
      */
-    public function findById(int $id): ?Artist
+    public function findBySlug(string $slug): ?Artist
     {
         $artistRps = $this->getRepository();
-        $artist    = $artistRps->findById($id);
+        $artist    = $artistRps->findBySlug($slug);
         
         if (!$artist) {
             throw new NotFoundHttpException(
                 $this->translator->trans(
-                    'list.noArtistWithId',
-                    ['%id%' => $id],
+                    'error.noArtistWithSlug',
+                    ['%slug%' => $slug],
                     'artists'
                 )
             );

@@ -4,9 +4,11 @@ declare(strict_types = 1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
@@ -70,6 +72,15 @@ class Artist
      * )
      */
     private $sortName;
+    
+    /**
+     * @ORM\Column(length = 128, unique = true)
+     * 
+     * @Gedmo\Slug(fields = {"name"})
+     * 
+     * @var type 
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="string", length=20)
@@ -150,6 +161,16 @@ class Artist
         $this->sortName = $sortName;
 
         return $this;
+    }
+    
+    /**
+     * Get the slug
+     * 
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
     }
 
     /**

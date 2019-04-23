@@ -45,18 +45,18 @@ class DeleteController extends AbstractController
      * Delete a artist
      * 
      * @Route({
-     *  "nl" : "/beheer/artiesten/verwijderen/{id}",
-     *  "en" : "/admin/artists/delete/{id}"
+     *  "nl" : "/beheer/artiesten/verwijderen/{slug}",
+     *  "en" : "/admin/artists/delete/{slug}"
      * }, name="rtAdminArtistDelete")
      * 
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-   public function delete(int $id): Response
+   public function delete(string $slug): Response
    {
         // Get the information of the artist
-        $artist = $this->artistSvc->findById($id);
+        $artist = $this->artistSvc->findBySlug($slug);
 
         // Check if the artist is linked to an album
         $albumCount = $this->albumSvc->countAlbumsByArtist($artist);

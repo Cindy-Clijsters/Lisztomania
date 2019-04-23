@@ -1,10 +1,11 @@
 <?php
 return [
+    
     'field.name' => 'Naam',
     'field.sortName' => 'Sorteren op',
     'field.status' => 'Status', 
     
-    'status.makeChoice' => '--- Kies een status ---',
+    'status.makeChoice' => '- Kies een status -',
     'status.active' => 'Actief',
     'status.inactive' => 'Inactief',
     'status.deleted' => 'Verwijderd',   
@@ -16,8 +17,8 @@ return [
     
     'list.noFound' => 'Er zijn geen artiesten gevonden.',
     'list.showEntries' => 'Toon %start% tot %end% van %total% artiesten',
-    'list.noArtistWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
     
+    'error.noArtistWithSlug' => 'Er is geen artiest gevonden met de slug \'%slug%\'',
     'error.deleteFailed' => 'De artiest "%name%" kan niet verwijderd worden.',
     'error.artistLinkedToAlbums' => 'Deze is gekoppeld aan één of meerdere albums.',    
     

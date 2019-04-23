@@ -30,7 +30,9 @@
 
                     <div class="row mt-2 mb-4">
                         <div class="col-sm-12">
-                            <a href="{{ path('rtAdminArtistCreate') }}" class="btn btn-link mr-4">{% trans from 'artists' %}action.add{% endtrans %}</a>
+                            <a href="{{ path('rtAdminArtistCreate') }}" class="btn btn-link mr-4">
+                                {% trans from 'artists' %}action.add{% endtrans %}
+                            </a>
                         </div>
                     </div>
 
@@ -55,9 +57,15 @@
                                                 <td>{{ artist.sortName }}</td>
                                                 <td>{{ artist.status|formatArtistStatus }}</td>
                                                 <td>
-                                                    <a href="{{ path('rtAdminArtistRead', {'id' : artist.id}) }}" class="mr-2" title="{% trans from 'artists' %}action.view{% endtrans %}"><i class="ti ti-search"></i></a>
-                                                    <a href="{{ path('rtAdminArtistUpdate', {'id' : artist.id}) }}" class="mr-2" title="{% trans from 'artists' %}action.view{% endtrans %}"><i class="ti ti-pencil-alt"></i></a>
-                                                    <a href="{{ path('rtAdminArtistDelete', {'id' : artist.id}) }}" title="{% trans from 'artists' %}action.view{% endtrans %}"><i class="ti ti-trash"></i></a>
+                                                    <a href="{{ path('rtAdminArtistRead', {'slug' : artist.slug}) }}" class="mr-2">
+                                                        <i class="ti ti-search" title="{% trans from 'artists' %}action.view{% endtrans %}"></i>
+                                                    </a>
+                                                    <a href="{{ path('rtAdminArtistUpdate', {'slug' : artist.slug}) }}" class="mr-2">
+                                                        <i class="ti ti-pencil-alt" title="{% trans from 'artists' %}action.view{% endtrans %}"></i>
+                                                    </a>
+                                                    <a href="{{ path('rtAdminArtistDelete', {'slug' : artist.slug}) }}" >
+                                                        <i class="ti ti-trash" title="{% trans from 'artists' %}action.view{% endtrans %}"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         {% endfor %}

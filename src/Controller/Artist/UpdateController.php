@@ -41,19 +41,19 @@ class UpdateController extends AbstractController
      * Update an artist
      * 
      * @Route({
-     *  "nl" : "/beheer/artiesten/wijzigen/{id}",
-     *  "en" : "/admin/artists/update/{id}"
+     *  "nl" : "/beheer/artiesten/wijzigen/{slug}",
+     *  "en" : "/admin/artists/update/{slug}"
      * }, name="rtAdminArtistUpdate")
      * 
      * @param Request $request
-     * @param int $id
+     * @param string $slug
      * 
      * @return Response
      */
-   public function update(Request $request, int $id): Response
+   public function update(Request $request, string $slug): Response
    {
        // Get the information to display the view
-       $artist = $this->artistSvc->findById($id);
+       $artist = $this->artistSvc->findBySlug($slug);
        
        $form = $this->createForm(
             ArtistType::class,

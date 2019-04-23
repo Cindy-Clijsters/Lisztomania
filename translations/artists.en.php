@@ -1,5 +1,6 @@
 <?php
 return [
+    
     'field.name' => 'Name',
     'field.sortName' => 'Sort on',
     'field.status' => 'Status', 
@@ -16,8 +17,8 @@ return [
     
     'list.noFound' => 'No artists were found.',
     'list.showEntries' => 'Showing %start% to %end% of %total% artists',
-    'list.noArtistWithId' => 'Er is geen artiest gevonden met het id \'%id%\'',
     
+    'error.noArtistWithSlug' => 'No artist was found with the slug \'%slug%\'',
     'error.deleteFailed' => 'The artist "%name%" cannot be deleted.',
     'error.artistLinkedToAlbums' => 'It is linked to one or more albums.',
     
