@@ -110,4 +110,17 @@ class ArtistService
         $this->em->persist($artist);
         $this->em->flush();
     }
+    
+    /**
+     * Count the non-deleted artists
+     * 
+     * @return int
+     */
+    public function countNonDeletedArtists(): int
+    {
+        $artistRps = $this->getRepository();
+        $amount  = $artistRps->countNonDeletedArtists();
+        
+        return $amount;
+    }
 }

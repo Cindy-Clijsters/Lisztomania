@@ -173,23 +173,13 @@ class AlbumService
     /**
      * Get the amount of albums by status
      * 
-     * @return array
+     * @return int
      */
-    public function countAlbumsByStatus(): array
+    public function countNonDeletedAlbums(): int
     {
-        // Count the albums as a status
-        $albumRps   = $this->getRepository();
-        $tmpAmounts = $albumRps->countAlbumsByStatus();
+        $albumRps = $this->getRepository();
+        $amount   = $albumRps->countNonDeletedAlbums();
         
-        // Return the results as an array
-        $amounts['total'] = 0;
-        
-        foreach ($tmpAmounts as $tmpAmount) {
-            $amount                         = intVal($tmpAmount['amount']);
-            $amounts[$tmpAmount['status']]  = $amount;
-            $amounts['total']              += $amount;
-        }
-        
-        return $amounts;
+        return $amount;
     }
 }

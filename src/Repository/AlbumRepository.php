@@ -120,18 +120,17 @@ class AlbumRepository extends ServiceEntityRepository
     }
     
     /**
-     * Get an array with the amount of albums grouped by their status
+     * Count the non-deleted albums
      * 
-     * @return array
+     * @return int
      */
-    public function countAlbumsByStatus(): array
+    public function countNonDeletedAlbums(): int
     {
         return $this->createQueryBuilder('a')
-            ->select('a.status, count(a.id) AS amount')
+            ->select('count(a.id)')
             ->andWhere('a.status != :deletedStatus')
-            ->groupBy('a.status')
             ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->getQuery()
-            ->getResult();
+            ->getSingleScalarResult();
     }
 }

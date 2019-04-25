@@ -91,4 +91,19 @@ class ArtistRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+    
+    /**
+     * Count the non-deleted artists
+     * 
+     * @return int
+     */
+    public function countNonDeletedArtists(): int
+    {
+        return $this->createQueryBuilder('a')
+            ->select('count(a.id)')
+            ->andWhere('a.status != :deletedStatus')
+            ->setParameter('deletedStatus', Artist::STATUS_DELETED)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Service\AlbumService;
+use App\Service\ArtistService;
+use App\Service\UserService;
 
 /**
  * Dashboard page for the administration module
@@ -16,17 +18,25 @@ use App\Service\AlbumService;
  */
 class DashboardController extends AbstractController
 {
+    private $userSvc;
+    private $artistSvc;
     private $albumSvc;
     
     /**
      * Constructor function
      * 
+     * @param UserService $userService
+     * @param ArtistService $artistService
      * @param AlbumService $albumService
      */
     public function __construct(
+        UserService $userService,
+        ArtistService $artistService,
         AlbumService $albumService
     ) {
-        $this->albumSvc = $albumService;
+        $this->userSvc   = $userService;
+        $this->artistSvc = $artistService;
+        $this->albumSvc  = $albumService;
     }
     
     /**
@@ -41,14 +51,18 @@ class DashboardController extends AbstractController
      */
     public function dashboard(): Response
     {
-        // Get the amount of albums
-        $albumAmounts = $this->albumSvc->countAlbumsByStatus();
+        // Get the amount of users, albums, ...
+        $userAmount   = $this->userSvc->countNonDeletedUsers();
+        $artistAmount = $this->artistSvc->countNonDeletedArtists();
+        $albumAmount  = $this->albumSvc->countNonDeletedAlbums();
         
         // Display the view
         return $this->render(
             'dashboard/dashboard.html.twig',
             [
-                'albumAmounts' => $albumAmounts
+                'userAmount'   => $userAmount,
+                'artistAmount' => $artistAmount,
+                'albumAmount'  => $albumAmount
             ]
         );
     }

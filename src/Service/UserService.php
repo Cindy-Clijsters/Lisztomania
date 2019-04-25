@@ -260,4 +260,17 @@ class UserService
         return $amount;
     }
     
+    /**
+     * Get the amount of non-deleted users
+     * 
+     * @return int
+     */
+    public function countNonDeletedUsers(): int
+    {
+        $userRps = $this->getRepository();
+        $amount  = $userRps->countNonDeletedUsers();
+        
+        return $amount;
+    }
+    
 }

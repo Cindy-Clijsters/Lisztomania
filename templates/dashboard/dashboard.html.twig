@@ -11,29 +11,53 @@
 
 {% block mainContent %}      
     
-<div class="content mt-3">
-    <div class="animated fadeIn">
-        <div class="row">
+<div class="animated fadeIn">
+    <div class="row">
 
-            <div class="col-sm-12 mb-4">
-                <div class="card-group">
-                    <div class="card col-lg-2 col-md-6 no-padding bg-flat-color-1">
-                        <div class="card-body">
-                            <div class="h1 text-muted text-right mb-4">
-                                <i class="fa fa-music text-light"></i>
-                            </div>
-                            <div class="h4 mb-0 text-light">
-                                <span class="count">{{ albumAmounts['total'] }}</span>
-                            </div>
-                            <small class="text-uppercase font-weight-bold text-light">{% trans %}global.albums{% endtrans %}</small>
-                            <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
+        <div class="col-lg-4 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="fa fa-users text-success border-success"></i></div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">{% trans %}global.users{% endtrans %}</div>
+                            <div class="stat-digit count">{{ userAmount }}</div>
                         </div>
-                    </div>        
+                    </div>
                 </div>
             </div>
         </div>
-    </div>        
-</div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="fa fa-microphone text-primary border-primary"></i></div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">{% trans %}global.artists{% endtrans %}</div>
+                            <div class="stat-digit count">{{ artistAmount }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="fa fa-music text-warning border-warning"></i></div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">{% trans %}global.albums{% endtrans %}</div>
+                            <div class="stat-digit count">{{ albumAmount }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>    
     
 {% endblock %}
 

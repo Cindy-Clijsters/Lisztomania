@@ -142,4 +142,21 @@ class UserRepository extends ServiceEntityRepository
         
         return intval($amount);
     }
+    
+    /**
+     * Count the non-deleted users
+     * 
+     * @return int
+     */
+    public function countNonDeletedUsers(): int
+    {
+        $amount = $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->andWhere('u.status != :deletedStatus')
+            ->setParameter('deletedStatus', User::STATUS_DELETED)
+            ->getQuery()
+            ->getSingleScalarResult();
+        
+        return intval($amount);
+    }
 }

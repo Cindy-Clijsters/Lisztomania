@@ -2028,7 +2028,8 @@ header .form-inline {
   display: inline-block; }
 
 .stat-widget-one .stat-icon {
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 .stat-widget-one .stat-icon i {
   font-size: 30px;
@@ -2036,8 +2037,10 @@ header .form-inline {
   border-style: solid;
   border-radius: 100px;
   padding: 15px;
-  font-weight: 900;
-  display: inline-block; }
+  display: inline-block;
+  width: 68px;
+  text-align:center;
+}
 
 .stat-widget-one .stat-content {
   margin-left: 30px;
