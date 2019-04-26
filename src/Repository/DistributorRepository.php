@@ -35,9 +35,7 @@ class DistributorRepository extends ServiceEntityRepository
      */
     public function findNonDeletedQuery(string $searchValue = '', string $status = ''): Query
     {
-        $query = $this->createQueryBuilder('d')
-            ->andWhere('d.status != :deletedStatus')
-            ->setParameter('deletedStatus', Distributor::STATUS_DELETED);
+        $query = $this->createQueryBuilder('d');
         
         if ($searchValue !== '') {
             $query = $query->andWhere('d.name LIKE :searchValue')
@@ -66,9 +64,8 @@ class DistributorRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('d')
             ->andWhere('d.name = :name')
-            ->andWhere('d.status != :deletedStatus')
+            ->andWhere('d.deletedAt IS NULL')
             ->setParameter('name', $criteria['name'])
-            ->setParameter('deletedStatus', Distributor::STATUS_DELETED)
             ->getQuery()
             ->getResult();
     }    
@@ -99,9 +96,7 @@ class DistributorRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('d')
             ->andWhere('d.slug = :slug')
-            ->andWhere('d.status != :deletedStatus')
             ->setParameter('slug', $slug)
-            ->setParameter('deletedStatus', Distributor::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();
     }

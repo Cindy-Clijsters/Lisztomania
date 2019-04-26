@@ -62,11 +62,8 @@ class DeleteController extends AbstractController
         
         if ($albumCount === 0) {
             
-            // Set the status of the distributor to deleted
-            $distributor->setStatus(Distributor::STATUS_DELETED);
-            
             // Save the distributor
-            $this->distributorSvc->saveToDb($distributor);
+            $this->distributorSvc->removeFromDb($distributor);
             
             // Redirect to the overview
             $this->addFlash(

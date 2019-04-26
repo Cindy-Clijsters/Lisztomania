@@ -116,4 +116,21 @@ class DistributorService
         $this->em->persist($distributor);
         $this->em->flush();
     }
+    
+    /**
+     * Remove the distributor from the database
+     * 
+     * @param Distributor $distributor
+     * 
+     * @return void
+     */
+    public function removeFromDb(Distributor $distributor): void
+    {
+        $distributor->setSlug($distributor->getSlug() . '_softdeleted_' . $distributor->getId());
+        $this->em->persist($distributor);
+        $this->em->flush();
+        
+        $this->em->remove($distributor);
+        $this->em->flush();
+    }
 }

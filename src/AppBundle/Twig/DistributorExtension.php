@@ -70,9 +70,6 @@ class DistributorExtension extends AbstractExtension
             case Distributor::STATUS_INACTIVE:
                 $class = 'badge badge-danger';
                 break;
-            case Distributor::STATUS_DELETED:
-                $class = 'badge badge-dark';
-                break;
             default:
                 $class = 'badge badge-light';
                 break;

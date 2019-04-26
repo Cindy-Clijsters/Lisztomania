@@ -8,7 +8,6 @@ return [
     'status.makeChoice' => '- Kies een status -',
     'status.active' => 'Actief',
     'status.inactive' => 'Inactief',
-    'status.deleted' => 'Verwijderd', 
     
     'action.view' => 'Een distributeur bekijken',
     'action.add' => 'Een distributeur toevoegen',

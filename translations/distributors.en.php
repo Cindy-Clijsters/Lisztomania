@@ -7,8 +7,7 @@ return [
     
     'status.makeChoice' => '- Choose a status -',
     'status.active' => 'Active',
-    'status.inactive' => 'Inactive',
-    'status.deleted' => 'Deleted',      
+    'status.inactive' => 'Inactive',  
     
     'action.view' => 'View an distributor',
     'action.add' => 'Add an distributor',
