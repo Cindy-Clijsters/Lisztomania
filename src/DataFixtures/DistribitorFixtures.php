@@ -64,7 +64,7 @@ class DistribitorFixtures extends Fixture
         
         $distributor9 = new Distributor();
         $distributor9->setName('Play It Again Sam');
-        $distributor9->setStatus(Distributor::STATUS_DELETED);
+        $distributor9->setStatus(Distributor::STATUS_INACTIVE);
         $manager->persist($distributor9);
 
         $manager->flush();

@@ -63,11 +63,8 @@ class DeleteController extends AbstractController
 
         if ($albumCount === 0) {
 
-            // Set the status to deleted
-            $artist->setStatus(Artist::STATUS_DELETED);
-
             // Save the artist
-            $this->artistSvc->saveToDb($artist);
+            $this->artistSvc->removeFromDb($artist);
             
             // Redirect the the overview
             $this->addFlash(

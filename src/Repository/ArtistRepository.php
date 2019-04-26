@@ -35,8 +35,6 @@ class ArtistRepository extends ServiceEntityRepository
     public function findNonDeletedQuery(): Query
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.status != :deletedStatus')
-            ->setParameter('deletedStatus', Artist::STATUS_DELETED)
             ->orderBy('a.sortName', 'ASC')
             ->getQuery();
     }
@@ -67,9 +65,8 @@ class ArtistRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.name = :name')
-            ->andWhere('a.status != :deletedStatus')
+            ->andWhere('a.deletedAt IS NULL')
             ->setParameter('name', $criteria['name'])
-            ->setParameter('deletedStatus', Artist::STATUS_DELETED)
             ->getQuery()
             ->getResult();
     }
@@ -85,9 +82,7 @@ class ArtistRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.slug = :slug')
-            ->andWhere('a.status != :deletedStatus')
             ->setParameter('slug', $slug)
-            ->setParameter('deletedStatus', Artist::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();
     }
@@ -101,8 +96,6 @@ class ArtistRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->select('count(a.id)')
-            ->andWhere('a.status != :deletedStatus')
-            ->setParameter('deletedStatus', Artist::STATUS_DELETED)
             ->getQuery()
             ->getSingleScalarResult();
     }

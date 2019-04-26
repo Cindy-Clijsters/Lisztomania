@@ -10,8 +10,15 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 
+use App\Entity\BaseEntity;
+use App\Entity\User;
+
+use DateTime;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", hardDelete=true)
+ * @Gedmo\Loggable
  * 
  * @UniqueEntity(
  *     "name",
@@ -20,25 +27,25 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *     groups = {"create", "update"}
  * )
  */
-class Artist
+class Artist extends BaseEntity
 {
     const STATUS_ACTIVE = 'active';
     const STATUS_INACTIVE = 'inactive';
-    const STATUS_DELETED = 'deleted';
     
     const VALID_STATUSES = [self::STATUS_ACTIVE, self::STATUS_INACTIVE];
-    
-    const LIST_ITEMS = 10;
     
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * 
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -52,11 +59,14 @@ class Artist
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create", "update"}
      * )
+     * 
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -70,6 +80,8 @@ class Artist
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create", "update"}
      * )
+     * 
+     * @var string
      */
     private $sortName;
     
@@ -77,11 +89,14 @@ class Artist
      * @ORM\Column(length = 128, unique = true)
      * 
      * @Gedmo\Slug(fields = {"name"})
+     * 
+     * @var string
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -100,6 +115,8 @@ class Artist
      *     message = "error.invalidValue",
      *     groups = {"create", "update"}
      * )
+     * 
+     * @var string
      */
     private $status;
 
@@ -169,6 +186,20 @@ class Artist
     public function getSlug(): ?string
     {
         return $this->slug;
+    }
+    
+    /**
+     * Set the slug
+     * 
+     * @param string $slug
+     * 
+     * @return \self
+     */
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+        
+        return $this;
     }
 
     /**

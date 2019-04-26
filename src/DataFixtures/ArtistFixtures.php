@@ -126,7 +126,7 @@ class ArtistFixtures extends Fixture
         $artist13 = new Artist();
         $artist13->setName('Mercury Rev');
         $artist13->setSortName('Mercury Rev');
-        $artist13->setStatus(Artist::STATUS_DELETED);
+        $artist13->setStatus(Artist::STATUS_INACTIVE);
         $manager->persist($artist13);
 
         $artist14 = new Artist();
@@ -222,7 +222,7 @@ class ArtistFixtures extends Fixture
         $artist29 = new Artist();
         $artist29->setName('Broken Social Scene');
         $artist29->setSortName('Broken Social Scene');
-        $artist29->setStatus(Artist::STATUS_DELETED);
+        $artist29->setStatus(Artist::STATUS_INACTIVE);
         $manager->persist($artist29);
 
         $artist30 = new Artist();

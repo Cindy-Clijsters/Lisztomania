@@ -8,7 +8,6 @@ return [
     'status.makeChoice' => '--- Choose a status ---',
     'status.active' => 'Active',
     'status.inactive' => 'Inactive',
-    'status.deleted' => 'Deleted',  
     
     'action.view' => 'View a artist',
     'action.add' => 'Add a artist',

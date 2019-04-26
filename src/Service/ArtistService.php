@@ -112,6 +112,23 @@ class ArtistService
     }
     
     /**
+     * Remove an artist from the db
+     * 
+     * @param Artist $artist
+     * 
+     * @return void
+     */
+    public function removeFromDb(Artist $artist): void
+    {
+        $artist->setSlug($artist->getSlug() . '_softdeleted_' . $artist->getId());
+        $this->em->persist($artist);
+        $this->em->flush();
+        
+        $this->em->remove($artist);
+        $this->em->flush();
+    }
+    
+    /**
      * Count the non-deleted artists
      * 
      * @return int
