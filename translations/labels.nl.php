@@ -7,7 +7,6 @@ return [
     'status.makeChoice' => '- Kies een status -',
     'status.active' => 'Actief',
     'status.inactive' => 'Inactief',
-    'status.deleted' => 'Verwijderd',  
     
     'action.view' => 'Een label bekijken',
     'action.add' => 'Een label toevoegen',

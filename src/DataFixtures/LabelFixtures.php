@@ -137,7 +137,7 @@ class LabelFixtures extends Fixture
         
         $label20 = new Label();
         $label20->setName('Play It Again Sam');
-        $label20->setStatus(Label::STATUS_DELETED);
+        $label20->setStatus(Label::STATUS_INACTIVE);
         $manager->persist($label20);
         
         $manager->flush();

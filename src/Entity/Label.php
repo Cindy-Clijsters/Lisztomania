@@ -10,8 +10,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+use App\Entity\BaseEntity;
+use App\Entity\User;
+
+use DateTime;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LabelRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", hardDelete=true)
+ * @Gedmo\Loggable
  * 
  * @UniqueEntity(
  *     "name",
@@ -20,11 +27,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     groups = {"create", "update"}
  * )
  */
-class Label
+class Label extends BaseEntity
 {
     const STATUS_ACTIVE   = 'active';
     const STATUS_INACTIVE = 'inactive';
-    const STATUS_DELETED  = 'deleted';
     
     const VALID_STATUSES = [self::STATUS_ACTIVE, self::STATUS_INACTIVE];
     
@@ -34,11 +40,14 @@ class Label
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * 
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -52,6 +61,8 @@ class Label
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create", "update"}
      * )
+     * 
+     * @var string
      */
     private $name;
     
@@ -59,11 +70,14 @@ class Label
      * @ORM\Column(type="string", length=128, unique=true)
      * 
      * @Gedmo\Slug(fields={"name"})
+     * 
+     * @var string
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -82,6 +96,8 @@ class Label
      *     message = "error.invalidValue",
      *     groups = {"create", "update"}
      * )
+     * 
+     * @var string
      */
     private $status;
 
@@ -127,6 +143,20 @@ class Label
     public function getSlug(): ?string
     {
         return $this->slug;
+    }
+    
+    /**
+     * Set the slug
+     * 
+     * @param string $slug
+     * 
+     * @return \self
+     */
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+        
+        return $this;
     }
 
     /**

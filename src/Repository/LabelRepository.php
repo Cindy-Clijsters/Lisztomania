@@ -34,8 +34,6 @@ class LabelRepository extends ServiceEntityRepository
     public function findNonDeletedQuery(): Query
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.status != :deletedStatus')
-            ->setParameter('deletedStatus', Label::STATUS_DELETED)
             ->orderBy('l.name', 'ASC')
             ->getQuery();
     }
@@ -51,9 +49,8 @@ class LabelRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.name = :name')
-            ->andWhere('l.status != :deletedStatus')
+            ->andWhere('l.deletedAt IS NULL')
             ->setParameter('name', $criteria['name'])
-            ->setParameter('deletedStatus', Label::STATUS_DELETED)
             ->getQuery()
             ->getResult();
     }
@@ -84,9 +81,7 @@ class LabelRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('l') 
             ->andWhere('l.slug = :slug')
-            ->andWhere('l.status != :deletedStatus')
             ->setParameter('slug', $slug)
-            ->setParameter('deletedStatus', Label::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();
     }

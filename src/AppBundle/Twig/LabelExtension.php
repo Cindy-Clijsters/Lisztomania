@@ -70,9 +70,6 @@ class LabelExtension extends AbstractExtension
             case Label::STATUS_INACTIVE:
                 $class = 'badge badge-danger';
                 break;
-            case Label::STATUS_DELETED:
-                $class = 'badge badge-dark';
-                break;
             default:
                 $class = 'badge badge-light';
                 break;

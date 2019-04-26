@@ -110,4 +110,21 @@ class LabelService
         $this->em->persist($label);
         $this->em->flush();
     }
+    
+    /**
+     * Remove the label from the db
+     * 
+     * @param Label $label
+     * 
+     * @return void
+     */
+    public function removeFromDb(Label $label): void
+    {
+        $label->setSlug($label->getSlug() . '_softdeleted_' . $label->getId());
+        $this->em->persist($label);
+        $this->em->flush();
+        
+        $this->em->remove($label);
+        $this->em->flush();
+    }
 }

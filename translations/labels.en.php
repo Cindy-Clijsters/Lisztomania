@@ -7,7 +7,6 @@ return [
     'action.view' => 'View a label',
     'action.add' => 'Add a label',
     'action.update' => 'Update a label',
-    'action.delete' => 'Delete a label',
     
     'status.makeChoice' => '- Choose a status -',
     'status.active' => 'Active',

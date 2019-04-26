@@ -62,12 +62,9 @@ class DeleteController extends AbstractController
         $albumCount = $this->albumSvc->countAlbumsByLabel($label);
         
         if ($albumCount === 0) {
-                       
-            // Set the status of the label to deleted
-            $label->setStatus(Label::STATUS_DELETED);
             
             // Save the label
-            $this->labelSvc->saveToDb($label);
+            $this->labelSvc->removeFromDb($label);
             
             // Redirect to the overview
             $this->addFlash(
