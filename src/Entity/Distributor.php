@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use App\Entity\User;
+use App\Entity\BaseEntity;
 
 use DateTime;
 
@@ -26,14 +27,12 @@ use DateTime;
  *     groups = {"create", "update"}
  * )
  */
-class Distributor
+class Distributor extends BaseEntity
 {
     const STATUS_ACTIVE   = 'active';
     const STATUS_INACTIVE = 'inactive';
     
     const VALID_STATUSES = [self::STATUS_ACTIVE, self::STATUS_INACTIVE];
-    
-    const LIST_ITEMS = 10;    
     
     /**
      * @ORM\Id()
@@ -99,48 +98,6 @@ class Distributor
      */
     private $status;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @Gedmo\Timestampable(on="create")
-     * 
-     * @var DateTime|null
-     */
-    
-    private $created;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=true)
-     * @Gedmo\Blameable(on="create")
-     * 
-     * @var User|null
-     */
-    private $createdBy;
-    
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @Gedmo\Timestampable(on="update")
-     * 
-     * @var DateTime|null
-     */
-    private $updated;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id", nullable=true)
-     * @Gedmo\Blameable(on="update")
-     * 
-     * @var User|null
-     */
-    private $updatedBy;    
-    
-    /**
-     * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
-     * 
-     * @var DateTime 
-     */
-    private $deletedAt;
-    
     /**
      * Get the id
      * 
@@ -221,70 +178,5 @@ class Distributor
         $this->status = $status;
 
         return $this;
-    }
-    
-    /**
-     * Get the creation date
-     * 
-     * @return DateTime|null
-     */
-    public function getCreated(): ?DateTime
-    {
-        return $this->created;
-    }
-    
-    /**
-     * Get the user who created the record
-     * 
-     * @return User|null
-     */
-    public function getCreatedBy(): ?User
-    {
-        return $this->createdBy;
-    }
-    
-    /**
-     * Get the date of the last update
-     * 
-     * @return DateTime|null
-     */
-    public function getUpdated(): ?DateTime
-    {
-        return $this->updated;
-    }
-    
-    /**
-     * Get the user who updated the record the last time
-     * 
-     * @return User|null
-     */
-    public function getUpdatedBy(): ?User
-    {
-        return $this->createdBy;
-    }   
-    
-    /**
-     * Get the date of deletion
-     *
-     * @return DateTime|null
-     */
-    public function getDeletedAt(): ?DateTime
-    {
-        return $this->deletedAt;
-    }
-    
-    /**
-     * Set the status of deletion
-     * 
-     * @param DateTime $deletedAt
-     * 
-     * @return \self
-     */    
-    public function setDeletedAt(DateTime $deletedAt): self
-    {
-        $this->deletedAt = $deletedAt;
-        
-        return $this;
-    }
-    
+    } 
 }
