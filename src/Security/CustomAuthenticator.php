@@ -80,10 +80,10 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator
             'username' => $credentials['username']
         ]);
 
-        if (!$user or $user->getStatus() === User::STATUS_DELETED) {
+        //if (!$user or $user->getStatus() === User::STATUS_DELETED) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException($this->translator->trans('error.userNotFound', [], 'validators'));
-        }
+        //    throw new CustomUserMessageAuthenticationException($this->translator->trans('error.userNotFound', [], 'validators'));
+        //}
         
         if (
             !in_array(User::ROLE_ADMIN, $user->getRoles())

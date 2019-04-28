@@ -9,44 +9,56 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use App\Entity\BaseEntity;
+use App\Entity\User;
 use App\Validator\Constraints\Album as AlbumAssert;
+
+use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", hardDelete=true)
+ * @Gedmo\Loggable
  * 
  * @AlbumAssert\SelectAlbumArtist(groups = {"create", "update"})
  */
-class Album
+class Album extends BaseEntity
 {
     const STATUS_ACTIVE   = 'active';
     const STATUS_INACTIVE = 'inactive';
-    const STATUS_DELETED  = 'deleted';
     
     const VALID_STATUSES = [self::STATUS_ACTIVE, self::STATUS_INACTIVE];
-    
-    const LIST_ITEMS = 10;
     
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * 
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Gedmo\Versioned
+     * 
+     * @var bool
      */
     private $multipleArtists;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Artist")
+     * @Gedmo\Versioned
      * 
      * @Assert\Valid
+     * 
+     * @var Artist
      */
     private $artist;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -60,11 +72,14 @@ class Album
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create", "update"}
      * )
+     * 
+     * @var string
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Gedmo\Versioned
      * 
      * @Assert\Type("string", groups = {"create", "update"})
      * @Assert\Length(
@@ -74,25 +89,34 @@ class Album
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create", "update"}
      * )
+     * 
+     * @var string
      */
     private $alternativeTitle;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Label")
+     * @Gedmo\Versioned
      * 
      * @Assert\Valid(groups = {"create", "update"})
+     * 
+     * @var Label
      */
     private $label;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Distributor")
+     * @Gedmo\Versioned
      * 
      * @Assert\Valid(groups = {"create", "update"})
+     * 
+     * @var Distributor;
      */
     private $distributor;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Gedmo\Versioned
      * 
      * @Assert\Type("integer", groups = {"create", "update"})
      * @Assert\Length(
@@ -100,14 +124,19 @@ class Album
      *     max = 4,
      *     exactMessage = "error.exactCharacters",
      *     groups = {"create", "update"}
-     * ) 
+     * )
+     * 
+     * @var int
      */
     private $releaseYear;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Gedmo\Versioned
      * 
      * @Assert\Date(groups = {"create", "update"})
+     * 
+     * @var DateTime
      */
     private $releaseDate;
 
@@ -115,11 +144,14 @@ class Album
      * @ORM\Column(length=128, unique=true)
      * 
      * @Gedmo\Slug(fields={"title"})
+     * 
+     * @var string
      */
     private $slug;
     
     /**
      * @ORM\Column(type="string", length=50)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -138,6 +170,8 @@ class Album
      *     message = "error.invalidValue",
      *     groups = {"create", "update"}
      * )
+     * 
+     * @var string
      */
     private $status;
 
@@ -399,6 +433,20 @@ class Album
     public function getSlug(): ?string
     {
         return $this->slug;
+    }
+    
+    /**
+     * Set the slug
+     * 
+     * @param string $slug
+     * 
+     * @return \self
+     */
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+        
+        return $this;
     }
     
     /**

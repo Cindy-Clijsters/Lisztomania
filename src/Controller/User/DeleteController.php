@@ -91,11 +91,8 @@ class DeleteController extends AbstractController
             // Get the posted values
             $user = $form->getData();
             
-            // Set the status to deleted
-            $user->setStatus(User::STATUS_DELETED);
-            
             // Save the user
-            $this->userSvc->saveToDb($user);
+            $this->userSvc->removeFromDb($user);
             
             // Redirect to the overview
             $this->addFlash(

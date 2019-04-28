@@ -38,8 +38,6 @@ class AlbumRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->leftJoin('a.artist', 'artist')
-            ->andWhere('a.status != :deletedStatus')
-            ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->orderBy('artist.sortName', 'ASC')
             ->getQuery();
     }
@@ -55,9 +53,7 @@ class AlbumRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.slug = :slug')
-            ->andWhere('a.status != :deletedStatus')
             ->setParameter('slug', $slug)
-            ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();
     }
@@ -74,9 +70,7 @@ class AlbumRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->select('count(a.id)')
             ->andWhere('a.label = :label')
-            ->andWhere('a.status != :deletedStatus')
             ->setParameter('label', $label)
-            ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->getQuery()
             ->getSingleScalarResult();
     }
@@ -93,9 +87,7 @@ class AlbumRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->select('COUNT(a.id)')
             ->andWhere('a.artist = :artist')
-            ->andWhere('a.status != :deletedStatus')
             ->setParameter('artist', $artist)
-            ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->getQuery()
             ->getSingleScalarResult();
     }
@@ -112,9 +104,7 @@ class AlbumRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->select('count(a.id)')
             ->andWhere('a.distributor = :distributor')
-            ->andWhere('a.status != :deletedStatus')
             ->setParameter('distributor', $distributor)
-            ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->getQuery()
             ->getSingleScalarResult();
     }
@@ -128,8 +118,6 @@ class AlbumRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->select('count(a.id)')
-            ->andWhere('a.status != :deletedStatus')
-            ->setParameter('deletedStatus', Album::STATUS_DELETED)
             ->getQuery()
             ->getSingleScalarResult();
     }

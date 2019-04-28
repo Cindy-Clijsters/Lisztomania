@@ -25,7 +25,6 @@ return [
     'status.makeChoice' => '- Kies een status -',
     'status.active' => 'Actief',
     'status.inactive' => 'Inactief',
-    'status.deleted' => 'Verwijderd', 
     
     'action.view' => 'Een album bekijken',
     'action.add' => 'Een album toevoegen',

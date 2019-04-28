@@ -216,6 +216,23 @@ class UserService
     }
     
     /**
+     * Remove the user from the db
+     * 
+     * @param User $user
+     * 
+     * @return void
+     */
+    public function removeFromDb(User $user): void
+    {
+        $user->setSlug($user->getSlug() . '_softdeleted_' . $user->getId());
+        $this->em->persist($user);
+        $this->em->flush();
+        
+        $this->em->remove($user);
+        $this->em->flush();
+    }
+    
+    /**
      * Get the hashed password
      * 
      * @param User $user

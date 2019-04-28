@@ -70,9 +70,6 @@ class AlbumExtension extends AbstractExtension
             case Album::STATUS_INACTIVE:
                 $class = 'badge badge-danger';
                 break;
-            case Album::STATUS_DELETED:
-                $class = 'badge badge-dark';
-                break;
             default:
                 $class = 'badge badge-light';
                 break;

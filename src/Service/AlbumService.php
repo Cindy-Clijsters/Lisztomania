@@ -171,6 +171,23 @@ class AlbumService
     }
     
     /**
+     * Remove the album from the db
+     * 
+     * @param Album $album
+     * 
+     * @return void
+     */
+    public function removeFromDb(Album $album)
+    {
+        $album->setSlug($album->getSlug() . '_softdeleted_' . $album->getId());
+        $this->em->persist($album);
+        $this->em->flush();
+        
+        $this->em->remove($album);
+        $this->em->flush();
+    }
+    
+    /**
      * Get the amount of albums by status
      * 
      * @return int

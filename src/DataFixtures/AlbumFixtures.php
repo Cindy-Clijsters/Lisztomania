@@ -234,7 +234,7 @@ class AlbumFixtures extends Fixture implements DependentFixtureInterface
         $album19->setReleaseYear(2007);
         $date19 = new DateTime('2007/12/28');
         $album19->setReleaseDate($date19);
-        $album19->setStatus(Album::STATUS_DELETED);
+        $album19->setStatus(Album::STATUS_INACTIVE);
         $manager->persist($album19);
 
         $manager->flush();

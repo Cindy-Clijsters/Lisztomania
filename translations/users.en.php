@@ -16,7 +16,6 @@ return [
     'status.active' => 'Active',
     'status.inactive' => 'Inactive',
     'status.blocked' => 'Blocked',
-    'status.deleted' => 'Deleted',
     'status.unconfirmed' => 'Unconfirmed',
     
     'role.makeChoice' => '- Choose a role -',

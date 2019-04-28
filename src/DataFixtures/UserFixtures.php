@@ -78,7 +78,7 @@ class UserFixtures extends Fixture
         $user5->setUsername('ria.hermans');
         $user5->setRole(User::ROLE_ADMIN);
         $user5->setPassword($this->passwordEncoder->encodePassword($user5, 'testTEST123@'));
-        $user5->setStatus(User::STATUS_DELETED);
+        $user5->setStatus(User::STATUS_INACTIVE);
         $manager->persist($user5); 
 
         $user6 = new User();
@@ -167,7 +167,7 @@ class UserFixtures extends Fixture
         $user14->setUsername('alice.diallo');
         $user14->setRole(User::ROLE_USER);
         $user14->setPassword($this->passwordEncoder->encodePassword($user14, 'testTEST123@'));
-        $user14->setStatus(User::STATUS_DELETED);
+        $user14->setStatus(User::STATUS_INACTIVE);
         $manager->persist($user14);
 
         $user15 = new User();

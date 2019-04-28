@@ -16,7 +16,6 @@ return [
     'status.active' => 'Actief',
     'status.inactive' => 'Inactief',
     'status.blocked' => 'Geblokkeerd',
-    'status.deleted' => 'Verwijderd',
     'status.unconfirmed' => 'Niet bevestigd',
     
     'role.makeChoice' => '- Kies een rol -',

@@ -36,8 +36,6 @@ class UserRepository extends ServiceEntityRepository
     public function findNonDeletedQuery(): Query
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.status != :deletedStatus')
-            ->setParameter('deletedStatus', User::STATUS_DELETED)
             ->orderBy('u.lastName', 'ASC')
             ->addOrderBy('u.firstName', 'ASC')
             ->addOrderBy('u.email', 'ASC')
@@ -55,9 +53,7 @@ class UserRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.email = :email')
-            ->andWhere('u.status != :deletedStatus')
             ->setParameter('email', $criteria['email'])
-            ->setParameter('deletedStatus', User::STATUS_DELETED)
             ->getQuery()
             ->getResult();
     }
@@ -73,9 +69,7 @@ class UserRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.slug = :slug')
-            ->andWhere('u.status != :deletedStatus')
             ->setParameter('slug', $slug)
-            ->setParameter('deletedStatus', User::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();
     }
@@ -91,9 +85,7 @@ class UserRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.username = :username')
-            ->andWhere('u.status != :deletedStatus')
             ->setParameter('username', $username)           
-            ->setParameter('deletedStatus', User::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();
     }    
@@ -110,12 +102,10 @@ class UserRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('u')
             ->andWhere('u.username = :username OR u.email = :email')
             ->andWhere('u.role = :admin OR u.role = :superadmin')
-            ->andWhere('u.status != :deletedStatus')
             ->setParameter('username', $searchValue)
             ->setParameter('email', $searchValue)
             ->setParameter('admin', User::ROLE_ADMIN)
             ->setParameter('superadmin', User::ROLE_SUPERADMIN)                
-            ->setParameter('deletedStatus', User::STATUS_DELETED)
             ->getQuery()
             ->getOneOrNullResult();
     }
@@ -152,8 +142,6 @@ class UserRepository extends ServiceEntityRepository
     {
         $amount = $this->createQueryBuilder('u')
             ->select('count(u.id)')
-            ->andWhere('u.status != :deletedStatus')
-            ->setParameter('deletedStatus', User::STATUS_DELETED)
             ->getQuery()
             ->getSingleScalarResult();
         

@@ -12,8 +12,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+use App\Entity\BaseEntity;
+use App\Entity\User;
+
+use DateTime;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", hardDelete=true)
+ * @Gedmo\Loggable
  * 
  * @UniqueEntity(
  *     "username",
@@ -27,29 +34,29 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     groups = {"create", "update", "updateOwnProfile"}
  * )
  */
-class User implements UserInterface
+class User extends BaseEntity implements UserInterface
 {
     const STATUS_ACTIVE      = 'active';
     const STATUS_INACTIVE    = 'inactive';
     const STATUS_BLOCKED     = 'blocked';
-    const STATUS_DELETED     = 'deleted';
     const STATUS_UNCONFIRMED = 'unconfirmed';
     
     const ROLE_USER       = 'ROLE_USER';
     const ROLE_ADMIN      = 'ROLE_ADMIN';
     const ROLE_SUPERADMIN = 'ROLE_SUPERADMIN';
     
-    const LIST_ITEMS = 10;
-    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * 
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -63,11 +70,14 @@ class User implements UserInterface
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create", "update", "updateOwnProfile"}
      * )
+     * 
+     * @var string
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -81,11 +91,14 @@ class User implements UserInterface
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create", "update", "updateOwnProfile"}
      * )
+     * 
+     * @var string
      */
     private $firstName;
     
     /**
      * @ORM\Column(type="string", length=180)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -103,11 +116,14 @@ class User implements UserInterface
      *     message = "error.validEmailAddress", 
      *     groups = {"create", "update", "updateOwnProfile"}
      * )
+     * 
+     * @var string
      */
     private $email;
     
     /**
      * @ORM\Column(type="string", length=100, unique=true)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(
      *     message = "error.requiredField",
@@ -121,11 +137,14 @@ class User implements UserInterface
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create"}
      * )
+     * 
+     * @var string
      */
     private $username;
 
     /**
      * @ORM\Column(type="string")
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(message = "error.requiredField", groups = {"create", "update"})
      * @Assert\Type("string", groups = {"create", "update"})
@@ -136,12 +155,12 @@ class User implements UserInterface
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create", "update"}
      * )
+     * 
+     * @var string
      */
     private $role;
 
     /**
-     * @var string (old password)
-     * 
      * @Assert\NotBlank(message = "error.requiredField", groups = {"updatePassword", "confirmPassword"})
      * @Assert\Type("string", groups = {"updatePassword", "confirmPassword"})
      * @Assert\Length(
@@ -155,12 +174,12 @@ class User implements UserInterface
      *     message = "error.incorrectOldPassword",
      *     groups = {"updatePassword", "confirmPassword"}
      * )
+     * 
+     * @var string (old password)
      */
     private $oldPassword;
     
     /**
-     * @var string The unhashed password
-     * 
      * @Assert\NotBlank(message = "error.requiredField", groups = {"updatePassword", "resetPassword", "confirmRegistration"})
      * @Assert\Type("string", groups = {"updatePassword", "resetPassword", "confirmRegistration"})
      * @Assert\Length(
@@ -176,12 +195,12 @@ class User implements UserInterface
      *     message = "error.safePassword",
      *     groups = {"updatePassword", "resetPassword", "confirmRegistration"}
      * )
+     * 
+     * @var string The unhashed password
      */
     private $plainPassword;
     
-    /**
-     * @var string 
-     * 
+    /** 
      * @Assert\NotBlank(message = "error.requiredField", groups = {"updatePassword", "resetPassword", "confirmRegistration"})
      * @Assert\Type("string", groups = {"updatePassword", "resetPassword", "confirmRegistration"})
      * @Assert\EqualTo(
@@ -189,13 +208,16 @@ class User implements UserInterface
      *     message = "error.passwordsUnmatched",
      *     groups = {"updatePassword", "resetPassword", "confirmRegistration"}
      * )
+     * 
+     * @var string 
      */
     private $confirmPassword;
     
     /**
-     * @var string The hashed password
-     * 
      * @ORM\Column(type="string", nullable=true)
+     * @Gedmo\Versioned
+     * 
+     * @var string The hashed password
      */
     private $password;
     
@@ -208,6 +230,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Gedmo\Versioned
      * 
      * @Assert\NotBlank(message = "error.requiredField", groups = {"update"})
      * @Assert\Type("string", groups = {"update"})
@@ -483,6 +506,20 @@ class User implements UserInterface
     public function getSlug(): ?string
     {
        return $this->slug; 
+    }
+    
+    /**
+     * Set the slug
+     * 
+     * @param string $slug
+     * 
+     * @return \self
+     */
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+        
+        return $this;
     }
 
     /**

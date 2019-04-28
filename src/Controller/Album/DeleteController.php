@@ -53,11 +53,8 @@ class DeleteController extends AbstractController
         // Get the information of an album
         $album = $this->albumSvc->findBySlug($slug);
         
-        // Set the status to deleted
-        $album->setStatus(Album::STATUS_DELETED);
-        
         // Save the album
-        $this->albumSvc->saveToDb($album);
+        $this->albumSvc->removeFromDb($album);
         
         // Redirect to the overview
         $this->addFlash(

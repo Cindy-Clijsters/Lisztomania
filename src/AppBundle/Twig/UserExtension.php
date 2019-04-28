@@ -89,9 +89,6 @@ class UserExtension extends AbstractExtension
             case User::STATUS_UNCONFIRMED:
                 $class = 'badge badge-warning';
                 break;
-            case User::STATUS_DELETED:
-                $class = 'badge badge-dark';
-                break;
             default:
                 $class = 'badge badge-light';
                 break;
