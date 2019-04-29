@@ -28,15 +28,41 @@ class ArtistRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get the non-deleted artists
+     * Get the artists
+     * 
+     * @param string $searchValue
+     * @param string $country
+     * @param string $status
      * 
      * @return Query
      */
-    public function findNonDeletedQuery(): Query
+    public function findQuery(
+        string $searchValue,
+        string $country,
+        string $status
+    ): Query
     {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.sortName', 'ASC')
-            ->getQuery();
+        $query = $this->createQueryBuilder('a');
+        
+        if ($searchValue !== '') {
+            $query = $query->andWhere('a.name LIKE :searchValue OR a.sortName LIKE :searchValue')
+                           ->setParameter('searchValue', '%' . addcslashes($searchValue, '%_') . '%');
+        }
+        
+        if ($country !== '') {
+            $query = $query->andWhere('a.country = :country')
+                           ->setParameter('country', $country);
+        }
+        
+        if ($status !== '') {
+            $query = $query->andWhere('a.status = :status')
+                           ->setParameter('status', $status);
+        }
+        
+        $query = $query->orderBy('a.sortName', 'ASC')
+                       ->getQuery();
+        
+        return $query;
     }
     
     /**

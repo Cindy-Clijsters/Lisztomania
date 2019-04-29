@@ -5,6 +5,7 @@ return [
     'field.sortName' => 'Sorteren op',
     'field.country' => 'Land',
     'field.status' => 'Status', 
+    'field.searchValue' => 'Zoekwaarde',
     
     'status.makeChoice' => '- Kies een status -',
     'status.active' => 'Actief',

@@ -47,14 +47,22 @@ class ArtistService
     }
     
     /**
-     * Get the query for finding the non-deleted artists
+     * Get the query for finding the artists
+     * 
+     * @param string $searchValue
+     * @param string $country
+     * @param string $status
      * 
      * @return Query
      */
-    public function findNonDeletedQuery(): Query
+    public function findQuery(
+        string $searchValue,
+        string $country,
+        string $status
+    ): Query
     {
         $artistRps = $this->getRepository();
-        $artistQry = $artistRps->findNonDeletedQuery();
+        $artistQry = $artistRps->findQuery($searchValue, $country, $status);
         
         return $artistQry;
     }

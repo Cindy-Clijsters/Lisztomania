@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
 use App\Entity\Artist;
+use App\Form\Artist\FilterType;
 use App\Service\ArtistService;
 use App\Service\ListService;
 
@@ -56,12 +57,15 @@ class OverviewController extends AbstractController
      */
     public function overview(Request $request):Response
     {
+        // Create the form for filtering artists
+        $form = $this->createForm(FilterType::class, null);
+        $form->handleRequest($request);
+        
         // Get the page nr
         $pageNr = $request->query->getInt('page', 1);
         
         // Get the non-deleted artists
-        $artistQry = $this->artistSvc->findNonDeletedQuery();
-        $artists   = $this->paginator->paginate($artistQry, $pageNr, Artist::LIST_ITEMS);
+        $artists = $this->getArtists($request, $pageNr);
         
         // Get the start- and end record for the shown items
         list($startRecord, $endRecord) = $this->listSvc->getStartEndRecord(
@@ -74,11 +78,34 @@ class OverviewController extends AbstractController
         return $this->render(
             'artist/overview.html.twig',
             [
+                'form'        => $form->createView(),
                 'artists'     => $artists,
                 'startRecord' => $startRecord,
                 'endRecord'   => $endRecord
             ]
         );
+    }
+    
+    /**
+     * Get the artists
+     * 
+     * @param Request $request
+     * @param int $pageNr
+     * 
+     * @return object
+     */
+    private function getArtists(Request $request, int $pageNr): object
+    {
+        // Get the filter values
+        $searchValue = $request->query->get('searchValue', '');
+        $country     = $request->query->get('country', '');
+        $status      = $request->query->get('status', '');
+        
+        // Get the artists
+        $artistsQry = $this->artistSvc->findQuery($searchValue, $country, $status);
+        $artists    = $this->paginator->paginate($artistsQry, $pageNr, Artist::LIST_ITEMS);
+        
+        return $artists;
     }
     
 }
