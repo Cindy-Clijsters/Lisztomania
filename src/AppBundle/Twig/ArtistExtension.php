@@ -6,6 +6,8 @@ namespace App\AppBundle\Twig;
 use Twig\Extension\AbstractExtension;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+use Symfony\Component\Intl\Intl;
+
 use App\Entity\Artist;
 
 /**
@@ -35,7 +37,8 @@ class ArtistExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new \Twig_SimpleFilter('formatArtistStatus', [$this, 'formatArtistStatusFilter'], ['pre_escape' => 'html', 'is_safe' => ['html']])
+            new \Twig_SimpleFilter('formatArtistStatus', [$this, 'formatArtistStatusFilter'], ['pre_escape' => 'html', 'is_safe' => ['html']]),
+            new \Twig_SimpleFilter('countryName', [$this, 'getCountryName'])
         ];        
     }    
     
@@ -77,4 +80,16 @@ class ArtistExtension extends AbstractExtension
         
         return $class;
     }    
+    
+    /**
+     * Get the full country name
+     * 
+     * @param string $countryAbbr
+     * 
+     * @return string
+     */
+    public function getCountryName(string $countryAbbr): string
+    {
+        return Intl::getRegionBundle()->getCountryName($countryAbbr);
+    }       
 }

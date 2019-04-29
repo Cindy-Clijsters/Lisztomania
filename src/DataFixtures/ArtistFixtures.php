@@ -54,6 +54,7 @@ class ArtistFixtures extends Fixture
         $artist1 = new Artist();
         $artist1->setName('Admiral Freebee');
         $artist1->setSortName('Admiral Freebee');
+        $artist1->setCountry('BE');
         $artist1->setStatus(Artist::STATUS_ACTIVE);
         $manager->persist($artist1);
         
@@ -96,12 +97,14 @@ class ArtistFixtures extends Fixture
         $artist8 = new Artist();
         $artist8->setName('Hooverphonic');
         $artist8->setSortName('Hooverphonic');
+        $artist8->setCountry('BE');
         $artist8->setStatus(Artist::STATUS_INACTIVE);
         $manager->persist($artist8);
 
         $artist9 = new Artist();
         $artist9->setName('Isbells');
         $artist9->setSortName('Isbells');
+        $artist9->setCountry('BE');
         $artist9->setStatus(Artist::STATUS_ACTIVE);
         $manager->persist($artist9);
 
@@ -186,6 +189,7 @@ class ArtistFixtures extends Fixture
         $artist23 = new Artist();
         $artist23->setName('Vive La Fête');
         $artist23->setSortName('Vive La Fête');
+        $artist23->setCountry('BE');
         $artist23->setStatus(Artist::STATUS_ACTIVE);
         $manager->persist($artist23);
 
@@ -210,12 +214,14 @@ class ArtistFixtures extends Fixture
         $artist27 = new Artist();
         $artist27->setName('Zornik');
         $artist27->setSortName('Zornik');
+        $artist27->setCountry('BE');
         $artist27->setStatus(Artist::STATUS_ACTIVE);
         $manager->persist($artist27);
 
         $artist28 = new Artist();
         $artist28->setName('Buscemi');
         $artist28->setSortName('Buscemi');
+        $artist28->setCountry('BE');
         $artist28->setStatus(Artist::STATUS_ACTIVE);
         $manager->persist($artist28);
 

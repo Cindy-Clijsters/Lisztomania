@@ -3,11 +3,14 @@ return [
     
     'field.name' => 'Name',
     'field.sortName' => 'Sort on',
+    'field.country' => 'Country',
     'field.status' => 'Status', 
     
-    'status.makeChoice' => '--- Choose a status ---',
+    'status.makeChoice' => '- Choose a status -',
     'status.active' => 'Active',
     'status.inactive' => 'Inactive',
+    
+    'country.makeChoice' => '- Choose a country -',
     
     'action.view' => 'View a artist',
     'action.add' => 'Add a artist',

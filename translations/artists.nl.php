@@ -3,11 +3,14 @@ return [
     
     'field.name' => 'Naam',
     'field.sortName' => 'Sorteren op',
+    'field.country' => 'Land',
     'field.status' => 'Status', 
     
     'status.makeChoice' => '- Kies een status -',
     'status.active' => 'Actief',
     'status.inactive' => 'Inactief',
+    
+    'country.makeChoice' => '- Kies een land -',
     
     'action.view' => 'Een artiest bekijken',
     'action.add' => 'Een artiest toevoegen',

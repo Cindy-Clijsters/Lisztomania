@@ -86,6 +86,21 @@ class Artist extends BaseEntity
     private $sortName;
     
     /**
+     * @ORM\Column(type="string", nullable = true, length=2)
+     * @Gedmo\Versioned
+     * 
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 2,
+     *     exactMessage = "error.exactCharacters",
+     *     groups = {"create", "update"}
+     * )
+     * 
+     * @var string 
+     */
+    private $country;
+    
+    /**
      * @ORM\Column(length = 128, unique = true)
      * 
      * @Gedmo\Slug(fields = {"name"})
@@ -175,6 +190,30 @@ class Artist extends BaseEntity
     {
         $this->sortName = $sortName;
 
+        return $this;
+    }
+    
+    /**
+     * Get the country
+     * 
+     * @return string|null
+     */
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+    
+    /**
+     * Set the country
+     * 
+     * @param string $country
+     * 
+     * @return \self
+     */
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
+        
         return $this;
     }
     

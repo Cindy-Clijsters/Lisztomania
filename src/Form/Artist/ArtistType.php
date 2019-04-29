@@ -6,6 +6,7 @@ namespace App\Form\Artist;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,6 +20,14 @@ use App\Entity\Artist;
  */
 class ArtistType extends AbstractType
 {
+    /**
+     * Generate the form for the artists
+     * 
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * 
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -40,6 +49,17 @@ class ArtistType extends AbstractType
                     'required'   => true,
                     'attr'       => ['maxlength' => 100],
                     'empty_data' => ''
+                ]
+            )
+            ->add(
+                'country',
+                CountryType::class,
+                [
+                    'label'                     => 'field.country',
+                    'required'                  => false,
+                    'choice_translation_locale' => null,
+                    'placeholder'               => 'country.makeChoice',
+                    'attr'                      => ['maxlength' => 2]
                 ]
             )
             ->add(
@@ -66,6 +86,13 @@ class ArtistType extends AbstractType
             );
     }
     
+    /**
+     * Set the default values
+     * 
+     * @param OptionsResolver $resolver
+     * 
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
