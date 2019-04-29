@@ -12,7 +12,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\Album;
 use App\Service\AlbumService;
-use App\Form\AlbumType;
+use App\Form\Album\AlbumType;
 
 /**
  * Create an album

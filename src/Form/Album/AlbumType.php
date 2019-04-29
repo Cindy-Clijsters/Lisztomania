@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Form;
+namespace App\Form\Album;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -163,7 +163,6 @@ class AlbumType extends AbstractType
                 [
                     'label'       => 'field.status',
                     'required'    => true,
-                    'empty_data'  => '',
                     'choices'     => [
                         'status.makeChoice' => '',
                         'status.active'   => Album::STATUS_ACTIVE,

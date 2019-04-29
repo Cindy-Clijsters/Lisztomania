@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Service\AlbumService;
-use App\Form\AlbumType;
+use App\Form\Album\AlbumType;
 
 /**
  * Update an album
@@ -54,8 +54,12 @@ class UpdateController extends AbstractController
     {
         // Get the information to display the view
         $album = $this->albumSvc->findBySlug($slug);
-        $form  = $this->createForm(AlbumType::class, $album, ['validation_groups' => 'update']);
         
+        $form  = $this->createForm(
+            AlbumType::class,
+            $album,
+            ['validation_groups' => 'update']
+        );
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
