@@ -4,6 +4,8 @@ return [
     'field.name' => 'Name',
     'field.sortName' => 'Sort on',
     'field.country' => 'Country',
+    'field.descriptionNl' => 'Description (nl)',
+    'field.descriptionEn' => 'Description (en)',
     'field.status' => 'Status', 
     'field.searchValue' => 'Search value',    
     

@@ -32,7 +32,19 @@ doctrine:
                 prefix: Gedmo\Loggable\Entity
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
                 alias: GedmoLoggable # (optional) it will default to the name set for the mapping
-                is_bundle: false       
+                is_bundle: false   
+            gedmo_translatable:
+                type: annotation
+                prefix: Gedmo\Translatable\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                alias: GedmoTranslatable # (optional) it will default to the name set for the mapping
+                is_bundle: false
+            gedmo_translator:
+                type: annotation
+                prefix: Gedmo\Translator\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+                alias: GedmoTranslator # (optional) it will default to the name set for the mapping
+                is_bundle: false                
         filters:
             softdeleteable:
                 class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter

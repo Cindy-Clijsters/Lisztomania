@@ -9,9 +9,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 
 use App\Entity\BaseEntity;
-use App\Entity\User;
 
 use DateTime;
 
@@ -86,6 +86,14 @@ class Artist extends BaseEntity
     private $sortName;
     
     /**
+     * @ORM\Column(name="description", type="text")
+     * @Gedmo\Translatable
+     * 
+     * @var text 
+     */
+    private $description;
+    
+    /**
      * @ORM\Column(type="string", nullable = true, length=2)
      * @Gedmo\Versioned
      * 
@@ -99,6 +107,13 @@ class Artist extends BaseEntity
      * @var string 
      */
     private $country;
+    
+    /**
+     * @Gedmo\Locale
+     * 
+     * @var string 
+     */
+    private $locale;
     
     /**
      * @ORM\Column(length = 128, unique = true)
@@ -194,6 +209,30 @@ class Artist extends BaseEntity
     }
     
     /**
+     * Get the description
+     * 
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    
+    /**
+     * Set the description
+     * 
+     * @param string $description
+     * 
+     * @return \self
+     */
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+        
+        return $this;
+    }
+    
+    /**
      * Get the country
      * 
      * @return string|null
@@ -213,6 +252,20 @@ class Artist extends BaseEntity
     public function setCountry(?string $country): self
     {
         $this->country = $country;
+        
+        return $this;
+    }
+    
+    /**
+     * Set the locale
+     * 
+     * @param string $locale
+     * 
+     * @return \self
+     */
+    public function setTranslatableLocale(string $locale): self
+    {
+        $this->locale = $locale;
         
         return $this;
     }
