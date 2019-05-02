@@ -4,8 +4,9 @@ return [
     'field.name' => 'Naam',
     'field.sortName' => 'Sorteren op',
     'field.country' => 'Land',
-    'field.descriptionNl' => 'Omschrijving (nl)',
-    'field.descriptionEn' => 'Omschrijving (en)',    
+    'field.descriptionNl' => 'Omschrijving',
+    'field.descriptionNl' => 'Omschrijving (Nl)',
+    'field.descriptionEn' => 'Omschrijving (En)',    
     'field.status' => 'Status', 
     'field.searchValue' => 'Zoekwaarde',
     

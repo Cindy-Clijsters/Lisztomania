@@ -13,8 +13,6 @@ use Gedmo\Translatable\Translatable;
 
 use App\Entity\BaseEntity;
 
-use DateTime;
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", hardDelete=true)
@@ -86,12 +84,19 @@ class Artist extends BaseEntity
     private $sortName;
     
     /**
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      * @Gedmo\Translatable
      * 
      * @var text 
      */
-    private $description;
+    private $description;           
+    
+    /**
+     * @Gedmo\Locale
+     * 
+     * @var string 
+     */
+    private $locale;
     
     /**
      * @ORM\Column(type="string", nullable = true, length=2)
@@ -107,13 +112,6 @@ class Artist extends BaseEntity
      * @var string 
      */
     private $country;
-    
-    /**
-     * @Gedmo\Locale
-     * 
-     * @var string 
-     */
-    private $locale;
     
     /**
      * @ORM\Column(length = 128, unique = true)
@@ -149,7 +147,7 @@ class Artist extends BaseEntity
      * @var string
      */
     private $status;
-
+    
     /**
      * Get the id
      * 

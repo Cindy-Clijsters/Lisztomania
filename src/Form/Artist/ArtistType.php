@@ -12,8 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
-
 use App\Entity\Artist;
 
 /**
@@ -64,7 +62,27 @@ class ArtistType extends AbstractType
                     'placeholder'               => 'country.makeChoice',
                     'attr'                      => ['maxlength' => 2]
                 ]
-            )      
+            )    
+            ->add(
+                'descriptionNl',
+                TextareaType::class,
+                [
+                    'label'      => 'field.descriptionNl',
+                    'required'   => false,
+                    'mapped'     => false,
+                    'empty_data' => ''
+                ]
+            )
+            ->add(
+                'descriptionEn',
+                TextareaType::class,
+                [
+                    'label'      => 'field.descriptionEn',
+                    'required'   => false,
+                    'mapped'     => false,
+                    'empty_data' => ''
+                ]
+            )                
             ->add(
                 'status',
                 ChoiceType::class,
