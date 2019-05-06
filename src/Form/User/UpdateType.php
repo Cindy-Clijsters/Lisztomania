@@ -8,7 +8,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -58,14 +57,9 @@ class UpdateType extends AbstractType
                 'role',
                  ChoiceType::class,
                 [
-                    'label'       => 'field.role',
-                    'required'    => true,
-                    'constraints' => [
-                        new Choice([
-                            'choices' => ['', User::ROLE_ADMIN, User::ROLE_SUPERADMIN, User::ROLE_USER]
-                        ])
-                    ],
-                    'choices'     => [
+                    'label'    => 'field.role',
+                    'required' => true,
+                    'choices'  => [
                         'role.makeChoice'      => '',
                         'role.ROLE_USER'       => User::ROLE_USER,
                         'role.ROLE_ADMIN'      => User::ROLE_ADMIN,
@@ -77,14 +71,9 @@ class UpdateType extends AbstractType
                 'status',
                  ChoiceType::class,
                 [
-                    'label'              => 'field.status',
-                    'required'           => true,
-                    'constraints'        => [
-                        new Choice([
-                            'choices' => ['', User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_UNCONFIRMED]
-                        ])
-                    ],
-                    'choices'     => [
+                    'label'    => 'field.status',
+                    'required' => true,
+                    'choices'  => [
                         'status.makeChoice'  => '',
                         'status.active'      => User::STATUS_ACTIVE,
                         'status.inactive'    => User::STATUS_INACTIVE,

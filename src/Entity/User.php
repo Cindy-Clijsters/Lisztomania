@@ -41,9 +41,13 @@ class User extends BaseEntity implements UserInterface
     const STATUS_BLOCKED     = 'blocked';
     const STATUS_UNCONFIRMED = 'unconfirmed';
     
+    const VALID_STATUSES = [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_BLOCKED, self::STATUS_UNCONFIRMED];
+    
     const ROLE_USER       = 'ROLE_USER';
     const ROLE_ADMIN      = 'ROLE_ADMIN';
     const ROLE_SUPERADMIN = 'ROLE_SUPERADMIN';
+    
+    const VALID_ROLES = [self::ROLE_USER, self::ROLE_ADMIN, self::ROLE_SUPERADMIN];
     
     /**
      * @ORM\Id()
@@ -155,6 +159,11 @@ class User extends BaseEntity implements UserInterface
      *     maxMessage = "error.maxCharacters",
      *     groups = {"create", "update"}
      * )
+     * @Assert\Choice(
+     *     choices = Album::VALID_STATUSES,
+     *     message = "error.invalidValue",
+     *     groups  = {"create", "update"}
+     * )
      * 
      * @var string
      */
@@ -232,7 +241,10 @@ class User extends BaseEntity implements UserInterface
      * @ORM\Column(type="string", length=20)
      * @Gedmo\Versioned
      * 
-     * @Assert\NotBlank(message = "error.requiredField", groups = {"update"})
+     * @Assert\NotBlank(
+     *     message = "error.requiredField",
+     *     groups = {"update"}
+     * )
      * @Assert\Type("string", groups = {"update"})
      * @Assert\Length(
      *     min = 1,
@@ -241,6 +253,13 @@ class User extends BaseEntity implements UserInterface
      *     maxMessage = "error.maxCharacters",
      *     groups = {"update"}
      * )
+     * @Assert\Choice(
+     *     choices = User::VALID_STATUSES,
+     *     message = "error.invalidValue",
+     *     groups  = {"update"}
+     * )
+     * 
+     * @var string
      */
     private $status;
     

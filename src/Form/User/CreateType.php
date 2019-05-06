@@ -7,9 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -76,11 +74,6 @@ class CreateType extends AbstractType
                 [
                     'label'       => 'field.role',
                     'required'    => true,
-                    'constraints' => [
-                        new Choice([
-                            'choices' => ['', User::ROLE_ADMIN, User::ROLE_SUPERADMIN, User::ROLE_USER]
-                        ])
-                    ],
                     'choices'     => [
                         'role.makeChoice'      => '',
                         'role.ROLE_USER'       => User::ROLE_USER,
