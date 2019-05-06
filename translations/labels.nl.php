@@ -3,6 +3,8 @@ return [
     
     'field.name' => 'Naam',
     'field.status' => 'Status',
+    'field.searchValue' => 'Zoekwaarde',
+
     
     'status.makeChoice' => '- Kies een status -',
     'status.active' => 'Actief',

@@ -49,12 +49,15 @@ class LabelService
     /**
      * Get a query to get the non-deleted labels
      * 
+     * @param string $searchValue
+     * @param string $status
+     * 
      * @return Query
      */
-    public function findNonDeletedQuery(): Query
+    public function findNonDeletedQuery(string $searchValue = '', string $status = ''): Query
     {
         $labelRps = $this->getRepository();
-        $labelQry = $labelRps->findNonDeletedQuery();
+        $labelQry = $labelRps->findNonDeletedQuery($searchValue, $status);
         
         return $labelQry;
     }

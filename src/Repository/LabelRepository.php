@@ -31,11 +31,24 @@ class LabelRepository extends ServiceEntityRepository
      * 
      * @return Query
      */
-    public function findNonDeletedQuery(): Query
+    public function findNonDeletedQuery(string $searchValue = '', string $status = ''): Query
     {
-        return $this->createQueryBuilder('l')
-            ->orderBy('l.name', 'ASC')
-            ->getQuery();
+        $query = $this->createQueryBuilder('l');
+        
+        if ($searchValue !== '') {
+            $query = $query->andWhere('l.name LIKE :searchValue')
+                           ->setParameter('searchValue', '%' . addcslashes($searchValue, '%_') . '%');
+        }
+        
+        if ($status !== '') {
+            $query = $query->andWhere('l.status = :searchStatus')
+                           ->setParameter('searchStatus', $status);
+        }
+            
+        $query = $query->orderBy('l.name', 'ASC')
+                       ->getQuery();
+        
+        return $query;
     }
     
     /**

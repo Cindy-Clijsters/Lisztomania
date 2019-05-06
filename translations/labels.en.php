@@ -3,6 +3,7 @@ return [
     
     'field.name' => 'Name',
     'field.status' => 'Status',
+    'field.searchValue' => 'Search value',
     
     'action.view' => 'View a label',
     'action.add' => 'Add a label',
