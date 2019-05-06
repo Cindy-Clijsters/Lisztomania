@@ -62,10 +62,14 @@ class CreateController extends AbstractController
            
             // Get the posted values
             $artist = $form->getData();
+            
+            $translations = [];
+            $translations['description']['nl'] = $form->get('descriptionNl')->getData();
+            $translations['description']['en'] = $form->get('descriptionEn')->getData();
            
             // Save the artist
-            $this->artistSvc->saveToDb($artist);
-           
+            $this->artistSvc->saveToDb($artist, $translations);
+            
             // Redirect to the overview
             $this->addFlash(
                 'notice',
@@ -79,9 +83,9 @@ class CreateController extends AbstractController
             );
            
             return $this->redirectToRoute('rtAdminArtistOverview');
-           
+            
         }
-       
+        
         // Display the view
         return $this->render(
             'artist/create.html.twig',

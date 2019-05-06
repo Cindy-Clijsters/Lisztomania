@@ -12,6 +12,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\Artist;
 use App\Repository\ArtistRepository;
 
+use Gedmo\Translatable\Entity\Translation;
+
 /**
  * Holds artist functions
  *
@@ -110,13 +112,23 @@ class ArtistService
      * Save the artist into the database
      * 
      * @param Artist $artist
+     * @param array $translations
      * 
      * @return void
      */
-    public function saveToDb(Artist $artist): void
+    public function saveToDb(Artist $artist, array $translations): void
     {
+        // Get the translations repository
+        $translationRps = $this->em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+    
+        // Add the description
+        $artist->setDescription($translations['description']['nl']);
+        $translationRps->translate($artist, 'description', 'nl', $translations['description']['nl']);
+        $translationRps->translate($artist, 'description', 'en', $translations['description']['en']);
+        
+        // Save the artist
         $this->em->persist($artist);
-        $this->em->flush();
+        $this->em->flush();        
     }
     
     /**
