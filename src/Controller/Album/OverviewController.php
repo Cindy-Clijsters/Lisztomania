@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
 use App\Entity\Album;
+use App\Form\Album\FilterType;
 use App\Service\AlbumService;
 use App\Service\ListService;
 
@@ -56,6 +57,10 @@ class OverviewController extends AbstractController
      */
     public function overview(Request $request):Response
     {
+        // Create the form for filtering the artists
+        $form = $this->createForm(FilterType::class, null);
+        $form->handleRequest($request);
+        
         // Get the page nr
         $pageNr = $request->query->getInt('page', 1);
         
@@ -74,6 +79,7 @@ class OverviewController extends AbstractController
         return $this->render(
             'album/overview.html.twig',
             [
+                'form'        => $form->createView(),
                 'albums'      => $albums,
                 'startRecord' => $startRecord,
                 'endRecord'   => $endRecord

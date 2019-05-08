@@ -10,6 +10,7 @@ return [
     'field.releaseYear' => 'Uitgave jaar', 
     'field.releaseDate' => 'Uitgave datum',
     'field.status' => 'Status', 
+    'field.searchValue' => 'Zoekwaarde',    
     
     'orAnd' => 'of/en',
     'Year' => 'Jaar',
@@ -18,7 +19,8 @@ return [
     
     'artist.makeChoice' => '- Kies een artiest -',    
     'label.makeChoice' => '- Kies een label -',
-    'distributor.makeChoice' => '- Kies een distributeur -',    
+    'distributor.makeChoice' => '- Kies een distributeur -',   
+    'releaseYear.makeChoice' => '- Kies een uitgave jaar - ',
     
     'fieldValue.multipleArtists' => '- Diverse artiesten -',
     

@@ -35,6 +35,55 @@
                             </a>
                         </div>
                     </div>
+                            
+                    {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
+                    
+                        <div class="row form-group">
+                            <div class="col-xl-9 col-lg-9 pt-1">
+                                {{ form_widget(form.searchValue) }}
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xl-2 col-lg-2 pt-1">
+                                {{ form_widget(form.multipleArtists) }}
+                             </div>
+                            <div class="col-xl-1 col-lg-1 pt-1 pb-2">
+                                {% trans from 'albums' %}orAnd{% endtrans %}
+                            </div>                                 
+                            <div class="col-xl-6 col-lg-6">
+                               {{ form_widget(form.artist) }}
+                            </div>    
+                        </div>   
+                        <div class="row form-group">
+                            <div class="col-xl-5 col-lg-5 pt-1">
+                                {{ form_widget(form.label) }}
+                            </div>                            
+                            <div class="col-xl-4 col-lg-4 pt-1">
+                                {{ form_widget(form.distributor) }}
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                &nbsp;
+                            </div>
+                        </div>    
+                        <div class="row form-group">
+                            <div class="col-xl-5 col-lg-5 pt-1">
+                                {{ form_widget(form.releaseYear) }}
+                            </div>                            
+                            <div class="col-xl-4 col-lg-4 pt-1">
+                                {{ form_widget(form.status) }}
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                {{ form_widget(form.filter) }}
+                                <a href="{{ path('rtAdminAlbumOverview') }}" class="mt-2 btn btn-sm btn-outline-primary">
+                                    {% trans %}action.reset{% endtrans %}
+                                </a>
+                            </div>
+                        </div>                            
+                    
+                    {{ form_end(form) }}
 
                         {% if albums is not empty %}
 

@@ -10,6 +10,7 @@ return [
     'field.releaseYear' => 'Release year', 
     'field.releaseDate' => 'Release date',
     'field.status' => 'Status', 
+    'field.searchValue' => 'Search value',       
     
     'orAnd' => 'or/and',
     'Year' => 'Year',
@@ -19,6 +20,7 @@ return [
     'artist.makeChoice' => '- Choose an artist -',
     'label.makeChoice' => '- Choose a label -',
     'distributor.makeChoice' => '- Choose a distributor -',
+    'releaseYear.makeChoice' => '- Choose a release year - ',
     
     'fieldValue.multipleArtists' => '- Multiple artists -',
     
