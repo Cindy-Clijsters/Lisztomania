@@ -59,12 +59,20 @@ class UserService
     /**
      * Get the query for finding the non-deleted users
      * 
+     * @param string $searchValue
+     * @param string $role
+     * @param string $status
+     * 
      * @return Query
      */
-    public function findNonDeletedQuery(): Query
+    public function findNonDeletedQuery(
+        string $searchValue,
+        string $role,
+        string $status
+    ): Query
     {
         $userRps = $this->getRepository();
-        $userQry = $userRps->findNonDeletedQuery();
+        $userQry = $userRps->findNonDeletedQuery($searchValue, $role, $status);
         
         return $userQry;
     }

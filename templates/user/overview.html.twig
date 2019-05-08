@@ -35,6 +35,33 @@
                             </div>
                         </div>
                     {% endif %}
+                    
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                    
+                        <div class="row form-group">
+                            <div class="col-xl-9 col-lg-9 pt-1">
+                                {{ form_widget(form.searchValue) }}
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xl-5 col-lg-5 pt-1">
+                                {{ form_widget(form.role) }}
+                            </div>
+                            <div class="col-xl-4 col-lg-4 pt-1">
+                                {{ form_widget(form.status) }}
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                {{ form_widget(form.filter) }}
+                                <a href="{{ path('rtAdminUserOverview') }}" class="mt-2 btn btn-sm btn-outline-primary">
+                                    {% trans %}action.reset{% endtrans %}
+                                </a>
+                            </div>
+                        </div>
+                    
+                    {{ form_end(form) }}
 
                     {% if users is not empty %}
 

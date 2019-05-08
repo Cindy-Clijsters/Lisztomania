@@ -11,6 +11,7 @@ return [
     'field.confirmPassword' => 'Bevestig wachtwoord',
     'field.role' => 'Rol',
     'field.status' => 'Status',    
+    'field.searchValue' => 'Zoekwaarde',
     
     'status.makeChoice' => '- Kies een status -',
     'status.active' => 'Actief',

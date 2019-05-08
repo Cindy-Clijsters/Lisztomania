@@ -11,6 +11,7 @@ return [
     'field.confirmPassword' => 'Confirm password',
     'field.role' => 'Role',
     'field.status' => 'Status',
+    'field.searchValue' => 'Search value',
     
     'status.makeChoice' => '- Choose a status -',
     'status.active' => 'Active',

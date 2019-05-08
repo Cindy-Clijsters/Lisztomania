@@ -31,15 +31,37 @@ class UserRepository extends ServiceEntityRepository
     /**
      * Get the the non-deleted users
      * 
+     * @param string $searchValue
+     * @param string $role
+     * @param string $status
+     * 
      * @return Query
      */
-    public function findNonDeletedQuery(): Query
+    public function findNonDeletedQuery(string $searchValue, string $role, string $status): Query
     {
-        return $this->createQueryBuilder('u')
-            ->orderBy('u.lastName', 'ASC')
+        $query = $this->createQueryBuilder('u');
+        
+        if ($searchValue !== '') {
+            $query = $query->andWhere('u.lastName LIKE :searchValue OR u.firstName LIKE :searchValue OR u.email LIKE :searchValue OR u.username LIKE :searchValue')
+                           ->setParameter('searchValue', '%' . addcslashes($searchValue, '%_') . '%');
+        }
+        
+        if ($role !== '') {
+            $query = $query->andWhere('u.role = :role')
+                           ->setParameter('role', $role);
+        }
+        
+        if ($status !== '') {
+            $query = $query->andWhere('u.status = :status')
+                            ->setParameter('status', $status); 
+        }
+        
+        $query = $query->orderBy('u.lastName', 'ASC')
             ->addOrderBy('u.firstName', 'ASC')
             ->addOrderBy('u.email', 'ASC')
             ->getQuery();
+        
+        return $query;
     }
     
     /**

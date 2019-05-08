@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
 use App\Entity\User;
+use App\Form\User\FilterType;
 use App\Service\UserService;
 use App\Service\ListService;
 
@@ -56,16 +57,15 @@ class OverviewController extends AbstractController
      */
     public function overview(Request $request):Response
     {
+        // Create the form for filtering users
+        $form = $this->createForm(FilterType::class, null);
+        $form->handleRequest($request);
+        
         // Get the page nr
         $pageNr = $request->query->getInt('page', 1);
         
         // Get the non-deleted users
-        $usersQry = $this->userSvc->findNonDeletedQuery();
-        $users    = $this->paginator->paginate(
-            $usersQry,
-            $pageNr,
-            User::LIST_ITEMS
-        );
+        $users = $this->getUsers($request, $pageNr);
         
         // Get the start- and end record of the shown items
         list($startRecord, $endRecord) = $this->listSvc->getStartEndRecord(
@@ -78,6 +78,7 @@ class OverviewController extends AbstractController
         return $this->render(
             'user/overview.html.twig',
             [
+                'form'        => $form->createView(),
                 'users'       => $users,
                 'startRecord' => $startRecord,
                 'endRecord'   => $endRecord
@@ -85,4 +86,31 @@ class OverviewController extends AbstractController
         );
     }
     
+    /**
+     * Get the users
+     * 
+     * @param Request $request
+     * @param int $pageNr
+     * 
+     * @return object
+     */
+    private function getUsers(Request $request, int $pageNr)
+    {
+        // Get the filter values
+        $searchValue = $request->query->get('searchValue', '');
+        $role        = $request->query->get('role', '');
+        $status      = $request->query->get('status', '');
+        
+        // Get the users
+        $usersQry = $this->userSvc->findNonDeletedQuery($searchValue, $role, $status);
+        $users    = $this->paginator->paginate(
+            $usersQry,
+            $pageNr,
+            User::LIST_ITEMS
+        );        
+        
+        return $users;
+    }
+    
+
 }
