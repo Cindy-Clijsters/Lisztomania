@@ -32,14 +32,54 @@ class AlbumRepository extends ServiceEntityRepository
     /**
      * Get the non-deleted albums
      * 
+     * @param array $filterParams
+     * 
      * @return Query
      */
-    public function findNonDeletedQuery(): Query
+    public function findNonDeletedQuery(array $filterParams): Query
     {
-        return $this->createQueryBuilder('a')
-            ->leftJoin('a.artist', 'artist')
-            ->orderBy('artist.sortName', 'ASC')
-            ->getQuery();
+        $query = $this->createQueryBuilder('a')
+                       ->leftJoin('a.artist', 'artist');
+                
+        if (array_key_exists('searchValue', $filterParams)) {
+            $query = $query->andWhere('a.title LIKE :searchValue OR a.alternativeTitle LIKE :searchValue')
+                           ->setParameter('searchValue', '%' . addcslashes($filterParams['searchValue'], '%_') . '%');
+        }
+        
+        if (array_key_exists('multipleArtists', $filterParams)) {
+            $query = $query->andWhere('a.multipleArtists = :multipleArtists')
+                           ->setParameter('multipleArtists', $filterParams['multipleArtists']);
+        }
+        
+        if (array_key_exists('artist', $filterParams)) {
+            $query = $query->andWhere('a.artist = :artist')
+                           ->setParameter('artist', $filterParams['artist']);
+        }
+        
+        if (array_key_exists('label', $filterParams)) {
+            $query = $query->andWhere('a.label = :label')
+                           ->setParameter('label', $filterParams['label']);
+        }
+        
+        if (array_key_exists('distributor', $filterParams)) {
+            $query = $query->andWhere('a.distributor = :distributor')
+                           ->setParameter('distributor', $filterParams['distributor']);
+        }
+        
+        if (array_key_exists('releaseYear', $filterParams)) {
+            $query = $query->andWhere('a.releaseYear = :releaseYear')
+                           ->setParameter('releaseYear', $filterParams['releaseYear']);
+        }  
+        
+        if (array_key_exists('status', $filterParams)) {
+            $query = $query->andWhere('a.status = :status')
+                           ->setParameter('status', $filterParams['status']);
+        }           
+        
+        $query = $query->orderBy('artist.sortName', 'ASC')
+                       ->getQuery();
+        
+        return $query;
     }
     
     /**

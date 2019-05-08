@@ -65,8 +65,7 @@ class OverviewController extends AbstractController
         $pageNr = $request->query->getInt('page', 1);
         
         // Get the non-deleted albums
-        $albumQry = $this->albumSvc->findNonDeletedQuery();
-        $albums   = $this->paginator->paginate($albumQry, $pageNr, Album::LIST_ITEMS);
+        $albums = $this->getAlbums($request, $pageNr);
         
         // Get the start- and endrecord for the shown items
         list($startRecord, $endRecord) = $this->listSvc->getStartEndRecord(
@@ -85,5 +84,62 @@ class OverviewController extends AbstractController
                 'endRecord'   => $endRecord
             ]
         );
+    }
+    
+    private function getAlbums(Request $request, int $pageNr): object
+    {
+        // Get the filter values
+        $params = $this->getFilterParams($request);
+        
+        // Get the albums
+        $albumQry = $this->albumSvc->findNonDeletedQuery($params);
+        $albums   = $this->paginator->paginate($albumQry, $pageNr, Album::LIST_ITEMS);
+        
+        return $albums;
+    }
+    
+    /**
+     * Get an array with the filter values
+     * 
+     * @param Request $request
+     * 
+     * @return array
+     */
+    private function getFilterParams(Request $request): array
+    {
+        $params = [];
+        
+        if (
+            !empty($request->query->get('searchValue'))
+            && trim($request->query->get('searchValue')) !== ''
+        ) {
+            $params['searchValue'] = $request->query->get('searchValue');
+        }
+        
+        if (!empty($request->query->get('multipleArtists'))) {
+            $params['multipleArtists'] = $request->query->get('multipleArtists');
+        }
+        
+        if (!empty($request->query->get('artist'))) {
+            $params['artist'] = $request->query->get('artist');
+        }
+        
+        if (!empty($request->query->get('label'))) {
+            $params['label'] = $request->query->get('label');
+        }
+        
+        if (!empty($request->query->get('distributor'))) {
+            $params['distributor'] = $request->query->get('distributor');
+        }
+        
+        if (!empty($request->query->get('releaseYear'))) {
+            $params['releaseYear'] = $request->query->get('releaseYear');
+        }
+        
+        if (!empty($request->query->get('status'))) {
+            $params['status'] = $request->query->get('status');
+        }
+
+        return $params;        
     }
 }

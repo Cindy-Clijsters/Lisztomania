@@ -52,12 +52,14 @@ class AlbumService
     /**
      * Get the query to get the non deleted albums
      * 
+     * @param array $filterParams
+     * 
      * @return Query
      */
-    public function findNonDeletedQuery(): Query
+    public function findNonDeletedQuery(array $filterParams): Query
     {
         $albumRps = $this->getRepository();
-        $albumQry = $albumRps->findNonDeletedQuery();
+        $albumQry = $albumRps->findNonDeletedQuery($filterParams);
         
         return $albumQry;
     }
