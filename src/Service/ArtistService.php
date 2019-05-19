@@ -13,6 +13,7 @@ use App\Entity\Artist;
 use App\Repository\ArtistRepository;
 
 use Gedmo\Translatable\Entity\Translation;
+use Gedmo\Translatable\Entity\Repository\TranslationRepository;
 
 /**
  * Holds artist functions
@@ -46,6 +47,16 @@ class ArtistService
     public function getRepository(): ArtistRepository
     {
         return $this->em->getRepository(Artist::class);
+    }
+    
+    /**
+     * Get the translation repository
+     * 
+     * @return Translation
+     */
+    public function getTranslationRepository(): TranslationRepository
+    {
+        return $this->em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
     }
     
     /**
@@ -109,6 +120,29 @@ class ArtistService
     } 
     
     /**
+     * Find the translations
+     * 
+     * @param Artist $artist
+     * 
+     * @return array
+     */
+    public function findTranslations(Artist $artist): array
+    {
+        $translationRps = $this->getTranslationRepository();
+        $translations   = $translationRps->findTranslations($artist);
+        
+        if (!array_key_exists('nl', $translations)) {
+            $translations['nl']['description'] = '';
+        }
+        
+        if (!array_key_exists('en', $translations)) {
+            $translations['en']['description'] = '';
+        }
+        
+        return $translations;
+    }
+    
+    /**
      * Save the artist into the database
      * 
      * @param Artist $artist
@@ -119,7 +153,7 @@ class ArtistService
     public function saveToDb(Artist $artist, array $translations): void
     {
         // Get the translations repository
-        $translationRps = $this->em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $translationRps = $this->getTranslationRepository();
     
         // Add the description
         $artist->setDescription($translations['description']['nl']);

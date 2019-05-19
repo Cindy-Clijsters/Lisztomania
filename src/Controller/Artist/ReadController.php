@@ -43,13 +43,15 @@ class ReadController extends AbstractController
     public function read(string $slug): Response
     {
         // Get the information to display the view
-        $artist = $this->artistSvc->findBySlug($slug);
+        $artist       = $this->artistSvc->findBySlug($slug);
+        $translations = $this->artistSvc->findTranslations($artist);
 
         // Display the view
         return $this->render(
             'artist/read.html.twig',
             [
-                'artist' => $artist
+                'artist'       => $artist,
+                'translations' => $translations
             ]
         );
     }

@@ -6,7 +6,9 @@ return [
     'field.country' => 'Land',
     'field.descriptionNl' => 'Omschrijving',
     'field.descriptionNl' => 'Omschrijving (Nl)',
-    'field.descriptionEn' => 'Omschrijving (En)',    
+    'field.descriptionEn' => 'Omschrijving (En)', 
+    'field.currentImage' => 'Huidige afbeelding',
+    'field.image' => 'Afbeelding',
     'field.status' => 'Status', 
     'field.searchValue' => 'Zoekwaarde',
     

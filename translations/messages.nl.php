@@ -30,5 +30,7 @@ return [
     'action.reset' => 'Reseten',
     
     'error.invalidIdentifier' => 'Ongeldige identifier',
+    
+    'image.notFound' => 'Geen afbeelding gevonden',
 
 ];

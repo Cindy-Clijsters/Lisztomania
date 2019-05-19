@@ -7,6 +7,8 @@ return [
     'field.descriptionNl' => 'Description',
     'field.descriptionNl' => 'Description (Nl)',
     'field.descriptionEn' => 'Description (En)',
+    'field.currentImage' => 'Current image',
+    'field.image' => 'Image',
     'field.status' => 'Status', 
     'field.searchValue' => 'Search value',    
     

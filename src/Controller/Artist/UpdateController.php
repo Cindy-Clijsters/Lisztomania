@@ -53,12 +53,16 @@ class UpdateController extends AbstractController
    public function update(Request $request, string $slug): Response
    {
        // Get the information to display the view
-       $artist = $this->artistSvc->findBySlug($slug);
+       $artist       = $this->artistSvc->findBySlug($slug);
+       $translations = $this->artistSvc->findTranslations($artist);
        
        $form = $this->createForm(
             ArtistType::class,
             $artist,
-            ['validation_groups' => 'update']
+            [
+                'validation_groups' => 'update',
+                'translations'      => $translations
+            ]
         );
        $form->handleRequest($request);
        
@@ -66,9 +70,13 @@ class UpdateController extends AbstractController
            
             // Get the posted values
             $artist = $form->getData();
+            
+            $translations = [];
+            $translations['description']['nl'] = $form->get('descriptionNl')->getData();
+            $translations['description']['en'] = $form->get('descriptionEn')->getData();
            
             // Save the artist
-            $this->artistSvc->saveToDb($artist);
+            $this->artistSvc->saveToDb($artist, $translations);
            
             // Redirect to the overview
             $this->addFlash(
@@ -89,7 +97,8 @@ class UpdateController extends AbstractController
        return $this->render(
            'artist/update.html.twig',
             [
-                'form' => $form->createView()
+                'form'   => $form->createView(),
+                'artist' => $artist
             ]
        );
    }

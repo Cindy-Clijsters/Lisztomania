@@ -7,16 +7,20 @@ use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
 
 use App\Entity\BaseEntity;
 
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", hardDelete=true)
  * @Gedmo\Loggable
+ * @Vich\Uploadable
  * 
  * @UniqueEntity(
  *     "name",
@@ -112,6 +116,30 @@ class Artist extends BaseEntity
      * @var string 
      */
     private $country;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Gedmo\Versioned
+     * 
+     * @var string 
+     */
+    private $image;
+    
+    /**
+     * @Vich\UploadableField(mapping="artists_images", fileNameProperty="image")
+     * 
+     * @Assert\Image(
+     *  maxSize = "200k",
+     *  minWidth = 320,
+     *  maxWidth = 960,
+     *  minHeight = 320,
+     *  maxHeight = 960,
+     *  mimeTypes = {"image/jpeg", "image/png"}
+     * )
+     * 
+     * @var File 
+     */
+    private $imageFile;
     
     /**
      * @ORM\Column(length = 128, unique = true)
@@ -250,6 +278,58 @@ class Artist extends BaseEntity
     public function setCountry(?string $country): self
     {
         $this->country = $country;
+        
+        return $this;
+    }
+    
+    /**
+     * Get the image
+     * 
+     * @return string
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+    
+    /**
+     * Set the image
+     * 
+     * @param string|null $image
+     * 
+     * @return \self
+     */
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+        
+        return $this;
+    }
+    
+    /**
+     * Get the image file
+     * 
+     * @return File|null
+     */
+    public function getImageFile(): ?File 
+    {
+        return $this->imageFile;
+    }
+    
+    /**
+     * Set the image file
+     * 
+     * @param File|null $image
+     * 
+     * @return \self
+     */
+    public function setImageFile(?File $image): self
+    {
+        $this->imageFile = $image;
+        
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
         
         return $this;
     }

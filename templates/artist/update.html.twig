@@ -24,6 +24,19 @@
                         {{ form_row(form.name) }}
                         {{ form_row(form.sortName) }}   
                         {{ form_row(form.country) }}
+                        {{ form_row(form.descriptionNl) }}
+                        {{ form_row(form.descriptionEn) }}
+                        
+                        <div class="form-group">
+                            <label>{% trans from 'artists' %}field.currentImage{% endtrans %}</label><br>
+                            {% if artist.image is not null %}
+                                <img src="{{ vich_uploader_asset(artist, 'imageFile') }}" />
+                            {% else %}
+                                {% trans %}image.notFound{% endtrans %}s
+                            {% endif %}   
+                        </div>
+                            
+                        {{ form_row(form.imageFile) }}                        
                         {{ form_row(form.status) }}
 
                         {{ form_widget(form.submit) }}

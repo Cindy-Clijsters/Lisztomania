@@ -44,7 +44,38 @@
                         <div class="col-12 col-md-9">
                             <p class="form-control-static">{{ artist.country|countryName }}</p>
                         </div>
-                    </div>                        
+                    </div> 
+                        
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class="form-control-label">{% trans from 'artists' %}field.descriptionNl{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ translations['nl']['description'] }}</p>
+                        </div>
+                    </div>
+                        
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class="form-control-label">{% trans from 'artists' %}field.descriptionEn{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static">{{ translations['en']['description'] }}</p>
+                        </div>
+                    </div>
+                        
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <label class="form-control-label">{% trans from 'artists' %}field.image{% endtrans %}</label>:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            {% if artist.image is not null %}
+                                <img src="{{ vich_uploader_asset(artist, 'imageFile') }}" />
+                            {% else %}
+                                <p class="form-control-static">{% trans %}image.notFound{% endtrans %}</p>
+                            {% endif %}   
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col col-md-3">

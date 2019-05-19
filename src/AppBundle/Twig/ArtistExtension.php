@@ -84,12 +84,14 @@ class ArtistExtension extends AbstractExtension
     /**
      * Get the full country name
      * 
-     * @param string $countryAbbr
+     * @param string|null $countryAbbr
      * 
      * @return string
      */
-    public function getCountryName(string $countryAbbr): string
+    public function getCountryName(?string $countryAbbr): string
     {
-        return Intl::getRegionBundle()->getCountryName($countryAbbr);
+        $countryName = Intl::getRegionBundle()->getCountryName($countryAbbr);
+        
+        return ($countryName !== null ? $countryName : '');
     }       
 }

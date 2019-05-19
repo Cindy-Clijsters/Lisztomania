@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -70,7 +71,8 @@ class ArtistType extends AbstractType
                     'label'      => 'field.descriptionNl',
                     'required'   => false,
                     'mapped'     => false,
-                    'empty_data' => ''
+                    'empty_data' => '',
+                    'data'       => $options['translations']['nl']['description']
                 ]
             )
             ->add(
@@ -80,9 +82,19 @@ class ArtistType extends AbstractType
                     'label'      => 'field.descriptionEn',
                     'required'   => false,
                     'mapped'     => false,
+                    'empty_data' => '',
+                    'data'       => $options['translations']['en']['description']
+                ]
+            )        
+            ->add(
+                'imageFile',
+                FileType::class,
+                [
+                    'label'      => 'field.image',
+                    'required'   => false,
                     'empty_data' => ''
                 ]
-            )                
+            )
             ->add(
                 'status',
                 ChoiceType::class,
@@ -119,7 +131,8 @@ class ArtistType extends AbstractType
         $resolver->setDefaults([
             'validation_groups'  => 'create',
             'translation_domain' => 'artists',
-            'data_class'         => Artist::class
+            'data_class'         => Artist::class,
+            'translations'       => []
         ]);
     }
 }

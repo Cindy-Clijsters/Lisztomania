@@ -31,4 +31,6 @@ return [
     
     'error.invalidIdentifier' => 'Invalid identifier',
     
+    'image.notFound' => 'Geen afbeelding gevonden',
+    
 ];
